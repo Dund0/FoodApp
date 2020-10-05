@@ -22,4 +22,9 @@ public class LoginActivity extends AppCompatActivity {
         Intent MainInt = new Intent(this, MainActivity.class);
         startActivity(MainInt);
     }
+
+    public void toSignUp(View view){
+        Intent RegInt = new Intent(this, RegisterActivity.class);
+        startActivity(RegInt);
+    }
 }
