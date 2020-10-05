@@ -16,6 +16,6 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="createEmail">Email Address</string>
     <string name="confirmPassword">Confirm Password</string>
-    <string name="reg_success">Welcome!</string>
+    <string name="reg_success">Registration Successful! Please check your email verification.</string>
     <string name="reg_fail">There was an error occurred</string>
 </resources>

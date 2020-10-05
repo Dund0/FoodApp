@@ -58,9 +58,16 @@ public class LoginActivity extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
-                                finish();
-                                Intent mainInt = new Intent(LoginActivity.this, MainActivity.class);
-                                startActivity(mainInt);
+                                //check the user verified the email address
+                                if(mFirebaseAuth.getCurrentUser().isEmailVerified()){
+                                    finish();
+                                    Intent mainInt = new Intent(LoginActivity.this, MainActivity.class);
+                                    startActivity(mainInt);
+                                } else{
+                                    Toast.makeText(LoginActivity.this, "Please verify your email address",
+                                            Toast.LENGTH_LONG).show();
+                                }
+
                             } else {
                                 Toast.makeText(LoginActivity.this, task.getException().getMessage(), Toast.LENGTH_LONG).show();
                             }

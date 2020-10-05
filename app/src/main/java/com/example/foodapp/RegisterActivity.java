@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.EditText;
@@ -12,8 +13,10 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.ActionCodeSettings;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthInvalidUserException;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class RegisterActivity extends AppCompatActivity {
@@ -38,6 +41,7 @@ public class RegisterActivity extends AppCompatActivity {
         final String userID = user.getText().toString().trim();
         final String pwd = password.getText().toString().trim();
         String pwdconfirm = confirmpassword.getText().toString().trim();
+
         //user Verification
         if(emailId.isEmpty()){
             email.setError("Please enter your email");
@@ -66,31 +70,45 @@ public class RegisterActivity extends AppCompatActivity {
         }
 
         else{
+
             mFirebaseAuth.createUserWithEmailAndPassword(emailId, pwd).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if(task.isSuccessful()){
-                        User userstuff = new User(
-                                userID,
-                                emailId,
-                                pwd
-                        );
-                        //put it into database
-                        FirebaseDatabase.getInstance().getReference("Users")
-                                .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                                .setValue(userstuff).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        //Send the Email verification
+                        mFirebaseAuth.getCurrentUser().sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
                                 if(task.isSuccessful()){
-                                    Toast.makeText(RegisterActivity.this, getString(R.string.reg_success), Toast.LENGTH_LONG).show();
-                                    finish();
-                                    Intent mainInt = new Intent(RegisterActivity.this, MainActivity.class);
-                                    startActivity(mainInt);
-                                } else{
-                                    Toast.makeText(RegisterActivity.this, getString(R.string.reg_fail), Toast.LENGTH_LONG).show();
+                                    User userstuff = new User(
+                                            userID,
+                                            emailId,
+                                            pwd
+                                    );
+                                    //put it into database
+                                    FirebaseDatabase.getInstance().getReference("Users")
+                                            .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                                            .setValue(userstuff).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<Void> task) {
+                                            if(task.isSuccessful()){
+                                                Toast.makeText(RegisterActivity.this, getString(R.string.reg_success), Toast.LENGTH_LONG).show();
+                                                finish();
+                                                Intent mainInt = new Intent(RegisterActivity.this, MainActivity.class);
+                                                startActivity(mainInt);
+                                            } else{
+                                                Toast.makeText(RegisterActivity.this, getString(R.string.reg_fail), Toast.LENGTH_LONG).show();
+                                            }
+                                        }
+                                    });
+                                }
+                                else{
+                                    Toast.makeText(RegisterActivity.this, task.getException().getMessage(),
+                                            Toast.LENGTH_LONG).show();
                                 }
                             }
                         });
+
                     } else{
                         Toast.makeText(RegisterActivity.this, task.getException().getMessage(), Toast.LENGTH_LONG).show();
                     }
