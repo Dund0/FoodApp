@@ -29,10 +29,9 @@
             app:layout_constraintVertical_bias="0.849" />
 
         <TextView
-            android:id="@+id/UsernameText"
+            android:id="@+id/EmailText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/Username"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.031"
@@ -54,10 +53,11 @@
             app:layout_constraintVertical_bias="0.778" />
 
         <EditText
-            android:id="@+id/Password"
+            android:id="@+id/password"
             android:layout_width="385dp"
             android:layout_height="65dp"
             android:ems="10"
+            android:hint="password"
             android:inputType="textPassword"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -65,10 +65,11 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
-            android:id="@+id/Username"
+            android:id="@+id/email"
             android:layout_width="387dp"
             android:layout_height="62dp"
             android:ems="10"
+            android:hint="email"
             android:inputType="textEmailAddress"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

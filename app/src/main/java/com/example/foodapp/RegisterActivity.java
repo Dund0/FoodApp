@@ -3,6 +3,7 @@ package com.example.foodapp;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
@@ -35,7 +36,7 @@ public class RegisterActivity extends AppCompatActivity {
     public void Signup(View view){
         final String emailId = email.getText().toString().trim();
         final String userID = user.getText().toString().trim();
-        String pwd = password.getText().toString().trim();
+        final String pwd = password.getText().toString().trim();
         String pwdconfirm = confirmpassword.getText().toString().trim();
         //user Verification
         if(emailId.isEmpty()){
@@ -71,7 +72,8 @@ public class RegisterActivity extends AppCompatActivity {
                     if(task.isSuccessful()){
                         User userstuff = new User(
                                 userID,
-                                emailId
+                                emailId,
+                                pwd
                         );
                         //put it into database
                         FirebaseDatabase.getInstance().getReference("Users")
@@ -81,6 +83,9 @@ public class RegisterActivity extends AppCompatActivity {
                             public void onComplete(@NonNull Task<Void> task) {
                                 if(task.isSuccessful()){
                                     Toast.makeText(RegisterActivity.this, getString(R.string.reg_success), Toast.LENGTH_LONG).show();
+                                    finish();
+                                    Intent mainInt = new Intent(RegisterActivity.this, MainActivity.class);
+                                    startActivity(mainInt);
                                 } else{
                                     Toast.makeText(RegisterActivity.this, getString(R.string.reg_fail), Toast.LENGTH_LONG).show();
                                 }
@@ -94,6 +99,8 @@ public class RegisterActivity extends AppCompatActivity {
 
 
         }
-
+    }
+    public void backToLogin(View view){
+        finish();
     }
 }
