@@ -7,6 +7,7 @@
     <string name="next">Next</string>
     <string name="previous">Previous</string>
     <string name="Username">Username</string>
+    <string name="Email">Email</string>
     <string name="Password">Password</string>
     <string name="Login">Log In</string>
     <string name="SignUp">Sign Up</string>
