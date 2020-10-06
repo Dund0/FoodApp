@@ -17,7 +17,13 @@ import com.google.firebase.auth.ActionCodeSettings;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthInvalidUserException;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.Iterator;
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -68,52 +74,72 @@ public class RegisterActivity extends AppCompatActivity {
             confirmpassword.setError("Passwords do not match!");
             confirmpassword.requestFocus();
         }
-
         else{
-
-            mFirebaseAuth.createUserWithEmailAndPassword(emailId, pwd).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
+            ref.child("Users").addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
-                public void onComplete(@NonNull Task<AuthResult> task) {
-                    if(task.isSuccessful()){
-                        //Send the Email verification
-                        mFirebaseAuth.getCurrentUser().sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
+                public void onDataChange(DataSnapshot snapshot) {
+                    final boolean[]exists = {false};
+                    for (DataSnapshot child : snapshot.getChildren()) {
+                        String usernameDB = child.child("username").getValue().toString().trim();
+                        if (usernameDB.equals(userID)) {
+                            exists[0] = true;
+                            break;
+                        }
+                    }
+                    if(exists[0]){
+                        Toast.makeText(RegisterActivity.this, getString(R.string.usernameTaken),Toast.LENGTH_LONG).show();
+                    }
+                    else {
+                        mFirebaseAuth.createUserWithEmailAndPassword(emailId, pwd).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                             @Override
-                            public void onComplete(@NonNull Task<Void> task) {
+                            public void onComplete(@NonNull Task<AuthResult> task) {
                                 if(task.isSuccessful()){
-                                    User userstuff = new User(
-                                            userID,
-                                            emailId,
-                                            pwd
-                                    );
-                                    //put it into database
-                                    FirebaseDatabase.getInstance().getReference("Users")
-                                            .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                                            .setValue(userstuff).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    //Send the Email verification
+                                    mFirebaseAuth.getCurrentUser().sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
                                         @Override
                                         public void onComplete(@NonNull Task<Void> task) {
                                             if(task.isSuccessful()){
-                                                Toast.makeText(RegisterActivity.this, getString(R.string.reg_success), Toast.LENGTH_LONG).show();
-                                                finish();
-                                            } else{
-                                                Toast.makeText(RegisterActivity.this, getString(R.string.reg_fail), Toast.LENGTH_LONG).show();
+                                                User userstuff = new User(
+                                                        userID,
+                                                        emailId,
+                                                        pwd
+                                                );
+                                                //put it into database
+                                                FirebaseDatabase.getInstance().getReference("Users")
+                                                        .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                                                        .setValue(userstuff).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                    @Override
+                                                    public void onComplete(@NonNull Task<Void> task) {
+                                                        if(task.isSuccessful()){
+                                                            Toast.makeText(RegisterActivity.this, getString(R.string.reg_success), Toast.LENGTH_LONG).show();
+                                                            finish();
+                                                        } else{
+                                                            Toast.makeText(RegisterActivity.this, getString(R.string.reg_fail), Toast.LENGTH_LONG).show();
+                                                        }
+                                                    }
+                                                });
+                                            }
+                                            else{
+                                                Toast.makeText(RegisterActivity.this, task.getException().getMessage(),
+                                                        Toast.LENGTH_LONG).show();
                                             }
                                         }
                                     });
-                                }
-                                else{
-                                    Toast.makeText(RegisterActivity.this, task.getException().getMessage(),
-                                            Toast.LENGTH_LONG).show();
+
+                                } else{
+                                    Toast.makeText(RegisterActivity.this, task.getException().getMessage(), Toast.LENGTH_LONG).show();
                                 }
                             }
                         });
-
-                    } else{
-                        Toast.makeText(RegisterActivity.this, task.getException().getMessage(), Toast.LENGTH_LONG).show();
                     }
                 }
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+                    Toast.makeText(RegisterActivity.this, "Error", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RegisterActivity.this, error.getMessage(), Toast.LENGTH_SHORT).show();
+                }
             });
-
-
         }
     }
     public void backToLogin(View view){

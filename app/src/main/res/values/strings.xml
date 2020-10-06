@@ -20,4 +20,5 @@
     <string name="reg_success">Registration Successful! Please check your email verification.</string>
     <string name="reg_fail">There was an error occurred</string>
     <string name="signout">Sign Out</string>
+    <string name="usernameTaken">This username is already taken</string>
 </resources>
