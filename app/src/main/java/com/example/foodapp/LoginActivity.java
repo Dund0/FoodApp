@@ -32,6 +32,14 @@ public class LoginActivity extends AppCompatActivity {
 
         Toolbar toolbar = findViewById(R.id.app_bar);
         setSupportActionBar(toolbar);
+
+        FirebaseUser curruser = FirebaseAuth.getInstance().getCurrentUser();
+
+        if(curruser != null){
+            //Users is signed in
+            Intent mainInt = new Intent(LoginActivity.this, MainActivity.class);
+            startActivity(mainInt);
+        }
     }
 
 
