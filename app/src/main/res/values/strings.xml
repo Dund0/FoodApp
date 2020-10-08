@@ -21,4 +21,5 @@
     <string name="reg_fail">There was an error occurred</string>
     <string name="signout">Sign Out</string>
     <string name="usernameTaken">This username is already taken</string>
+    <string name="typeStep">Type your step here</string>
 </resources>

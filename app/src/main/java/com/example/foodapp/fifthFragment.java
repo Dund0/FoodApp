@@ -3,22 +3,17 @@ package com.example.foodapp;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
-import androidx.appcompat.app.AppCompatActivity;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.ImageView;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link ThirdFragment#newInstance} factory method to
+ * Use the {@link fifthFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class ThirdFragment extends Fragment implements View.OnClickListener{
-
-    ImageView imageToUpload;
-    Button uploadButton;
+public class fifthFragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -29,7 +24,7 @@ public class ThirdFragment extends Fragment implements View.OnClickListener{
     private String mParam1;
     private String mParam2;
 
-    public ThirdFragment() {
+    public fifthFragment() {
         // Required empty public constructor
     }
 
@@ -39,11 +34,11 @@ public class ThirdFragment extends Fragment implements View.OnClickListener{
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment ThirdFragment.
+     * @return A new instance of fragment fifthFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static ThirdFragment newInstance(String param1, String param2) {
-        ThirdFragment fragment = new ThirdFragment();
+    public static fifthFragment newInstance(String param1, String param2) {
+        fifthFragment fragment = new fifthFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -57,12 +52,6 @@ public class ThirdFragment extends Fragment implements View.OnClickListener{
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
-
-            imageToUpload = (ImageView) getView().findViewById(R.id.imageUpload);
-            uploadButton = (Button) getView().findViewById(R.id.UploadButton);
-
-            imageToUpload.setOnClickListener(this);
-            uploadButton.setOnClickListener(this);
         }
     }
 
@@ -70,14 +59,6 @@ public class ThirdFragment extends Fragment implements View.OnClickListener{
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_third, container, false);
+        return inflater.inflate(R.layout.fragment_fifth, container, false);
     }
-
-    @Override
-    public void onClick(View view) {
-
-    }
-
-    //method to upload image
-
 }
