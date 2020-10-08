@@ -1,14 +1,22 @@
 package com.example.foodapp;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.annotation.Nullable;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+
+import static android.app.Activity.RESULT_OK;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -16,9 +24,11 @@ import android.widget.ImageView;
  * create an instance of this fragment.
  */
 public class ThirdFragment extends Fragment implements View.OnClickListener{
+    private static final int RESULT_LOAD_IMAGE = 1;
 
+    CardView imageCard;
     ImageView imageToUpload;
-    Button uploadButton;
+    Button uploadButton, categories;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -57,27 +67,49 @@ public class ThirdFragment extends Fragment implements View.OnClickListener{
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
-
-            imageToUpload = (ImageView) getView().findViewById(R.id.imageUpload);
-            uploadButton = (Button) getView().findViewById(R.id.UploadButton);
-
-            imageToUpload.setOnClickListener(this);
-            uploadButton.setOnClickListener(this);
         }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        View rootView = inflater.inflate(R.layout.fragment_third, container, false);
+
+        imageToUpload = (ImageView) rootView.findViewById(R.id.imageUpload);
+        uploadButton = (Button) rootView.findViewById(R.id.UploadButton);
+        imageCard = (CardView) rootView.findViewById(R.id.mainImageCard);
+        categories = (Button) rootView.findViewById(R.id.categories);
+
+        imageToUpload.setOnClickListener(this);
+        imageCard.setOnClickListener(this);
+        uploadButton.setOnClickListener(this);
+        categories.setOnClickListener(this);
+
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_third, container, false);
+        return rootView;
     }
+
 
     @Override
     public void onClick(View view) {
-
+        switch (view.getId()) {
+            case R.id.imageUpload:
+                Intent galleryIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                startActivityForResult(galleryIntent, RESULT_LOAD_IMAGE);
+                break;
+        }
     }
 
     //method to upload image
 
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if ( resultCode == RESULT_OK && requestCode == RESULT_LOAD_IMAGE && data !=null) {
+            Uri selectedImage = data.getData();
+            imageToUpload.setImageURI(selectedImage);
+        }
+    }
 }

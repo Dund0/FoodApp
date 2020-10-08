@@ -19,7 +19,7 @@
         android:layout_marginEnd="80dp"
         android:elevation="10dp"
         app:cardCornerRadius="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/cardView2"
+        app:layout_constraintBottom_toTopOf="@+id/mainImageCard"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/app_bar">
@@ -35,7 +35,7 @@
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/cardView2"
+        android:id="@+id/mainImageCard"
         android:layout_width="250dp"
         android:layout_height="40dp"
         android:layout_marginStart="80dp"
@@ -68,7 +68,7 @@
         app:cardCornerRadius="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardView2">
+        app:layout_constraintTop_toBottomOf="@+id/mainImageCard">
 
         <EditText
             android:id="@+id/confirmpassword"

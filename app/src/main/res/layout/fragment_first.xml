@@ -9,12 +9,14 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:layout_gravity="center">
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="340dp"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:layout_gravity="center_horizontal">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -31,7 +33,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="2dp"
                     android:text="Title"
-                    android:textSize="24dp" />
+                    android:textSize="20dp" />
 
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
@@ -44,9 +46,8 @@
                     <ImageView
                         android:id="@+id/imageView"
                         android:layout_width="match_parent"
-                        android:layout_height="256dp"
+                        android:layout_height="300dp"
                         android:contentDescription="TODO"
-                        android:scaleType="fitXY"
                         android:src="@drawable/image" />
 
                 </androidx.cardview.widget.CardView>
@@ -105,6 +106,12 @@
 
             </LinearLayout>
 
+            <View
+                android:id="@+id/divider"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="?android:attr/listDivider" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -121,7 +128,7 @@
                     android:layout_marginTop="2dp"
                     android:layout_marginBottom="2dp"
                     android:text="Title"
-                    android:textSize="24dp" />
+                    android:textSize="20dp" />
 
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
@@ -134,9 +141,8 @@
                     <ImageView
                         android:id="@+id/imageView3"
                         android:layout_width="match_parent"
-                        android:layout_height="256dp"
+                        android:layout_height="300dp"
                         android:contentDescription="TODO"
-                        android:scaleType="fitXY"
                         android:src="@drawable/image2" />
 
                 </androidx.cardview.widget.CardView>
@@ -194,6 +200,12 @@
                 </LinearLayout>
             </LinearLayout>
 
+            <View
+                android:id="@+id/divider3"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="?android:attr/listDivider" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -210,7 +222,7 @@
                     android:layout_marginTop="2dp"
                     android:layout_marginBottom="2dp"
                     android:text="Title"
-                    android:textSize="24dp" />
+                    android:textSize="20dp" />
 
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
@@ -223,9 +235,8 @@
                     <ImageView
                         android:id="@+id/imageView5"
                         android:layout_width="match_parent"
-                        android:layout_height="256dp"
+                        android:layout_height="300dp"
                         android:contentDescription="TODO"
-                        android:scaleType="fitXY"
                         android:src="@drawable/image3" />
 
                 </androidx.cardview.widget.CardView>
