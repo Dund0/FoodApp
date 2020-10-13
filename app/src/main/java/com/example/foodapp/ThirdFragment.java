@@ -13,8 +13,10 @@ import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Spinner;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -28,7 +30,7 @@ public class ThirdFragment extends Fragment implements View.OnClickListener{
 
     CardView imageCard;
     ImageView imageToUpload;
-    Button uploadButton, categories;
+    Spinner types, materials, method, situation, culture;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -77,14 +79,16 @@ public class ThirdFragment extends Fragment implements View.OnClickListener{
         View rootView = inflater.inflate(R.layout.fragment_third, container, false);
 
         imageToUpload = (ImageView) rootView.findViewById(R.id.imageUpload);
-        uploadButton = (Button) rootView.findViewById(R.id.UploadButton);
         imageCard = (CardView) rootView.findViewById(R.id.mainImageCard);
-        categories = (Button) rootView.findViewById(R.id.categories);
+
+        types = (Spinner) rootView.findViewById(R.id.types);
+        materials = (Spinner) rootView.findViewById(R.id.materials);
+        method = (Spinner) rootView.findViewById(R.id.method);
+        situation = (Spinner) rootView.findViewById(R.id.situation);
+        culture = (Spinner) rootView.findViewById(R.id.culture);
 
         imageToUpload.setOnClickListener(this);
         imageCard.setOnClickListener(this);
-        uploadButton.setOnClickListener(this);
-        categories.setOnClickListener(this);
 
         // Inflate the layout for this fragment
         return rootView;

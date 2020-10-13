@@ -22,4 +22,59 @@
     <string name="signout">Sign Out</string>
     <string name="usernameTaken">This username is already taken</string>
     <string name="typeStep">Type your step here</string>
+
+    <string-array name="types">
+        <item>Main dish</item>
+        <item>Side dish</item>
+        <item>Soup</item>
+        <item>Snacks</item>
+        <item>Salad</item>
+        <item>Sauce/Jam</item>
+        <item>Beverage</item>
+    </string-array>
+
+    <string-array name="materials">
+        <item>Beef</item>
+        <item>Pork</item>
+        <item>Chicken</item>
+        <item>Meat</item>
+        <item>Vegetables</item>
+        <item>Seafood</item>
+        <item>Dairy</item>
+        <item>Rice</item>
+        <item>Fruits</item>
+        <item>Beans</item>
+        <item>Grain</item>
+    </string-array>
+
+    <string-array name="method">
+        <item>Stir-fried</item>
+        <item>Boiled</item>
+        <item>Steamed</item>
+        <item>Fried</item>
+        <item>Baked</item>
+    </string-array>
+
+    <string-array name="situation">
+        <item>Vegan</item>
+        <item>Daily Life</item>
+        <item>Super Quick Meal</item>
+        <item>For Guests</item>
+        <item>Diet</item>
+        <item>Bento Box</item>
+        <item>Nutrient Dense</item>
+        <item>Midnight Snack</item>
+        <item>Holiday</item>
+        <item>Baby Food</item>
+    </string-array>
+
+    <string-array name="culture">
+        <item>Mexican</item>
+        <item>Italian</item>
+        <item>French</item>
+        <item>Korean</item>
+        <item>Chinese</item>
+        <item>Japanese</item>
+    </string-array>
+
 </resources>
