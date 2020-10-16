@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
@@ -11,6 +12,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.provider.MediaStore;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -29,8 +32,9 @@ public class ThirdFragment extends Fragment implements View.OnClickListener{
     private static final int RESULT_LOAD_IMAGE = 1;
 
     CardView imageCard;
-    ImageView imageToUpload;
+    ImageView imageToUpload, stepUpload, current;
     Spinner types, materials, method, situation, culture;
+
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -70,6 +74,8 @@ public class ThirdFragment extends Fragment implements View.OnClickListener{
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
+        setHasOptionsMenu(true);
     }
 
     @Override
@@ -78,8 +84,9 @@ public class ThirdFragment extends Fragment implements View.OnClickListener{
 
         View rootView = inflater.inflate(R.layout.fragment_third, container, false);
 
+
         imageToUpload = (ImageView) rootView.findViewById(R.id.imageUpload);
-        imageCard = (CardView) rootView.findViewById(R.id.mainImageCard);
+        stepUpload = (ImageView) rootView.findViewById(R.id.stepUpload1);
 
         types = (Spinner) rootView.findViewById(R.id.types);
         materials = (Spinner) rootView.findViewById(R.id.materials);
@@ -88,7 +95,7 @@ public class ThirdFragment extends Fragment implements View.OnClickListener{
         culture = (Spinner) rootView.findViewById(R.id.culture);
 
         imageToUpload.setOnClickListener(this);
-        imageCard.setOnClickListener(this);
+        stepUpload.setOnClickListener(this);
 
         // Inflate the layout for this fragment
         return rootView;
@@ -97,23 +104,34 @@ public class ThirdFragment extends Fragment implements View.OnClickListener{
 
     @Override
     public void onClick(View view) {
+        Intent galleryIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
         switch (view.getId()) {
             case R.id.imageUpload:
-                Intent galleryIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                current = imageToUpload;
+                startActivityForResult(galleryIntent, RESULT_LOAD_IMAGE);
+                break;
+            case R.id.stepUpload1:
+                current = stepUpload;
                 startActivityForResult(galleryIntent, RESULT_LOAD_IMAGE);
                 break;
         }
     }
 
     //method to upload image
-
-
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if ( resultCode == RESULT_OK && requestCode == RESULT_LOAD_IMAGE && data !=null) {
             Uri selectedImage = data.getData();
-            imageToUpload.setImageURI(selectedImage);
+            current.setImageURI(selectedImage);
         }
+    }
+
+    //create post button
+
+    @Override
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+        inflater.inflate(R.menu.menu, menu);
+        super.onCreateOptionsMenu(menu, inflater);
     }
 }

@@ -10,7 +10,8 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:verticalScrollbarPosition="right">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -88,7 +89,7 @@
 
             <LinearLayout
                 android:layout_width="300dp"
-                android:layout_height="25dp"
+                android:layout_height="45dp"
                 android:layout_gravity="center"
                 android:layout_marginTop="10dp"
                 android:orientation="horizontal">
@@ -102,7 +103,7 @@
                     <Spinner
                         android:id="@+id/types"
                         android:layout_width="140dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="40dp"
                         android:entries="@array/types"></Spinner>
 
                 </androidx.cardview.widget.CardView>
@@ -121,9 +122,8 @@
                     <Spinner
                         android:id="@+id/materials"
                         android:layout_width="140dp"
-                        android:layout_height="wrap_content"
-                        android:entries="@array/materials"
-                        ></Spinner>
+                        android:layout_height="40dp"
+                        android:entries="@array/materials"></Spinner>
 
                 </androidx.cardview.widget.CardView>
 
@@ -131,10 +131,11 @@
 
             <LinearLayout
                 android:layout_width="300dp"
-                android:layout_height="25dp"
+                android:layout_height="45dp"
                 android:layout_gravity="center"
                 android:layout_marginTop="10dp"
                 android:orientation="horizontal">
+
 
                 <androidx.cardview.widget.CardView
                     android:layout_width="wrap_content"
@@ -145,7 +146,7 @@
                     <Spinner
                         android:id="@+id/method"
                         android:layout_width="140dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="40dp"
                         android:entries="@array/method"></Spinner>
 
                 </androidx.cardview.widget.CardView>
@@ -164,7 +165,7 @@
                     <Spinner
                         android:id="@+id/situation"
                         android:layout_width="140dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="40dp"
                         android:entries="@array/situation"></Spinner>
 
                 </androidx.cardview.widget.CardView>
@@ -173,7 +174,7 @@
 
             <LinearLayout
                 android:layout_width="300dp"
-                android:layout_height="25dp"
+                android:layout_height="45dp"
                 android:layout_gravity="center"
                 android:layout_marginTop="10dp"
                 android:orientation="horizontal">
@@ -187,7 +188,7 @@
                     <Spinner
                         android:id="@+id/culture"
                         android:layout_width="140dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="40dp"
                         android:entries="@array/culture"></Spinner>
 
                 </androidx.cardview.widget.CardView>
@@ -207,7 +208,7 @@
                         android:id="@+id/editTextTextPersonName"
                         style="@style/spinner_style"
                         android:layout_width="140dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="40dp"
                         android:layout_weight="1"
                         android:background="@android:color/transparent"
                         android:ems="10"
@@ -363,16 +364,16 @@
                     <EditText
                         android:id="@+id/stepDescription"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="3dp"
-                        android:layout_marginRight="3dp"
-                        android:layout_marginBottom="3dp"
+                        android:layout_height="100dp"
                         android:background="@android:color/transparent"
                         android:ems="10"
                         android:hint="@string/typeStep"
-                        android:inputType="textMultiLine|text"
-                        android:maxLines="3"
+                        android:inputType="textMultiLine"
+                        android:lines="4"
+                        android:maxHeight="100dp"
+                        android:maxLines="4"
                         android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
                         android:textSize="18dp" />
                 </LinearLayout>
 
@@ -397,7 +398,7 @@
 
             <Space
                 android:layout_width="match_parent"
-                android:layout_height="20dp" />
+                android:layout_height="10dp" />
 
         </LinearLayout>
     </ScrollView>
