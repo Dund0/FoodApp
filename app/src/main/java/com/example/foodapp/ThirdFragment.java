@@ -8,7 +8,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
-import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.provider.MediaStore;
 import android.view.LayoutInflater;
@@ -16,10 +17,11 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Spinner;
+
+import java.util.ArrayList;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -34,7 +36,11 @@ public class ThirdFragment extends Fragment implements View.OnClickListener{
     CardView imageCard;
     ImageView imageToUpload, stepUpload, current;
     Spinner types, materials, method, situation, culture;
+    Button ingredientAdd, stepAdd;
 
+    RecyclerView ingredientRecycler;
+
+    ArrayList<Ingredient> ingredients = new ArrayList<Ingredient>();
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -94,8 +100,18 @@ public class ThirdFragment extends Fragment implements View.OnClickListener{
         situation = (Spinner) rootView.findViewById(R.id.situation);
         culture = (Spinner) rootView.findViewById(R.id.culture);
 
+        ingredientAdd = (Button) rootView.findViewById(R.id.addIngredient);
+        stepAdd = (Button) rootView.findViewById(R.id.addStep);
+
+        ingredientRecycler = rootView.findViewById(R.id.ingredientsRecycler);
+
         imageToUpload.setOnClickListener(this);
         stepUpload.setOnClickListener(this);
+        ingredientAdd.setOnClickListener(this);
+        stepAdd.setOnClickListener(this);
+
+        ingredients.add(new Ingredient());
+        initIngredientRecycler(ingredients);
 
         // Inflate the layout for this fragment
         return rootView;
@@ -114,7 +130,19 @@ public class ThirdFragment extends Fragment implements View.OnClickListener{
                 current = stepUpload;
                 startActivityForResult(galleryIntent, RESULT_LOAD_IMAGE);
                 break;
+            case R.id.addIngredient:
+                addIngredient();
+                break;
         }
+    }
+
+    private void addIngredient() {
+        for (int i = 0; i < ingredientRecycler.getChildCount(); i++) {
+            RecyclerViewAdapter.ViewHolder holder = (RecyclerViewAdapter.ViewHolder) ingredientRecycler.findViewHolderForAdapterPosition(i);
+            ingredients.set(i, new Ingredient(holder.getIngredient(), holder.getAmount()));
+        }
+        ingredients.add(new Ingredient());
+        initIngredientRecycler(ingredients);
     }
 
     //method to upload image
@@ -128,10 +156,16 @@ public class ThirdFragment extends Fragment implements View.OnClickListener{
     }
 
     //create post button
-
     @Override
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
         inflater.inflate(R.menu.menu, menu);
         super.onCreateOptionsMenu(menu, inflater);
+    }
+
+    //initialize ingredient recycler
+    private void initIngredientRecycler(ArrayList<Ingredient> ingredients){
+        RecyclerViewAdapter adapter = new RecyclerViewAdapter(getContext(), ingredients);
+        ingredientRecycler.setAdapter(adapter);
+        ingredientRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
     }
 }
