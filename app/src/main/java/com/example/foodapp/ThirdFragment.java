@@ -1,20 +1,30 @@
 package com.example.foodapp;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
-import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.provider.MediaStore;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Spinner;
+
+import java.util.ArrayList;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -26,9 +36,24 @@ import static android.app.Activity.RESULT_OK;
 public class ThirdFragment extends Fragment implements View.OnClickListener{
     private static final int RESULT_LOAD_IMAGE = 1;
 
-    CardView imageCard;
-    ImageView imageToUpload;
-    Button uploadButton, categories;
+    ImageView imageToUpload, stepUpload, current;
+    Spinner types, materials, method, situation, culture;
+    Button ingredientAdd, stepAdd;
+
+    RecyclerView ingredientRecycler;
+    RecyclerView stepRecycler;
+
+    boolean checker;
+
+    StepAdapter adapter;
+
+    ArrayList<Ingredient> ingredients = new ArrayList<Ingredient>();
+    ArrayList<Step> steps = new ArrayList<Step>();
+
+    View rootView;
+
+    SharedPreferences pass;
+    SharedPreferences.Editor editor;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -68,48 +93,145 @@ public class ThirdFragment extends Fragment implements View.OnClickListener{
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
+        setHasOptionsMenu(true);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View rootView = inflater.inflate(R.layout.fragment_third, container, false);
+        rootView = inflater.inflate(R.layout.fragment_third, container, false);
+
+        pass = getContext().getSharedPreferences("currentImgView", 0);
+        editor = pass.edit();
 
         imageToUpload = (ImageView) rootView.findViewById(R.id.imageUpload);
-        uploadButton = (Button) rootView.findViewById(R.id.UploadButton);
-        imageCard = (CardView) rootView.findViewById(R.id.mainImageCard);
-        categories = (Button) rootView.findViewById(R.id.categories);
+        stepUpload = (ImageView) rootView.findViewById(R.id.stepUpload);
+
+        types = (Spinner) rootView.findViewById(R.id.types);
+        materials = (Spinner) rootView.findViewById(R.id.materials);
+        method = (Spinner) rootView.findViewById(R.id.method);
+        situation = (Spinner) rootView.findViewById(R.id.situation);
+        culture = (Spinner) rootView.findViewById(R.id.culture);
+
+        ingredientAdd = (Button) rootView.findViewById(R.id.addIngredient);
+        stepAdd = (Button) rootView.findViewById(R.id.addStep);
+
+        ingredientRecycler = rootView.findViewById(R.id.ingredientsRecycler);
+        stepRecycler = rootView.findViewById(R.id.StepRecycler);
 
         imageToUpload.setOnClickListener(this);
-        imageCard.setOnClickListener(this);
-        uploadButton.setOnClickListener(this);
-        categories.setOnClickListener(this);
+        ingredientAdd.setOnClickListener(this);
+        stepAdd.setOnClickListener(this);
+
+        ingredients.add(new Ingredient());
+        initIngredientRecycler(ingredients);
+
+        steps.add(new Step("", null, new ImageView(getContext())));
+        initStepRecycler(steps);
 
         // Inflate the layout for this fragment
         return rootView;
     }
 
-
     @Override
     public void onClick(View view) {
+        Intent galleryIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
         switch (view.getId()) {
             case R.id.imageUpload:
-                Intent galleryIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                current = imageToUpload;
                 startActivityForResult(galleryIntent, RESULT_LOAD_IMAGE);
+                break;
+            //case R.id.stepUpload:
+                //current = stepUpload;
+                //startActivityForResult(galleryIntent, RESULT_LOAD_IMAGE);
+                //break;
+            case R.id.addIngredient:
+                addIngredient();
+                break;
+            case R.id.addStep:
+                addStep();
                 break;
         }
     }
 
+    private void addStep() {
+        for (int i = 0; i < stepRecycler.getChildCount(); i++) {
+            StepAdapter.StepViewHolder holder = (StepAdapter.StepViewHolder) stepRecycler.findViewHolderForAdapterPosition(i);
+            steps.set(i, new Step(holder.getDescription(), holder.getImage(), holder.image));
+            adapter.notifyItemChanged(i);
+        }
+        steps.add(new Step("", null, new ImageView(getContext())));
+        adapter.notifyItemInserted(stepRecycler.getChildCount());
+
+    }
+
+    private void addIngredient() {
+        for (int i = 0; i < ingredientRecycler.getChildCount(); i++) {
+            IngredientAdapter.IngredientViewHolder holder = (IngredientAdapter.IngredientViewHolder) ingredientRecycler.findViewHolderForAdapterPosition(i);
+            ingredients.set(i, new Ingredient(holder.getIngredient(), holder.getAmount()));
+        }
+        ingredients.add(new Ingredient());
+        initIngredientRecycler(ingredients);
+    }
+
     //method to upload image
-
-
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if ( resultCode == RESULT_OK && requestCode == RESULT_LOAD_IMAGE && data !=null) {
+        if (resultCode == RESULT_OK && requestCode == RESULT_LOAD_IMAGE && data !=null && !checker) {
             Uri selectedImage = data.getData();
-            imageToUpload.setImageURI(selectedImage);
+            current.setImageURI(selectedImage);
         }
+        if (resultCode == RESULT_OK && requestCode == RESULT_LOAD_IMAGE && data !=null && checker) {
+            int position = pass.getInt("position", 0);
+            Uri selectedImage = data.getData();
+            current.setImageURI(selectedImage);
+            steps.get(position).setImageBitmap(((BitmapDrawable) current.getDrawable()).getBitmap());
+            adapter.notifyItemChanged(position);
+            checker = false;
+        }
+    }
+
+    //create post button
+    @Override
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+        inflater.inflate(R.menu.menu, menu);
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+
+    //initialize ingredient recycler
+    private void initIngredientRecycler(ArrayList<Ingredient> ingredients){
+        IngredientAdapter adapter = new IngredientAdapter(getContext(), ingredients);
+        ingredientRecycler.setAdapter(adapter);
+        ingredientRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
+    }
+
+    //initialize step recycler
+    private void initStepRecycler(final ArrayList<Step> steps){
+        adapter = new StepAdapter(getContext(), steps);
+        stepRecycler.setAdapter(adapter);
+        stepRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
+
+
+        adapter.setOnItemClickListener(new StepAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(int position) {
+                editor.putInt("position", position);
+                editor.apply();
+
+                checker = true;
+                current = steps.get(position).getImageView();
+                Intent galleryIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                startActivityForResult(galleryIntent, RESULT_LOAD_IMAGE);
+                //steps.get(position).setImageBitmap(((BitmapDrawable) current.getDrawable()).getBitmap());
+            }
+
+            @Override
+            public void onDeleteClick(int position) {
+
+            }
+        });
     }
 }
