@@ -12,27 +12,26 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
-    private static final String TAG = "RecyclerViewAdapter";
+public class IngredientAdapter extends RecyclerView.Adapter<IngredientAdapter.IngredientViewHolder> {
 
     private Context context;
     private ArrayList<Ingredient> ingredients;
 
-    public RecyclerViewAdapter(Context context, ArrayList<Ingredient> ingredients){
+    public IngredientAdapter(Context context, ArrayList<Ingredient> ingredients){
         this.context = context;
         this.ingredients = ingredients;
     }
 
     @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public IngredientViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.ingredient_item, parent, false);
-        ViewHolder holder = new ViewHolder(view);
+        IngredientViewHolder holder = new IngredientViewHolder(view);
         return holder;
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull IngredientViewHolder holder, int position) {
         holder.ingredient.setText(ingredients.get(position).getIngredient());
         holder.amount.setText(ingredients.get(position).getAmount());
     }
@@ -42,12 +41,12 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         return ingredients.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public class IngredientViewHolder extends RecyclerView.ViewHolder {
 
         LinearLayout parent;
         EditText ingredient, amount;
 
-        public ViewHolder(@NonNull View itemView) {
+        public IngredientViewHolder(@NonNull View itemView) {
             super(itemView);
             parent = itemView.findViewById(R.id.ingredient_parent);
             ingredient = itemView.findViewById(R.id.ingredient_name);

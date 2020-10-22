@@ -1,6 +1,9 @@
 package com.example.foodapp;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -33,14 +36,24 @@ import static android.app.Activity.RESULT_OK;
 public class ThirdFragment extends Fragment implements View.OnClickListener{
     private static final int RESULT_LOAD_IMAGE = 1;
 
-    CardView imageCard;
     ImageView imageToUpload, stepUpload, current;
     Spinner types, materials, method, situation, culture;
     Button ingredientAdd, stepAdd;
 
     RecyclerView ingredientRecycler;
+    RecyclerView stepRecycler;
+
+    boolean checker;
+
+    StepAdapter adapter;
 
     ArrayList<Ingredient> ingredients = new ArrayList<Ingredient>();
+    ArrayList<Step> steps = new ArrayList<Step>();
+
+    View rootView;
+
+    SharedPreferences pass;
+    SharedPreferences.Editor editor;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -88,11 +101,13 @@ public class ThirdFragment extends Fragment implements View.OnClickListener{
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View rootView = inflater.inflate(R.layout.fragment_third, container, false);
+        rootView = inflater.inflate(R.layout.fragment_third, container, false);
 
+        pass = getContext().getSharedPreferences("currentImgView", 0);
+        editor = pass.edit();
 
         imageToUpload = (ImageView) rootView.findViewById(R.id.imageUpload);
-        stepUpload = (ImageView) rootView.findViewById(R.id.stepUpload1);
+        stepUpload = (ImageView) rootView.findViewById(R.id.stepUpload);
 
         types = (Spinner) rootView.findViewById(R.id.types);
         materials = (Spinner) rootView.findViewById(R.id.materials);
@@ -104,19 +119,21 @@ public class ThirdFragment extends Fragment implements View.OnClickListener{
         stepAdd = (Button) rootView.findViewById(R.id.addStep);
 
         ingredientRecycler = rootView.findViewById(R.id.ingredientsRecycler);
+        stepRecycler = rootView.findViewById(R.id.StepRecycler);
 
         imageToUpload.setOnClickListener(this);
-        stepUpload.setOnClickListener(this);
         ingredientAdd.setOnClickListener(this);
         stepAdd.setOnClickListener(this);
 
         ingredients.add(new Ingredient());
         initIngredientRecycler(ingredients);
 
+        steps.add(new Step("", null, new ImageView(getContext())));
+        initStepRecycler(steps);
+
         // Inflate the layout for this fragment
         return rootView;
     }
-
 
     @Override
     public void onClick(View view) {
@@ -126,19 +143,33 @@ public class ThirdFragment extends Fragment implements View.OnClickListener{
                 current = imageToUpload;
                 startActivityForResult(galleryIntent, RESULT_LOAD_IMAGE);
                 break;
-            case R.id.stepUpload1:
-                current = stepUpload;
-                startActivityForResult(galleryIntent, RESULT_LOAD_IMAGE);
-                break;
+            //case R.id.stepUpload:
+                //current = stepUpload;
+                //startActivityForResult(galleryIntent, RESULT_LOAD_IMAGE);
+                //break;
             case R.id.addIngredient:
                 addIngredient();
+                break;
+            case R.id.addStep:
+                addStep();
                 break;
         }
     }
 
+    private void addStep() {
+        for (int i = 0; i < stepRecycler.getChildCount(); i++) {
+            StepAdapter.StepViewHolder holder = (StepAdapter.StepViewHolder) stepRecycler.findViewHolderForAdapterPosition(i);
+            steps.set(i, new Step(holder.getDescription(), holder.getImage(), holder.image));
+            adapter.notifyItemChanged(i);
+        }
+        steps.add(new Step("", null, new ImageView(getContext())));
+        adapter.notifyItemInserted(stepRecycler.getChildCount());
+
+    }
+
     private void addIngredient() {
         for (int i = 0; i < ingredientRecycler.getChildCount(); i++) {
-            RecyclerViewAdapter.ViewHolder holder = (RecyclerViewAdapter.ViewHolder) ingredientRecycler.findViewHolderForAdapterPosition(i);
+            IngredientAdapter.IngredientViewHolder holder = (IngredientAdapter.IngredientViewHolder) ingredientRecycler.findViewHolderForAdapterPosition(i);
             ingredients.set(i, new Ingredient(holder.getIngredient(), holder.getAmount()));
         }
         ingredients.add(new Ingredient());
@@ -149,9 +180,17 @@ public class ThirdFragment extends Fragment implements View.OnClickListener{
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if ( resultCode == RESULT_OK && requestCode == RESULT_LOAD_IMAGE && data !=null) {
+        if (resultCode == RESULT_OK && requestCode == RESULT_LOAD_IMAGE && data !=null && !checker) {
             Uri selectedImage = data.getData();
             current.setImageURI(selectedImage);
+        }
+        if (resultCode == RESULT_OK && requestCode == RESULT_LOAD_IMAGE && data !=null && checker) {
+            int position = pass.getInt("position", 0);
+            Uri selectedImage = data.getData();
+            current.setImageURI(selectedImage);
+            steps.get(position).setImageBitmap(((BitmapDrawable) current.getDrawable()).getBitmap());
+            adapter.notifyItemChanged(position);
+            checker = false;
         }
     }
 
@@ -164,8 +203,35 @@ public class ThirdFragment extends Fragment implements View.OnClickListener{
 
     //initialize ingredient recycler
     private void initIngredientRecycler(ArrayList<Ingredient> ingredients){
-        RecyclerViewAdapter adapter = new RecyclerViewAdapter(getContext(), ingredients);
+        IngredientAdapter adapter = new IngredientAdapter(getContext(), ingredients);
         ingredientRecycler.setAdapter(adapter);
         ingredientRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
+    }
+
+    //initialize step recycler
+    private void initStepRecycler(final ArrayList<Step> steps){
+        adapter = new StepAdapter(getContext(), steps);
+        stepRecycler.setAdapter(adapter);
+        stepRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
+
+
+        adapter.setOnItemClickListener(new StepAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(int position) {
+                editor.putInt("position", position);
+                editor.apply();
+
+                checker = true;
+                current = steps.get(position).getImageView();
+                Intent galleryIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                startActivityForResult(galleryIntent, RESULT_LOAD_IMAGE);
+                //steps.get(position).setImageBitmap(((BitmapDrawable) current.getDrawable()).getBitmap());
+            }
+
+            @Override
+            public void onDeleteClick(int position) {
+
+            }
+        });
     }
 }
