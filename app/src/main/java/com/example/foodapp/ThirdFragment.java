@@ -18,11 +18,13 @@ import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -233,5 +235,12 @@ public class ThirdFragment extends Fragment implements View.OnClickListener{
 
             }
         });
+    }
+    
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        //BUTTON FOR CREATE POST
+
+        return super.onOptionsItemSelected(item);
     }
 }
