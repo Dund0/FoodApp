@@ -22,7 +22,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EdgeEffect;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -37,6 +40,10 @@ import static android.app.Activity.RESULT_OK;
  */
 public class ThirdFragment extends Fragment implements View.OnClickListener{
     private static final int RESULT_LOAD_IMAGE = 1;
+
+    EditText title, description, time;
+
+    RatingBar difficulty;
 
     ImageView imageToUpload, stepUpload, current;
     Spinner types, materials, method, situation, culture;
@@ -107,6 +114,12 @@ public class ThirdFragment extends Fragment implements View.OnClickListener{
 
         pass = getContext().getSharedPreferences("currentImgView", 0);
         editor = pass.edit();
+
+        title = (EditText) rootView.findViewById(R.id.RecipeTitle);
+        description = (EditText) rootView.findViewById(R.id.Description);
+        time = (EditText) rootView.findViewById(R.id.time);
+
+        difficulty = (RatingBar) rootView.findViewById(R.id.difficultyBar);
 
         imageToUpload = (ImageView) rootView.findViewById(R.id.imageUpload);
         stepUpload = (ImageView) rootView.findViewById(R.id.stepUpload);
@@ -236,7 +249,7 @@ public class ThirdFragment extends Fragment implements View.OnClickListener{
             }
         });
     }
-    
+
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         //BUTTON FOR CREATE POST
