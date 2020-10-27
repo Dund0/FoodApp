@@ -54,7 +54,8 @@ public class ThirdFragment extends Fragment implements View.OnClickListener{
 
     boolean checker;
 
-    StepAdapter adapter;
+    StepAdapter stepAdapter;
+    IngredientAdapter ingredientAdapter;
 
     ArrayList<Ingredient> ingredients = new ArrayList<Ingredient>();
     ArrayList<Step> steps = new ArrayList<Step>();
@@ -140,7 +141,7 @@ public class ThirdFragment extends Fragment implements View.OnClickListener{
         ingredientAdd.setOnClickListener(this);
         stepAdd.setOnClickListener(this);
 
-        ingredients.add(new Ingredient());
+        ingredients.add(new Ingredient("",""));
         initIngredientRecycler(ingredients);
 
         steps.add(new Step("", null, new ImageView(getContext())));
@@ -163,32 +164,39 @@ public class ThirdFragment extends Fragment implements View.OnClickListener{
                 //startActivityForResult(galleryIntent, RESULT_LOAD_IMAGE);
                 //break;
             case R.id.addIngredient:
-                addIngredient();
+                addIngredient(true);
                 break;
             case R.id.addStep:
-                addStep();
+                addStep(true);
                 break;
         }
     }
 
-    private void addStep() {
+    private void addStep(boolean update) {
         for (int i = 0; i < stepRecycler.getChildCount(); i++) {
             StepAdapter.StepViewHolder holder = (StepAdapter.StepViewHolder) stepRecycler.findViewHolderForAdapterPosition(i);
             steps.set(i, new Step(holder.getDescription(), holder.getImage(), holder.image));
-            adapter.notifyItemChanged(i);
+            stepAdapter.notifyItemChanged(i);
         }
-        steps.add(new Step("", null, new ImageView(getContext())));
-        adapter.notifyItemInserted(stepRecycler.getChildCount());
+
+        if(update == true ) {
+            steps.add(new Step("", null, new ImageView(getContext())));
+            stepAdapter.notifyItemInserted(stepRecycler.getChildCount());
+        }
 
     }
 
-    private void addIngredient() {
+    private void addIngredient(boolean update) {
         for (int i = 0; i < ingredientRecycler.getChildCount(); i++) {
             IngredientAdapter.IngredientViewHolder holder = (IngredientAdapter.IngredientViewHolder) ingredientRecycler.findViewHolderForAdapterPosition(i);
             ingredients.set(i, new Ingredient(holder.getIngredient(), holder.getAmount()));
+            ingredientAdapter.notifyItemChanged(i);
+
         }
-        ingredients.add(new Ingredient());
-        initIngredientRecycler(ingredients);
+        if(update == true) {
+            ingredients.add(new Ingredient());
+            stepAdapter.notifyItemInserted(ingredientRecycler.getChildCount());
+        }
     }
 
     //method to upload image
@@ -204,7 +212,7 @@ public class ThirdFragment extends Fragment implements View.OnClickListener{
             Uri selectedImage = data.getData();
             current.setImageURI(selectedImage);
             steps.get(position).setImageBitmap(((BitmapDrawable) current.getDrawable()).getBitmap());
-            adapter.notifyItemChanged(position);
+            stepAdapter.notifyItemChanged(position);
             checker = false;
         }
     }
@@ -218,19 +226,19 @@ public class ThirdFragment extends Fragment implements View.OnClickListener{
 
     //initialize ingredient recycler
     private void initIngredientRecycler(ArrayList<Ingredient> ingredients){
-        IngredientAdapter adapter = new IngredientAdapter(getContext(), ingredients);
-        ingredientRecycler.setAdapter(adapter);
+        ingredientAdapter = new IngredientAdapter(getContext(), ingredients);
+        ingredientRecycler.setAdapter(ingredientAdapter);
         ingredientRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
     }
 
     //initialize step recycler
     private void initStepRecycler(final ArrayList<Step> steps){
-        adapter = new StepAdapter(getContext(), steps);
-        stepRecycler.setAdapter(adapter);
+        stepAdapter = new StepAdapter(getContext(), steps);
+        stepRecycler.setAdapter(stepAdapter);
         stepRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
 
 
-        adapter.setOnItemClickListener(new StepAdapter.OnItemClickListener() {
+        stepAdapter.setOnItemClickListener(new StepAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(int position) {
                 editor.putInt("position", position);
