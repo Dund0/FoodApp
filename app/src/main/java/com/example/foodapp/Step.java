@@ -4,6 +4,8 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.widget.ImageView;
 
+import com.google.firebase.database.Exclude;
+
 public class Step {
     private String description;
     private ImageView imageView;
@@ -26,11 +28,11 @@ public class Step {
     /*public Uri getImage() {
         return image;
     }*/
-
+    @Exclude
     public Bitmap getImageBitmap() {
         return imageBitmap;
     }
-
+    @Exclude
     public ImageView getImageView() {
         return imageView;
     }
