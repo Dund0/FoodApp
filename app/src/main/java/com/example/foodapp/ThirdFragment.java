@@ -1,5 +1,6 @@
 package com.example.foodapp;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
@@ -15,6 +16,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -29,6 +31,16 @@ import android.widget.RatingBar;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
+
+import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.util.ArrayList;
 
 import static android.app.Activity.RESULT_OK;
@@ -258,10 +270,50 @@ public class ThirdFragment extends Fragment implements View.OnClickListener{
         });
     }
 
+    @SuppressLint("WrongThread")
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         //BUTTON FOR CREATE POST
+        addIngredient(false);
+        addStep(false);
+        final DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
+        final FirebaseStorage storage = FirebaseStorage.getInstance();
 
+        StorageReference storageRef = storage.getReference();
+
+
+        Log.d(null,"Trying to add Recipe");
+        Recipe recipe = new Recipe(types.getSelectedItem().toString(),materials.getSelectedItem().toString(),method.getSelectedItem().toString(),
+                situation.getSelectedItem().toString(),culture.getSelectedItem().toString(), title.getText().toString(),
+                description.getText().toString(), time.getText().toString(), difficulty.getRating(),ingredients,steps);
+
+        ref.child("Recipes").child(recipe.title).setValue(recipe);
+        Log.d(null,"Successfully added Recipe");
+
+        Log.d(null,"Trying to add Recipe_Image");
+        // Get the data from an ImageView as bytes
+        imageToUpload.setDrawingCacheEnabled(true);
+        imageToUpload.buildDrawingCache();
+        Bitmap bitmap = ((BitmapDrawable) imageToUpload.getDrawable()).getBitmap();
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+        byte[] data = baos.toByteArray();
+        StorageReference recipeRef = storageRef.child(recipe.title + "_image");
+        UploadTask uploadTask = recipeRef.putBytes(data);
+        uploadTask.addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception exception) {
+
+            }
+        }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                // taskSnapshot.getMetadata() contains file metadata such as size, content-type, etc.
+                // ...
+            }
+        });
+        
+        Log.d(null,"Successfully added Recipe_Image");
         return super.onOptionsItemSelected(item);
     }
 }
