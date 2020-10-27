@@ -77,6 +77,7 @@ public class RegisterActivity extends AppCompatActivity {
             //the next two lines add a recipe
             Recipe recipe = new  Recipe("S","I","C","K","O");
             ref.child("Recipes").child("newExample").setValue(recipe);
+
             ref.child("Users").addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot snapshot) {
