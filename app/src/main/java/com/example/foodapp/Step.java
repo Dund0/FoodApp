@@ -44,4 +44,11 @@ public class Step {
     public void setImageBitmap(Bitmap imageBitmap) {
         this.imageBitmap = imageBitmap;
     }
+
+    @Override
+    public String toString() {
+        return "Step{" +
+                "description='" + description + '\'' +
+                '}';
+    }
 }
