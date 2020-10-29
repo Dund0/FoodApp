@@ -34,7 +34,9 @@ public class HomePageAdapter extends RecyclerView.Adapter<HomePageAdapter.HomeVi
 
     @Override
     public void onBindViewHolder(@NonNull HomeViewHolder holder, int position) {
-
+        holder.splashDescription.setText(recipes.get(position).getDescription());
+        holder.splashTags.setText(recipes.get(position).getCategories().toString());
+        holder.difficulty.setRating((float) recipes.get(position).getDifficulty());
     }
 
     @Override
