@@ -15,6 +15,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.provider.ContactsContract;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -33,8 +34,12 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.GenericTypeIndicator;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
@@ -42,6 +47,7 @@ import com.google.firebase.storage.UploadTask;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.util.ArrayList;
+import java.util.List;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -292,28 +298,46 @@ public class ThirdFragment extends Fragment implements View.OnClickListener{
 
         Log.d(null,"Trying to add Recipe_Image");
         // Get the data from an ImageView as bytes
-        imageToUpload.setDrawingCacheEnabled(true);
-        imageToUpload.buildDrawingCache();
-        Bitmap bitmap = ((BitmapDrawable) imageToUpload.getDrawable()).getBitmap();
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
-        byte[] data = baos.toByteArray();
-        StorageReference recipeRef = storageRef.child(recipe.title + "_image");
-        UploadTask uploadTask = recipeRef.putBytes(data);
-        uploadTask.addOnFailureListener(new OnFailureListener() {
+        if(imageToUpload.getDrawable() != null) {
+            imageToUpload.setDrawingCacheEnabled(true);
+            imageToUpload.buildDrawingCache();
+            Bitmap bitmap = ((BitmapDrawable) imageToUpload.getDrawable()).getBitmap();
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+            byte[] data = baos.toByteArray();
+            StorageReference recipeRef = storageRef.child(recipe.title + "_image");
+            UploadTask uploadTask = recipeRef.putBytes(data);
+            uploadTask.addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception exception) {
+
+                }
+            }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                @Override
+                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                    // taskSnapshot.getMetadata() contains file metadata such as size, content-type, etc.
+                    // ...
+                }
+            });
+        }
+        ref.child("Recipes").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
-            public void onFailure(@NonNull Exception exception) {
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                   Log.d(null,snapshot.toString());
+                for (DataSnapshot rec: snapshot.getChildren()) {
+                    Log.d(null, rec.toString());
+                    Recipe rec1 = rec.getValue(Recipe.class);
+                    assert rec1 != null;
+                    Log.d(null,rec1.toString());
+                }
 
             }
-        }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+
             @Override
-            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                // taskSnapshot.getMetadata() contains file metadata such as size, content-type, etc.
-                // ...
+            public void onCancelled(@NonNull DatabaseError error) {
+
             }
         });
-        
-        Log.d(null,"Successfully added Recipe_Image");
         return super.onOptionsItemSelected(item);
     }
 }
