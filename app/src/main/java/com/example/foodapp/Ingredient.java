@@ -17,4 +17,12 @@ public class Ingredient {
     public String getAmount(){
         return amount;
     }
+
+    @Override
+    public String toString() {
+        return "Ingredient{" +
+                "ingredient='" + ingredient + '\'' +
+                ", amount='" + amount + '\'' +
+                '}';
+    }
 }
