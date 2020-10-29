@@ -1,5 +1,7 @@
 package com.example.foodapp;
 
+import androidx.annotation.NonNull;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,6 +13,7 @@ public class Recipe {
         private double difficulty;
         private ArrayList<Step> steps;
         private ArrayList<Ingredient> ingredients;
+        Recipe(){}
         Recipe(String type, String main_ingredient, String method, String situation, String culture, String title, String description,
                String time, double difficulty, ArrayList<Ingredient> ingredients, ArrayList<Step> steps)
         {
@@ -21,6 +24,7 @@ public class Recipe {
             categories.add(new Culture("culture", culture));
             this.title = title;
             this.description = description;
+            this.time = time;
             this.difficulty = difficulty;
             this.steps = steps;
             this.ingredients = ingredients;
@@ -53,5 +57,19 @@ public class Recipe {
 
     public ArrayList<Ingredient> getIngredients() {
         return ingredients;
+    }
+
+    @NonNull
+    @Override
+    public String toString() {
+        return "Recipe{" +
+                "categories=" + categories +
+                ", title='" + title + '\'' +
+                ", description='" + description + '\'' +
+                ", time='" + time + '\'' +
+                ", difficulty=" + difficulty +
+                ", steps=" + steps +
+                ", ingredients=" + ingredients +
+                '}';
     }
 }
