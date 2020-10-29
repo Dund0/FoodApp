@@ -39,7 +39,7 @@ public class HomePageAdapter extends RecyclerView.Adapter<HomePageAdapter.HomeVi
 
     @Override
     public int getItemCount() {
-        return 0;
+        return recipes.size();
     }
 
     public static class HomeViewHolder extends RecyclerView.ViewHolder {
