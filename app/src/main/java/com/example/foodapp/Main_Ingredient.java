@@ -11,6 +11,11 @@ public class Main_Ingredient extends Categories {
             "Dairy", "Rice", "Fruits", "Beans", "Grain"));
 
     public Main_Ingredient(String typeOf, String value) {
-        super(typeOf,value);
+        super(typeOf, value);
     }
+
 }
+
+
+
+

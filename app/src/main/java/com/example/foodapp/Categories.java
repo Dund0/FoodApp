@@ -16,10 +16,8 @@ public class Categories {
     {
         this.typeOf = typeOf;
     }
-
-    @NonNull
     @Override
     public String toString() {
-        return value;
+        return this.typeOf + " " + this.value + " ";
     }
 }

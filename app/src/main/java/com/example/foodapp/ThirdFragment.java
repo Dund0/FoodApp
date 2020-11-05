@@ -14,7 +14,9 @@ import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.widget.ImageView;
 import android.provider.ContactsContract;
 import android.provider.MediaStore;
 import android.util.Log;
@@ -32,6 +34,8 @@ import android.widget.RatingBar;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.google.android.gms.auth.api.signin.internal.Storage;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
@@ -302,7 +306,8 @@ public class ThirdFragment extends Fragment implements View.OnClickListener{
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
             bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
             byte[] data = baos.toByteArray();
-            StorageReference recipeRef = storageRef.child(recipe.title + "_image");
+            StorageReference recipeRef = storageRef.child("RecipeImages").child(recipe.title + "_image");
+            //uploads the image
             UploadTask uploadTask = recipeRef.putBytes(data);
             uploadTask.addOnFailureListener(new OnFailureListener() {
                 @Override
@@ -335,6 +340,25 @@ public class ThirdFragment extends Fragment implements View.OnClickListener{
 
             }
         });
+        //this is how to add an image
+        final long ONE_MEGABYTE = 1024 * 1024;
+        final StorageReference image = storageRef.child("A nice pizza_image");
+        image.getBytes(ONE_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
+            @Override
+            public void onSuccess(byte[] bytes) {
+                // Data for "---.jpg" is returns, use this as needed
+                Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+                // imagetoUpload is the imageView we want to modify
+                imageToUpload.setImageBitmap(bitmap);
+
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception exception) {
+                // Handle any errors
+            }
+        });
+        //in this case, you see the image on the third fragment where you would upload a recipe images
         return super.onOptionsItemSelected(item);
     }
 }
