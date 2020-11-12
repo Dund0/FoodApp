@@ -2,11 +2,25 @@ package com.example.foodapp;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -14,6 +28,15 @@ import android.view.ViewGroup;
  * create an instance of this fragment.
  */
 public class FirstFragment extends Fragment {
+
+    RecyclerView recipeRecycler;
+    ArrayList<Recipe> recipes = new ArrayList<>();
+
+    final DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
+
+    HomePageAdapter recipeAdapter;
+
+    View rootView;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -59,6 +82,50 @@ public class FirstFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_first, container, false);
+        rootView = inflater.inflate(R.layout.fragment_first, container, false);
+
+        recipeRecycler = rootView.findViewById(R.id.recipeRecycler);
+
+        //recipes.add(new Recipe("", "", "", "", "", "", "", "", 0, null, null));
+
+        //testFunction();
+        initList();
+
+        //initRecipieRecycler(recipes);
+
+        return rootView;
+    }
+
+    private void testFunction() {
+        FirebaseDatabase.getInstance().getReference("Recipes")
+                .child("Temp")
+                .setValue(1).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+            }
+        });
+    }
+
+    private void initList() {
+        Query query = ref.child("Recipes");
+        query.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot rec: snapshot.getChildren()) {
+                    Recipe rec1 = rec.getValue(Recipe.class);
+                    recipes.add(rec1);
+                    assert rec1 != null;
+                }
+                initRecipieRecycler(recipes);
+            }
+        @Override
+        public void onCancelled(@NonNull DatabaseError error) { }
+    });
+    }
+
+    private void initRecipieRecycler(ArrayList<Recipe> recipes) {
+        recipeAdapter = new HomePageAdapter(getContext(), recipes);
+        recipeRecycler.setAdapter(recipeAdapter);
+        recipeRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
     }
 }
