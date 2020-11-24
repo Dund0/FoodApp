@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#EAEAEA"
     tools:context=".RegisterActivity">
 
     <include
@@ -76,7 +77,7 @@
             android:layout_height="match_parent"
             android:ems="10"
             android:hint="@string/confirmPassword"
-            android:inputType="textPassword"/>
+            android:inputType="textPassword" />
 
     </androidx.cardview.widget.CardView>
 
@@ -94,13 +95,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cardView3">
 
-    <EditText
-        android:id="@+id/emailAddress"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:ems="10"
-        android:hint="@string/createEmail"
-        android:inputType="textEmailAddress" />
+        <EditText
+            android:id="@+id/emailAddress"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:ems="10"
+            android:hint="@string/createEmail"
+            android:inputType="textEmailAddress" />
     </androidx.cardview.widget.CardView>
 
 
