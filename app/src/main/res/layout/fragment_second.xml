@@ -49,7 +49,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="TextView"
+                            android:text="Main dish"
                             android:layout_gravity="center"/>
                     </LinearLayout>
 
@@ -68,7 +68,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="TextView"
+                            android:text="Side dish"
                             android:layout_gravity="center"/>
                     </LinearLayout>
 
@@ -87,7 +87,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="TextView"
+                            android:text="Soup"
                             android:layout_gravity="center"/>
                     </LinearLayout>
 
@@ -106,7 +106,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="TextView"
+                            android:text="Snacks"
                             android:layout_gravity="center"/>
                     </LinearLayout>
 
@@ -125,7 +125,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="TextView"
+                            android:text="Salads"
                             android:layout_gravity="center"/>
                     </LinearLayout>
 
@@ -151,7 +151,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="TextView"
+                            android:text="Sauce/Jam"
                             android:layout_gravity="center"/>
                     </LinearLayout>
 
@@ -170,7 +170,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="TextView"
+                            android:text="Drinks"
                             android:layout_gravity="center"/>
                     </LinearLayout>
 
@@ -189,7 +189,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="TextView"
+                            android:text="Beverages"
                             android:layout_gravity="center"/>
                     </LinearLayout>
                 </TableRow>
@@ -229,7 +229,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="TextView"
+                        android:text="Beef"
                         android:layout_gravity="center"/>
                 </LinearLayout>
 
@@ -248,7 +248,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="TextView"
+                        android:text="Pork"
                         android:layout_gravity="center"/>
                 </LinearLayout>
 
@@ -267,7 +267,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="TextView"
+                        android:text="Chicken"
                         android:layout_gravity="center"/>
                 </LinearLayout>
 
@@ -286,7 +286,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="TextView"
+                        android:text="Meat"
                         android:layout_gravity="center"/>
                 </LinearLayout>
 
@@ -305,7 +305,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="TextView"
+                        android:text="Vegetables"
                         android:layout_gravity="center"/>
                 </LinearLayout>
 
@@ -331,7 +331,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="TextView"
+                            android:text="Seafood"
                             android:layout_gravity="center"/>
                     </LinearLayout>
 
@@ -350,7 +350,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="TextView"
+                            android:text="Dairy"
                             android:layout_gravity="center"/>
                     </LinearLayout>
 
@@ -369,7 +369,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="TextView"
+                            android:text="Rice"
                             android:layout_gravity="center"/>
                     </LinearLayout>
 
@@ -388,7 +388,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="TextView"
+                            android:text="Fruits"
                             android:layout_gravity="center"/>
                     </LinearLayout>
 
@@ -407,7 +407,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="TextView"
+                            android:text="Beans"
                             android:layout_gravity="center"/>
                     </LinearLayout>
 
@@ -433,7 +433,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="TextView"
+                            android:text="Grain"
                             android:layout_gravity="center"/>
                     </LinearLayout>
 
@@ -474,7 +474,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="TextView"
+                        android:text="Stir-fry"
                         android:layout_gravity="center"/>
                 </LinearLayout>
 
@@ -493,7 +493,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="TextView"
+                        android:text="Boiled"
                         android:layout_gravity="center"/>
                 </LinearLayout>
 
@@ -512,7 +512,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="TextView"
+                        android:text="Steamed"
                         android:layout_gravity="center"/>
                 </LinearLayout>
 
@@ -531,7 +531,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="TextView"
+                        android:text="Fried"
                         android:layout_gravity="center"/>
                 </LinearLayout>
 
@@ -550,7 +550,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="TextView"
+                        android:text="Baked"
                         android:layout_gravity="center"/>
                 </LinearLayout>
 
@@ -590,7 +590,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="TextView"
+                        android:text="Daily Life"
                         android:layout_gravity="center"/>
                 </LinearLayout>
 
@@ -609,7 +609,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="TextView"
+                        android:text="Quick Meal"
                         android:layout_gravity="center"/>
                 </LinearLayout>
 
@@ -628,7 +628,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="TextView"
+                        android:text="For Guests"
                         android:layout_gravity="center"/>
                 </LinearLayout>
 
@@ -647,7 +647,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="TextView"
+                        android:text="Diet"
                         android:layout_gravity="center"/>
                 </LinearLayout>
 
@@ -666,7 +666,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="TextView"
+                        android:text="Bento-Box"
                         android:layout_gravity="center"/>
                 </LinearLayout>
 
@@ -692,7 +692,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="TextView"
+                        android:text="Nutrient-Dense"
                         android:layout_gravity="center"/>
                 </LinearLayout>
 
@@ -711,7 +711,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="TextView"
+                        android:text="Midnight Snack"
                         android:layout_gravity="center"/>
                 </LinearLayout>
 
@@ -730,7 +730,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="TextView"
+                        android:text="Holiday"
                         android:layout_gravity="center"/>
                 </LinearLayout>
 
@@ -749,7 +749,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="TextView"
+                        android:text="Baby Food"
                         android:layout_gravity="center"/>
                 </LinearLayout>
 
@@ -768,7 +768,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="TextView"
+                        android:text="Vegan"
                         android:layout_gravity="center"/>
                 </LinearLayout>
 
@@ -809,7 +809,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="TextView"
+                            android:text="American"
                             android:layout_gravity="center"/>
                     </LinearLayout>
 
@@ -828,7 +828,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="TextView"
+                            android:text="Mexican"
                             android:layout_gravity="center"/>
                     </LinearLayout>
 
@@ -847,7 +847,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="TextView"
+                            android:text="Italian"
                             android:layout_gravity="center"/>
                     </LinearLayout>
 
@@ -866,7 +866,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="TextView"
+                            android:text="Korean"
                             android:layout_gravity="center"/>
                     </LinearLayout>
 
@@ -885,7 +885,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="TextView"
+                            android:text="Japanese"
                             android:layout_gravity="center"/>
                     </LinearLayout>
 
@@ -911,7 +911,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="TextView"
+                            android:text="Chinese"
                             android:layout_gravity="center"/>
                     </LinearLayout>
 
