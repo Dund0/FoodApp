@@ -40,11 +40,14 @@
                         android:orientation="vertical">
 
                         <Button
+                            android:id="@+id/mainDish"
                             android:layout_width="50dp"
-                            android:layout_height="50dp"
-                            android:layout_marginLeft="15dp"
-                            android:layout_marginRight="15dp"
-                            android:background="@drawable/round_button" />
+                        android:layout_height="50dp"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginRight="15dp"
+                        android:layout_gravity="center" 
+                            android:onClick="searchCategory"
+                        android:background="@drawable/round_button" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -59,11 +62,14 @@
                         android:orientation="vertical">
 
                         <Button
-                            android:layout_width="50dp"
-                            android:layout_height="50dp"
-                            android:layout_marginLeft="15dp"
-                            android:layout_marginRight="15dp"
-                            android:background="@drawable/round_button" />
+                            android:id="@+id/sideDish"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginRight="15dp"
+                        android:layout_gravity="center" 
+                            android:onClick="searchCategory"
+                        android:background="@drawable/round_button" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -78,11 +84,14 @@
                         android:orientation="vertical">
 
                         <Button
-                            android:layout_width="50dp"
-                            android:layout_height="50dp"
-                            android:layout_marginLeft="15dp"
-                            android:layout_marginRight="15dp"
-                            android:background="@drawable/round_button" />
+                            android:id="@+id/soup"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginRight="15dp"
+                        android:layout_gravity="center" 
+                            android:onClick="searchCategory"
+                        android:background="@drawable/round_button" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -97,11 +106,14 @@
                         android:orientation="vertical">
 
                         <Button
-                            android:layout_width="50dp"
-                            android:layout_height="50dp"
-                            android:layout_marginLeft="15dp"
-                            android:layout_marginRight="15dp"
-                            android:background="@drawable/round_button" />
+                            android:id="@+id/snack"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginRight="15dp"
+                        android:layout_gravity="center" 
+                            android:onClick="searchCategory"
+                        android:background="@drawable/round_button" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -116,11 +128,14 @@
                         android:orientation="vertical">
 
                         <Button
-                            android:layout_width="50dp"
-                            android:layout_height="50dp"
-                            android:layout_marginLeft="15dp"
-                            android:layout_marginRight="15dp"
-                            android:background="@drawable/round_button" />
+                            android:id="@+id/salad"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginRight="15dp"
+                        android:layout_gravity="center" 
+                            android:onClick="searchCategory"
+                        android:background="@drawable/round_button" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -142,11 +157,14 @@
                         android:orientation="vertical">
 
                         <Button
-                            android:layout_width="50dp"
-                            android:layout_height="50dp"
-                            android:layout_marginLeft="15dp"
-                            android:layout_marginRight="15dp"
-                            android:background="@drawable/round_button" />
+                            android:id="@+id/sauceJam"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginRight="15dp"
+                        android:layout_gravity="center" 
+                            android:onClick="searchCategory"
+                        android:background="@drawable/round_button" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -161,11 +179,14 @@
                         android:orientation="vertical">
 
                         <Button
-                            android:layout_width="50dp"
-                            android:layout_height="50dp"
-                            android:layout_marginLeft="15dp"
-                            android:layout_marginRight="15dp"
-                            android:background="@drawable/round_button" />
+                            android:id="@+id/drinks"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginRight="15dp"
+                        android:layout_gravity="center" 
+                            android:onClick="searchCategory"
+                        android:background="@drawable/round_button" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -180,11 +201,14 @@
                         android:orientation="vertical">
 
                         <Button
-                            android:layout_width="50dp"
-                            android:layout_height="50dp"
-                            android:layout_marginLeft="15dp"
-                            android:layout_marginRight="15dp"
-                            android:background="@drawable/round_button" />
+                            android:id="@+id/beverages"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginRight="15dp"
+                        android:layout_gravity="center" 
+                            android:onClick="searchCategory"
+                        android:background="@drawable/round_button" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -224,6 +248,8 @@
                         android:layout_height="50dp"
                         android:layout_marginLeft="15dp"
                         android:layout_marginRight="15dp"
+                        android:layout_gravity="center" 
+                            android:onClick="searchCategory"
                         android:background="@drawable/round_button" />
 
                     <TextView
@@ -243,6 +269,8 @@
                         android:layout_height="50dp"
                         android:layout_marginLeft="15dp"
                         android:layout_marginRight="15dp"
+                        android:layout_gravity="center" 
+                            android:onClick="searchCategory"
                         android:background="@drawable/round_button" />
 
                     <TextView
@@ -262,6 +290,8 @@
                         android:layout_height="50dp"
                         android:layout_marginLeft="15dp"
                         android:layout_marginRight="15dp"
+                        android:layout_gravity="center" 
+                            android:onClick="searchCategory"
                         android:background="@drawable/round_button" />
 
                     <TextView
@@ -281,6 +311,8 @@
                         android:layout_height="50dp"
                         android:layout_marginLeft="15dp"
                         android:layout_marginRight="15dp"
+                        android:layout_gravity="center" 
+                            android:onClick="searchCategory"
                         android:background="@drawable/round_button" />
 
                     <TextView
@@ -300,6 +332,8 @@
                         android:layout_height="50dp"
                         android:layout_marginLeft="15dp"
                         android:layout_marginRight="15dp"
+                        android:layout_gravity="center" 
+                            android:onClick="searchCategory"
                         android:background="@drawable/round_button" />
 
                     <TextView
@@ -322,11 +356,13 @@
                         android:orientation="vertical">
 
                         <Button
-                            android:layout_width="50dp"
-                            android:layout_height="50dp"
-                            android:layout_marginLeft="15dp"
-                            android:layout_marginRight="15dp"
-                            android:background="@drawable/round_button" />
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginRight="15dp"
+                        android:layout_gravity="center" 
+                            android:onClick="searchCategory"
+                        android:background="@drawable/round_button" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -341,11 +377,13 @@
                         android:orientation="vertical">
 
                         <Button
-                            android:layout_width="50dp"
-                            android:layout_height="50dp"
-                            android:layout_marginLeft="15dp"
-                            android:layout_marginRight="15dp"
-                            android:background="@drawable/round_button" />
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginRight="15dp"
+                        android:layout_gravity="center" 
+                            android:onClick="searchCategory"
+                        android:background="@drawable/round_button" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -360,11 +398,13 @@
                         android:orientation="vertical">
 
                         <Button
-                            android:layout_width="50dp"
-                            android:layout_height="50dp"
-                            android:layout_marginLeft="15dp"
-                            android:layout_marginRight="15dp"
-                            android:background="@drawable/round_button" />
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginRight="15dp"
+                        android:layout_gravity="center" 
+                            android:onClick="searchCategory"
+                        android:background="@drawable/round_button" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -379,11 +419,13 @@
                         android:orientation="vertical">
 
                         <Button
-                            android:layout_width="50dp"
-                            android:layout_height="50dp"
-                            android:layout_marginLeft="15dp"
-                            android:layout_marginRight="15dp"
-                            android:background="@drawable/round_button" />
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginRight="15dp"
+                        android:layout_gravity="center" 
+                            android:onClick="searchCategory"
+                        android:background="@drawable/round_button" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -398,11 +440,13 @@
                         android:orientation="vertical">
 
                         <Button
-                            android:layout_width="50dp"
-                            android:layout_height="50dp"
-                            android:layout_marginLeft="15dp"
-                            android:layout_marginRight="15dp"
-                            android:background="@drawable/round_button" />
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginRight="15dp"
+                        android:layout_gravity="center" 
+                            android:onClick="searchCategory"
+                        android:background="@drawable/round_button" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -424,11 +468,13 @@
                         android:orientation="vertical">
 
                         <Button
-                            android:layout_width="50dp"
-                            android:layout_height="50dp"
-                            android:layout_marginLeft="15dp"
-                            android:layout_marginRight="15dp"
-                            android:background="@drawable/round_button" />
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginRight="15dp"
+                        android:layout_gravity="center" 
+                            android:onClick="searchCategory"
+                        android:background="@drawable/round_button" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -469,6 +515,8 @@
                         android:layout_height="50dp"
                         android:layout_marginLeft="15dp"
                         android:layout_marginRight="15dp"
+                        android:layout_gravity="center" 
+                            android:onClick="searchCategory"
                         android:background="@drawable/round_button" />
 
                     <TextView
@@ -488,6 +536,8 @@
                         android:layout_height="50dp"
                         android:layout_marginLeft="15dp"
                         android:layout_marginRight="15dp"
+                        android:layout_gravity="center" 
+                            android:onClick="searchCategory"
                         android:background="@drawable/round_button" />
 
                     <TextView
@@ -507,6 +557,8 @@
                         android:layout_height="50dp"
                         android:layout_marginLeft="15dp"
                         android:layout_marginRight="15dp"
+                        android:layout_gravity="center" 
+                            android:onClick="searchCategory"
                         android:background="@drawable/round_button" />
 
                     <TextView
@@ -526,6 +578,8 @@
                         android:layout_height="50dp"
                         android:layout_marginLeft="15dp"
                         android:layout_marginRight="15dp"
+                        android:layout_gravity="center" 
+                            android:onClick="searchCategory"
                         android:background="@drawable/round_button" />
 
                     <TextView
@@ -545,6 +599,8 @@
                         android:layout_height="50dp"
                         android:layout_marginLeft="15dp"
                         android:layout_marginRight="15dp"
+                        android:layout_gravity="center" 
+                            android:onClick="searchCategory"
                         android:background="@drawable/round_button" />
 
                     <TextView
@@ -571,208 +627,230 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp">
 
-            <TableRow
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-
-                <LinearLayout
+                <TableRow
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    android:layout_height="wrap_content">
 
-                    <Button
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <Button
                         android:layout_width="50dp"
                         android:layout_height="50dp"
                         android:layout_marginLeft="15dp"
                         android:layout_marginRight="15dp"
+                        android:layout_gravity="center" 
+                            android:onClick="searchCategory"
                         android:background="@drawable/round_button" />
 
-                    <TextView
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Daily Life"
+                            android:layout_gravity="center"/>
+                    </LinearLayout>
+
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Daily Life"
-                        android:layout_gravity="center"/>
-                </LinearLayout>
+                        android:orientation="vertical">
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <Button
+                        <Button
                         android:layout_width="50dp"
                         android:layout_height="50dp"
                         android:layout_marginLeft="15dp"
                         android:layout_marginRight="15dp"
+                        android:layout_gravity="center" 
+                            android:onClick="searchCategory"
                         android:background="@drawable/round_button" />
 
-                    <TextView
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:textAlignment="center"
+                            android:text="Quick Meal" />
+                    </LinearLayout>
+
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Quick Meal"
-                        android:layout_gravity="center"/>
-                </LinearLayout>
+                        android:orientation="vertical">
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <Button
+                        <Button
                         android:layout_width="50dp"
                         android:layout_height="50dp"
                         android:layout_marginLeft="15dp"
                         android:layout_marginRight="15dp"
+                        android:layout_gravity="center" 
+                            android:onClick="searchCategory"
                         android:background="@drawable/round_button" />
 
-                    <TextView
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="For Guests"
+                            android:layout_gravity="center"/>
+                    </LinearLayout>
+
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="For Guests"
-                        android:layout_gravity="center"/>
-                </LinearLayout>
+                        android:orientation="vertical">
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <Button
+                        <Button
                         android:layout_width="50dp"
                         android:layout_height="50dp"
                         android:layout_marginLeft="15dp"
                         android:layout_marginRight="15dp"
+                        android:layout_gravity="center" 
+                            android:onClick="searchCategory"
                         android:background="@drawable/round_button" />
 
-                    <TextView
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Diet"
+                            android:layout_gravity="center"/>
+                    </LinearLayout>
+
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Diet"
-                        android:layout_gravity="center"/>
-                </LinearLayout>
+                        android:orientation="vertical">
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <Button
+                        <Button
                         android:layout_width="50dp"
                         android:layout_height="50dp"
                         android:layout_marginLeft="15dp"
                         android:layout_marginRight="15dp"
+                        android:layout_gravity="center" 
+                            android:onClick="searchCategory"
                         android:background="@drawable/round_button" />
 
-                    <TextView
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Bento-Box"
+                            android:layout_gravity="center"/>
+                    </LinearLayout>
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Bento-Box"
-                        android:layout_gravity="center"/>
-                </LinearLayout>
+                        android:orientation="vertical">
 
-            </TableRow>
-
-            <TableRow
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp">
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <Button
+                        <Button
                         android:layout_width="50dp"
                         android:layout_height="50dp"
                         android:layout_marginLeft="15dp"
                         android:layout_marginRight="15dp"
+                        android:layout_gravity="center" 
+                            android:onClick="searchCategory"
                         android:background="@drawable/round_button" />
 
-                    <TextView
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Nutrient-\nDense"
+                            android:textAlignment="center"
+                            android:layout_gravity="center"/>
+                    </LinearLayout>
+
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Nutrient-Dense"
-                        android:layout_gravity="center"/>
-                </LinearLayout>
+                        android:orientation="vertical">
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <Button
+                        <Button
                         android:layout_width="50dp"
                         android:layout_height="50dp"
                         android:layout_marginLeft="15dp"
                         android:layout_marginRight="15dp"
+                        android:layout_gravity="center" 
+                            android:onClick="searchCategory"
                         android:background="@drawable/round_button" />
 
-                    <TextView
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Midnight\nSnack"
+                            android:textAlignment="center"
+                            android:layout_gravity="center"/>
+                    </LinearLayout>
+
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Midnight Snack"
-                        android:layout_gravity="center"/>
-                </LinearLayout>
+                        android:orientation="vertical">
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <Button
+                        <Button
                         android:layout_width="50dp"
                         android:layout_height="50dp"
                         android:layout_marginLeft="15dp"
                         android:layout_marginRight="15dp"
+                        android:layout_gravity="center" 
+                            android:onClick="searchCategory"
                         android:background="@drawable/round_button" />
 
-                    <TextView
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Holiday"
+                            android:layout_gravity="center"/>
+                    </LinearLayout>
+
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Holiday"
-                        android:layout_gravity="center"/>
-                </LinearLayout>
+                        android:orientation="vertical">
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <Button
+                        <Button
                         android:layout_width="50dp"
                         android:layout_height="50dp"
                         android:layout_marginLeft="15dp"
                         android:layout_marginRight="15dp"
+                        android:layout_gravity="center" 
+                            android:onClick="searchCategory"
                         android:background="@drawable/round_button" />
 
-                    <TextView
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Baby Food"
+                            android:layout_gravity="center"/>
+                    </LinearLayout>
+
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Baby Food"
-                        android:layout_gravity="center"/>
-                </LinearLayout>
+                        android:orientation="vertical">
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <Button
+                        <Button
                         android:layout_width="50dp"
                         android:layout_height="50dp"
                         android:layout_marginLeft="15dp"
                         android:layout_marginRight="15dp"
+                        android:layout_gravity="center" 
+                            android:onClick="searchCategory"
                         android:background="@drawable/round_button" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Vegan"
-                        android:layout_gravity="center"/>
-                </LinearLayout>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Vegan"
+                            android:layout_gravity="center"/>
+                    </LinearLayout>
 
-            </TableRow>
+                </TableRow>
 
             </TableLayout>
 
@@ -800,11 +878,13 @@
                         android:orientation="vertical">
 
                         <Button
-                            android:layout_width="50dp"
-                            android:layout_height="50dp"
-                            android:layout_marginLeft="15dp"
-                            android:layout_marginRight="15dp"
-                            android:background="@drawable/round_button" />
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginRight="15dp"
+                        android:layout_gravity="center" 
+                            android:onClick="searchCategory"
+                        android:background="@drawable/round_button" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -819,11 +899,13 @@
                         android:orientation="vertical">
 
                         <Button
-                            android:layout_width="50dp"
-                            android:layout_height="50dp"
-                            android:layout_marginLeft="15dp"
-                            android:layout_marginRight="15dp"
-                            android:background="@drawable/round_button" />
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginRight="15dp"
+                        android:layout_gravity="center" 
+                            android:onClick="searchCategory"
+                        android:background="@drawable/round_button" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -838,11 +920,13 @@
                         android:orientation="vertical">
 
                         <Button
-                            android:layout_width="50dp"
-                            android:layout_height="50dp"
-                            android:layout_marginLeft="15dp"
-                            android:layout_marginRight="15dp"
-                            android:background="@drawable/round_button" />
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginRight="15dp"
+                        android:layout_gravity="center" 
+                            android:onClick="searchCategory"
+                        android:background="@drawable/round_button" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -857,11 +941,13 @@
                         android:orientation="vertical">
 
                         <Button
-                            android:layout_width="50dp"
-                            android:layout_height="50dp"
-                            android:layout_marginLeft="15dp"
-                            android:layout_marginRight="15dp"
-                            android:background="@drawable/round_button" />
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginRight="15dp"
+                        android:layout_gravity="center" 
+                            android:onClick="searchCategory"
+                        android:background="@drawable/round_button" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -876,11 +962,13 @@
                         android:orientation="vertical">
 
                         <Button
-                            android:layout_width="50dp"
-                            android:layout_height="50dp"
-                            android:layout_marginLeft="15dp"
-                            android:layout_marginRight="15dp"
-                            android:background="@drawable/round_button" />
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginRight="15dp"
+                        android:layout_gravity="center" 
+                            android:onClick="searchCategory"
+                        android:background="@drawable/round_button" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -902,11 +990,13 @@
                         android:orientation="vertical">
 
                         <Button
-                            android:layout_width="50dp"
-                            android:layout_height="50dp"
-                            android:layout_marginLeft="15dp"
-                            android:layout_marginRight="15dp"
-                            android:background="@drawable/round_button" />
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginRight="15dp"
+                        android:layout_gravity="center" 
+                            android:onClick="searchCategory"
+                        android:background="@drawable/round_button" />
 
                         <TextView
                             android:layout_width="wrap_content"
