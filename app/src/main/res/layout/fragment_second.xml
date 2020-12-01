@@ -14,7 +14,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/typeText"
@@ -42,18 +42,18 @@
                         <Button
                             android:id="@+id/mainDish"
                             android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginRight="15dp"
-                        android:layout_gravity="center" 
-                            android:onClick="searchCategory"
-                        android:background="@drawable/round_button" />
+                            android:layout_height="50dp"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginRight="15dp"
+                            android:background="@drawable/round_button"
+                            android:onClick="searchCategory" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Main dish"
-                            android:layout_gravity="center"/>
+                            android:layout_gravity="center"
+                            android:text="Main dish" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -63,19 +63,19 @@
 
                         <Button
                             android:id="@+id/sideDish"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginRight="15dp"
-                        android:layout_gravity="center" 
-                            android:onClick="searchCategory"
-                        android:background="@drawable/round_button" />
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginRight="15dp"
+                            android:background="@drawable/round_button"
+                            android:onClick="searchCategory" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Side dish"
-                            android:layout_gravity="center"/>
+                            android:layout_gravity="center"
+                            android:text="Side dish" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -85,19 +85,19 @@
 
                         <Button
                             android:id="@+id/soup"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginRight="15dp"
-                        android:layout_gravity="center" 
-                            android:onClick="searchCategory"
-                        android:background="@drawable/round_button" />
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginRight="15dp"
+                            android:background="@drawable/round_button"
+                            android:onClick="searchCategory" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Soup"
-                            android:layout_gravity="center"/>
+                            android:layout_gravity="center"
+                            android:text="Soup" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -107,19 +107,19 @@
 
                         <Button
                             android:id="@+id/snack"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginRight="15dp"
-                        android:layout_gravity="center" 
-                            android:onClick="searchCategory"
-                        android:background="@drawable/round_button" />
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginRight="15dp"
+                            android:background="@drawable/round_button"
+                            android:onClick="searchCategory" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Snacks"
-                            android:layout_gravity="center"/>
+                            android:layout_gravity="center"
+                            android:text="Snacks" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -129,19 +129,19 @@
 
                         <Button
                             android:id="@+id/salad"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginRight="15dp"
-                        android:layout_gravity="center" 
-                            android:onClick="searchCategory"
-                        android:background="@drawable/round_button" />
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginRight="15dp"
+                            android:background="@drawable/round_button"
+                            android:onClick="searchCategory" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Salads"
-                            android:layout_gravity="center"/>
+                            android:layout_gravity="center"
+                            android:text="Salads" />
                     </LinearLayout>
 
                 </TableRow>
@@ -158,19 +158,19 @@
 
                         <Button
                             android:id="@+id/sauceJam"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginRight="15dp"
-                        android:layout_gravity="center" 
-                            android:onClick="searchCategory"
-                        android:background="@drawable/round_button" />
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginRight="15dp"
+                            android:background="@drawable/round_button"
+                            android:onClick="searchCategory" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Sauce/Jam"
-                            android:layout_gravity="center"/>
+                            android:layout_gravity="center"
+                            android:text="Sauce/Jam" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -180,19 +180,19 @@
 
                         <Button
                             android:id="@+id/drinks"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginRight="15dp"
-                        android:layout_gravity="center" 
-                            android:onClick="searchCategory"
-                        android:background="@drawable/round_button" />
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginRight="15dp"
+                            android:background="@drawable/round_button"
+                            android:onClick="searchCategory" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Drinks"
-                            android:layout_gravity="center"/>
+                            android:layout_gravity="center"
+                            android:text="Drinks" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -202,19 +202,19 @@
 
                         <Button
                             android:id="@+id/beverages"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginRight="15dp"
-                        android:layout_gravity="center" 
-                            android:onClick="searchCategory"
-                        android:background="@drawable/round_button" />
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginRight="15dp"
+                            android:background="@drawable/round_button"
+                            android:onClick="searchCategory" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Beverages"
-                            android:layout_gravity="center"/>
+                            android:layout_gravity="center"
+                            android:text="Beverages" />
                     </LinearLayout>
                 </TableRow>
 
@@ -235,120 +235,8 @@
                 android:layout_marginBottom="10dp">
 
                 <TableRow
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-
-                <LinearLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <Button
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginRight="15dp"
-                        android:layout_gravity="center" 
-                            android:onClick="searchCategory"
-                        android:background="@drawable/round_button" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Beef"
-                        android:layout_gravity="center"/>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <Button
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginRight="15dp"
-                        android:layout_gravity="center" 
-                            android:onClick="searchCategory"
-                        android:background="@drawable/round_button" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Pork"
-                        android:layout_gravity="center"/>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <Button
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginRight="15dp"
-                        android:layout_gravity="center" 
-                            android:onClick="searchCategory"
-                        android:background="@drawable/round_button" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Chicken"
-                        android:layout_gravity="center"/>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <Button
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginRight="15dp"
-                        android:layout_gravity="center" 
-                            android:onClick="searchCategory"
-                        android:background="@drawable/round_button" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Meat"
-                        android:layout_gravity="center"/>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <Button
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginRight="15dp"
-                        android:layout_gravity="center" 
-                            android:onClick="searchCategory"
-                        android:background="@drawable/round_button" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Vegetables"
-                        android:layout_gravity="center"/>
-                </LinearLayout>
-
-            </TableRow>
-
-                <TableRow
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp">
+                    android:layout_height="wrap_content">
 
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -356,19 +244,20 @@
                         android:orientation="vertical">
 
                         <Button
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginRight="15dp"
-                        android:layout_gravity="center" 
-                            android:onClick="searchCategory"
-                        android:background="@drawable/round_button" />
+                            android:id="@+id/beef"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginRight="15dp"
+                            android:background="@drawable/round_button"
+                            android:onClick="searchCategory" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Seafood"
-                            android:layout_gravity="center"/>
+                            android:layout_gravity="center"
+                            android:text="Beef" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -377,19 +266,20 @@
                         android:orientation="vertical">
 
                         <Button
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginRight="15dp"
-                        android:layout_gravity="center" 
-                            android:onClick="searchCategory"
-                        android:background="@drawable/round_button" />
+                            android:id="@+id/pork"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginRight="15dp"
+                            android:background="@drawable/round_button"
+                            android:onClick="searchCategory" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Dairy"
-                            android:layout_gravity="center"/>
+                            android:layout_gravity="center"
+                            android:text="Pork" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -398,19 +288,20 @@
                         android:orientation="vertical">
 
                         <Button
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginRight="15dp"
-                        android:layout_gravity="center" 
-                            android:onClick="searchCategory"
-                        android:background="@drawable/round_button" />
+                            android:id="@+id/chicken"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginRight="15dp"
+                            android:background="@drawable/round_button"
+                            android:onClick="searchCategory" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Rice"
-                            android:layout_gravity="center"/>
+                            android:layout_gravity="center"
+                            android:text="Chicken" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -419,19 +310,20 @@
                         android:orientation="vertical">
 
                         <Button
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginRight="15dp"
-                        android:layout_gravity="center" 
-                            android:onClick="searchCategory"
-                        android:background="@drawable/round_button" />
+                            android:id="@+id/meat"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginRight="15dp"
+                            android:background="@drawable/round_button"
+                            android:onClick="searchCategory" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Fruits"
-                            android:layout_gravity="center"/>
+                            android:layout_gravity="center"
+                            android:text="Meat" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -440,19 +332,20 @@
                         android:orientation="vertical">
 
                         <Button
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginRight="15dp"
-                        android:layout_gravity="center" 
-                            android:onClick="searchCategory"
-                        android:background="@drawable/round_button" />
+                            android:id="@+id/vegetables"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginRight="15dp"
+                            android:background="@drawable/round_button"
+                            android:onClick="searchCategory" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Beans"
-                            android:layout_gravity="center"/>
+                            android:layout_gravity="center"
+                            android:text="Vegetables" />
                     </LinearLayout>
 
                 </TableRow>
@@ -468,19 +361,137 @@
                         android:orientation="vertical">
 
                         <Button
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginRight="15dp"
-                        android:layout_gravity="center" 
-                            android:onClick="searchCategory"
-                        android:background="@drawable/round_button" />
+                            android:id="@+id/seafood"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginRight="15dp"
+                            android:background="@drawable/round_button"
+                            android:onClick="searchCategory" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Grain"
-                            android:layout_gravity="center"/>
+                            android:layout_gravity="center"
+                            android:text="Seafood" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <Button
+                            android:id="@+id/dairy"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginRight="15dp"
+                            android:background="@drawable/round_button"
+                            android:onClick="searchCategory" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="Dairy" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <Button
+                            android:id="@+id/rice"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginRight="15dp"
+                            android:background="@drawable/round_button"
+                            android:onClick="searchCategory" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="Rice" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <Button
+                            android:id="@+id/fruits"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginRight="15dp"
+                            android:background="@drawable/round_button"
+                            android:onClick="searchCategory" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="Fruits" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <Button
+                            android:id="@+id/beans"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginRight="15dp"
+                            android:background="@drawable/round_button"
+                            android:onClick="searchCategory" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="Beans" />
+                    </LinearLayout>
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <Button
+                            android:id="@+id/grain"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginRight="15dp"
+                            android:background="@drawable/round_button"
+                            android:onClick="searchCategory" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="Grain" />
                     </LinearLayout>
 
                 </TableRow>
@@ -501,116 +512,121 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp">
 
-            <TableRow
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-
-                <LinearLayout
+                <TableRow
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    android:layout_height="wrap_content">
 
-                    <Button
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginRight="15dp"
-                        android:layout_gravity="center" 
-                            android:onClick="searchCategory"
-                        android:background="@drawable/round_button" />
-
-                    <TextView
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Stir-fry"
-                        android:layout_gravity="center"/>
-                </LinearLayout>
+                        android:orientation="vertical">
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                        <Button
+                            android:id="@+id/stir_fry"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginRight="15dp"
+                            android:background="@drawable/round_button"
+                            android:onClick="searchCategory" />
 
-                    <Button
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginRight="15dp"
-                        android:layout_gravity="center" 
-                            android:onClick="searchCategory"
-                        android:background="@drawable/round_button" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="Stir-fry" />
+                    </LinearLayout>
 
-                    <TextView
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Boiled"
-                        android:layout_gravity="center"/>
-                </LinearLayout>
+                        android:orientation="vertical">
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                        <Button
+                            android:id="@+id/boiled"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginRight="15dp"
+                            android:background="@drawable/round_button"
+                            android:onClick="searchCategory" />
 
-                    <Button
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginRight="15dp"
-                        android:layout_gravity="center" 
-                            android:onClick="searchCategory"
-                        android:background="@drawable/round_button" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="Boiled" />
+                    </LinearLayout>
 
-                    <TextView
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Steamed"
-                        android:layout_gravity="center"/>
-                </LinearLayout>
+                        android:orientation="vertical">
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                        <Button
+                            android:id="@+id/steamed"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginRight="15dp"
+                            android:background="@drawable/round_button"
+                            android:onClick="searchCategory" />
 
-                    <Button
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginRight="15dp"
-                        android:layout_gravity="center" 
-                            android:onClick="searchCategory"
-                        android:background="@drawable/round_button" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="Steamed" />
+                    </LinearLayout>
 
-                    <TextView
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Fried"
-                        android:layout_gravity="center"/>
-                </LinearLayout>
+                        android:orientation="vertical">
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                        <Button
+                            android:id="@+id/fried"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginRight="15dp"
+                            android:background="@drawable/round_button"
+                            android:onClick="searchCategory" />
 
-                    <Button
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginRight="15dp"
-                        android:layout_gravity="center" 
-                            android:onClick="searchCategory"
-                        android:background="@drawable/round_button" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="Fried" />
+                    </LinearLayout>
 
-                    <TextView
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Baked"
-                        android:layout_gravity="center"/>
-                </LinearLayout>
+                        android:orientation="vertical">
 
-            </TableRow>
+                        <Button
+                            android:id="@+id/baked"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginRight="15dp"
+                            android:background="@drawable/round_button"
+                            android:onClick="searchCategory" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="Baked" />
+                    </LinearLayout>
+
+                </TableRow>
             </TableLayout>
 
             <TextView
@@ -637,41 +653,20 @@
                         android:orientation="vertical">
 
                         <Button
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginRight="15dp"
-                        android:layout_gravity="center" 
-                            android:onClick="searchCategory"
-                        android:background="@drawable/round_button" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Daily Life"
-                            android:layout_gravity="center"/>
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical">
-
-                        <Button
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginRight="15dp"
-                        android:layout_gravity="center" 
-                            android:onClick="searchCategory"
-                        android:background="@drawable/round_button" />
+                            android:id="@+id/daily_life"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginRight="15dp"
+                            android:background="@drawable/round_button"
+                            android:onClick="searchCategory" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:textAlignment="center"
-                            android:text="Quick Meal" />
+                            android:text="Daily Life" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -680,19 +675,21 @@
                         android:orientation="vertical">
 
                         <Button
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginRight="15dp"
-                        android:layout_gravity="center" 
-                            android:onClick="searchCategory"
-                        android:background="@drawable/round_button" />
+                            android:id="@+id/quick_meat"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginRight="15dp"
+                            android:background="@drawable/round_button"
+                            android:onClick="searchCategory" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="For Guests"
-                            android:layout_gravity="center"/>
+                            android:layout_gravity="center"
+                            android:text="Quick Meal"
+                            android:textAlignment="center" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -701,19 +698,20 @@
                         android:orientation="vertical">
 
                         <Button
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginRight="15dp"
-                        android:layout_gravity="center" 
-                            android:onClick="searchCategory"
-                        android:background="@drawable/round_button" />
+                            android:id="@+id/for_guests"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginRight="15dp"
+                            android:background="@drawable/round_button"
+                            android:onClick="searchCategory" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Diet"
-                            android:layout_gravity="center"/>
+                            android:layout_gravity="center"
+                            android:text="For Guests" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -722,19 +720,42 @@
                         android:orientation="vertical">
 
                         <Button
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginRight="15dp"
-                        android:layout_gravity="center" 
-                            android:onClick="searchCategory"
-                        android:background="@drawable/round_button" />
+                            android:id="@+id/diet"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginRight="15dp"
+                            android:background="@drawable/round_button"
+                            android:onClick="searchCategory" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Bento-Box"
-                            android:layout_gravity="center"/>
+                            android:layout_gravity="center"
+                            android:text="Diet" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <Button
+                            android:id="@+id/bento_box"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginRight="15dp"
+                            android:background="@drawable/round_button"
+                            android:onClick="searchCategory" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="Bento-Box" />
                     </LinearLayout>
 
                 </TableRow>
@@ -749,20 +770,21 @@
                         android:orientation="vertical">
 
                         <Button
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginRight="15dp"
-                        android:layout_gravity="center" 
-                            android:onClick="searchCategory"
-                        android:background="@drawable/round_button" />
+                            android:id="@+id/nutrient_dense"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginRight="15dp"
+                            android:background="@drawable/round_button"
+                            android:onClick="searchCategory" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_gravity="center"
                             android:text="Nutrient-\nDense"
-                            android:textAlignment="center"
-                            android:layout_gravity="center"/>
+                            android:textAlignment="center" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -771,20 +793,21 @@
                         android:orientation="vertical">
 
                         <Button
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginRight="15dp"
-                        android:layout_gravity="center" 
-                            android:onClick="searchCategory"
-                        android:background="@drawable/round_button" />
+                            android:id="@+id/midnight"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginRight="15dp"
+                            android:background="@drawable/round_button"
+                            android:onClick="searchCategory" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_gravity="center"
                             android:text="Midnight\nSnack"
-                            android:textAlignment="center"
-                            android:layout_gravity="center"/>
+                            android:textAlignment="center" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -793,19 +816,20 @@
                         android:orientation="vertical">
 
                         <Button
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginRight="15dp"
-                        android:layout_gravity="center" 
-                            android:onClick="searchCategory"
-                        android:background="@drawable/round_button" />
+                            android:id="@+id/holiday"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginRight="15dp"
+                            android:background="@drawable/round_button"
+                            android:onClick="searchCategory" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Holiday"
-                            android:layout_gravity="center"/>
+                            android:layout_gravity="center"
+                            android:text="Holiday" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -814,19 +838,20 @@
                         android:orientation="vertical">
 
                         <Button
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginRight="15dp"
-                        android:layout_gravity="center" 
-                            android:onClick="searchCategory"
-                        android:background="@drawable/round_button" />
+                            android:id="@+id/baby_food"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginRight="15dp"
+                            android:background="@drawable/round_button"
+                            android:onClick="searchCategory" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Baby Food"
-                            android:layout_gravity="center"/>
+                            android:layout_gravity="center"
+                            android:text="Baby Food" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -835,19 +860,20 @@
                         android:orientation="vertical">
 
                         <Button
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginRight="15dp"
-                        android:layout_gravity="center" 
-                            android:onClick="searchCategory"
-                        android:background="@drawable/round_button" />
+                            android:id="@+id/vegan"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginRight="15dp"
+                            android:background="@drawable/round_button"
+                            android:onClick="searchCategory" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Vegan"
-                            android:layout_gravity="center"/>
+                            android:layout_gravity="center"
+                            android:text="Vegan" />
                     </LinearLayout>
 
                 </TableRow>
@@ -878,19 +904,20 @@
                         android:orientation="vertical">
 
                         <Button
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginRight="15dp"
-                        android:layout_gravity="center" 
-                            android:onClick="searchCategory"
-                        android:background="@drawable/round_button" />
+                            android:id="@+id/american"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginRight="15dp"
+                            android:background="@drawable/round_button"
+                            android:onClick="searchCategory" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="American"
-                            android:layout_gravity="center"/>
+                            android:layout_gravity="center"
+                            android:text="American" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -899,19 +926,20 @@
                         android:orientation="vertical">
 
                         <Button
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginRight="15dp"
-                        android:layout_gravity="center" 
-                            android:onClick="searchCategory"
-                        android:background="@drawable/round_button" />
+                            android:id="@+id/mexican"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginRight="15dp"
+                            android:background="@drawable/round_button"
+                            android:onClick="searchCategory" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Mexican"
-                            android:layout_gravity="center"/>
+                            android:layout_gravity="center"
+                            android:text="Mexican" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -920,19 +948,20 @@
                         android:orientation="vertical">
 
                         <Button
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginRight="15dp"
-                        android:layout_gravity="center" 
-                            android:onClick="searchCategory"
-                        android:background="@drawable/round_button" />
+                            android:id="@+id/italian"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginRight="15dp"
+                            android:background="@drawable/round_button"
+                            android:onClick="searchCategory" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Italian"
-                            android:layout_gravity="center"/>
+                            android:layout_gravity="center"
+                            android:text="Italian" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -941,19 +970,20 @@
                         android:orientation="vertical">
 
                         <Button
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginRight="15dp"
-                        android:layout_gravity="center" 
-                            android:onClick="searchCategory"
-                        android:background="@drawable/round_button" />
+                            android:id="@+id/korean"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginRight="15dp"
+                            android:background="@drawable/round_button"
+                            android:onClick="searchCategory" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Korean"
-                            android:layout_gravity="center"/>
+                            android:layout_gravity="center"
+                            android:text="Korean" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -962,19 +992,20 @@
                         android:orientation="vertical">
 
                         <Button
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginRight="15dp"
-                        android:layout_gravity="center" 
-                            android:onClick="searchCategory"
-                        android:background="@drawable/round_button" />
+                            android:id="@+id/japanese"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginRight="15dp"
+                            android:background="@drawable/round_button"
+                            android:onClick="searchCategory" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Japanese"
-                            android:layout_gravity="center"/>
+                            android:layout_gravity="center"
+                            android:text="Japanese" />
                     </LinearLayout>
 
                 </TableRow>
@@ -990,19 +1021,20 @@
                         android:orientation="vertical">
 
                         <Button
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginRight="15dp"
-                        android:layout_gravity="center" 
-                            android:onClick="searchCategory"
-                        android:background="@drawable/round_button" />
+                            android:id="@+id/chinese"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginRight="15dp"
+                            android:background="@drawable/round_button"
+                            android:onClick="searchCategory" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Chinese"
-                            android:layout_gravity="center"/>
+                            android:layout_gravity="center"
+                            android:text="Chinese" />
                     </LinearLayout>
 
                 </TableRow>
