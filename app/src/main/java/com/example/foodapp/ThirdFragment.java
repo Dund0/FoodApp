@@ -342,7 +342,7 @@ public class ThirdFragment extends Fragment implements View.OnClickListener{
         });
         //this is how to add an image
         final long ONE_MEGABYTE = 1024 * 1024;
-        final StorageReference image = storageRef.child("A nice pizza_image");
+        final StorageReference image = storageRef.child(recipe.title+"_image");
         image.getBytes(ONE_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
             @Override
             public void onSuccess(byte[] bytes) {
