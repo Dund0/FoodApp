@@ -13,9 +13,11 @@ public class Recipe {
         private double difficulty;
         private ArrayList<Step> steps;
         private ArrayList<Ingredient> ingredients;
+        private String userId;
+        private String recipeImage;
         Recipe(){}
         Recipe(String type, String main_ingredient, String method, String situation, String culture, String title, String description,
-               String time, double difficulty, ArrayList<Ingredient> ingredients, ArrayList<Step> steps)
+               String time, double difficulty, ArrayList<Ingredient> ingredients, ArrayList<Step> steps,String userId)
         {
             categories.add(new Type("type", type));
             categories.add(new Main_Ingredient("main ingredient", main_ingredient));
@@ -28,7 +30,8 @@ public class Recipe {
             this.difficulty = difficulty;
             this.steps = steps;
             this.ingredients = ingredients;
-
+            this.userId = userId;
+            this.recipeImage = title + "_image";
         }
         public List<Categories> getCategories()
         {
@@ -71,5 +74,13 @@ public class Recipe {
                 ", steps=" + steps +
                 ", ingredients=" + ingredients +
                 '}';
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public String getRecipeImage() {
+        return recipeImage;
     }
 }

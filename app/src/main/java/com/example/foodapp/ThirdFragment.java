@@ -31,10 +31,12 @@ import android.widget.Spinner;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -42,6 +44,8 @@ import com.google.firebase.storage.UploadTask;
 
 import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -277,16 +281,39 @@ public class ThirdFragment extends Fragment implements View.OnClickListener{
         addIngredient(false);
         addStep(false);
         final DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
+
         final FirebaseStorage storage = FirebaseStorage.getInstance();
+        final String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
         StorageReference storageRef = storage.getReference();
 
 
         Log.d(null,"Trying to add Recipe");
-        Recipe recipe = new Recipe(types.getSelectedItem().toString(),materials.getSelectedItem().toString(),method.getSelectedItem().toString(),
+        final Recipe recipe = new Recipe(types.getSelectedItem().toString(),materials.getSelectedItem().toString(),method.getSelectedItem().toString(),
                 situation.getSelectedItem().toString(),culture.getSelectedItem().toString(), title.getText().toString(),
-                description.getText().toString(), time.getText().toString(), difficulty.getRating(),ingredients,steps);
+                description.getText().toString(), time.getText().toString(), difficulty.getRating(),ingredients,steps, userId);
+        Log.d(null,"Trying to update User's list of recipes");
+        ref.child("Users").child(userId)
+                .addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        Log.d(null, dataSnapshot.toString());
+                        Map<String, Object> postValues = new HashMap<String,Object>();
+                        for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                            Log.d(null, snapshot.toString());
+                            postValues.put(snapshot.getKey(),snapshot.getValue());
+                        }
 
+                        Log.d(null, postValues.toString());
+                        ArrayList<String> recipes = (ArrayList<String>) postValues.get("recipes");
+                        Log.d(null,recipes.toString());
+                        recipes.add(recipe.title);
+                        Log.d(null,recipes.toString());
+                        ref.child("Users").child(userId).updateChildren(postValues);
+                    }
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {}
+                });
         ref.child("Recipes").child(recipe.title).setValue(recipe);
         Log.d(null,"Successfully added Recipe");
 
@@ -315,42 +342,46 @@ public class ThirdFragment extends Fragment implements View.OnClickListener{
                 }
             });
         }
-        ref.child("Recipes").addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                   Log.d(null,snapshot.toString());
-                for (DataSnapshot rec: snapshot.getChildren()) {
-                    Log.d(null, rec.toString());
-                    Recipe rec1 = rec.getValue(Recipe.class);
-                    assert rec1 != null;
-                    Log.d(null,rec1.toString());
-                }
+        Log.d(null,"Added Recipe_Image");
+//        ref.child("Recipes").addListenerForSingleValueEvent(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                   Log.d(null,snapshot.toString());
+//                for (DataSnapshot rec: snapshot.getChildren()) {
+//                    Log.d(null, rec.toString());
+//                    Recipe rec1 = rec.getValue(Recipe.class);
+//                    assert rec1 != null;
+//                    Log.d(null,rec1.toString());
+//                }
+//
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError error) {
+//
+//            }
+//        });
 
-            }
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
+        Log.d(null, "updated user");
         //this is how to add an image
-        final long ONE_MEGABYTE = 1024 * 1024;
-        final StorageReference image = storageRef.child(recipe.title+"_image");
-        image.getBytes(ONE_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
-            @Override
-            public void onSuccess(byte[] bytes) {
-                // Data for "---.jpg" is returns, use this as needed
-                Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
-                // imagetoUpload is the imageView we want to modify
-                imageToUpload.setImageBitmap(bitmap);
-
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception exception) {
-                // Handle any errors
-            }
-        });
+//        final long ONE_MEGABYTE = 1024 * 1024;
+//        final StorageReference image = storageRef.child(recipe.title+"_image");
+//        image.getBytes(ONE_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
+//            @Override
+//            public void onSuccess(byte[] bytes) {
+//                // Data for "---.jpg" is returns, use this as needed
+//                Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+//                // imagetoUpload is the imageView we want to modify
+//                imageToUpload.setImageBitmap(bitmap);
+//
+//            }
+//        }).addOnFailureListener(new OnFailureListener() {
+//            @Override
+//            public void onFailure(@NonNull Exception exception) {
+//                // Handle any errors
+//            }
+//        });
         //in this case, you see the image on the third fragment where you would upload a recipe images
         return super.onOptionsItemSelected(item);
     }
