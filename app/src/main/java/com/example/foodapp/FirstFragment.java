@@ -1,5 +1,7 @@
 package com.example.foodapp;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -12,6 +14,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -19,6 +23,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
 
@@ -33,6 +39,7 @@ public class FirstFragment extends Fragment {
     ArrayList<Recipe> recipes = new ArrayList<>();
 
     final DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
+    final StorageReference storageReference = FirebaseStorage.getInstance().getReference().child("RecipeImages");
 
     HomePageAdapter recipeAdapter;
 
@@ -107,12 +114,31 @@ public class FirstFragment extends Fragment {
     }
 
     private void initList() {
+        StorageReference storageRef;
+
         Query query = ref.child("Recipes");
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot rec: snapshot.getChildren()) {
-                    Recipe rec1 = rec.getValue(Recipe.class);
+                    final Recipe rec1 = rec.getValue(Recipe.class);
+                    final long ONE_MEGABYTE = 1024 * 1024;
+                    final StorageReference image = storageReference.child(rec1.title + "_image");
+                    image.getBytes(ONE_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
+                        @Override
+                        public void onSuccess(byte[] bytes) {
+                            // Data for "---.jpg" is returns, use this as needed
+                            Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+                            // imagetoUpload is the imageView we want to modify
+                            rec1.setImage(bitmap);
+
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception exception) {
+                            // Handle any errors
+                        }
+                    });
                     recipes.add(rec1);
                     assert rec1 != null;
                 }

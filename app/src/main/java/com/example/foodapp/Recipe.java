@@ -1,5 +1,7 @@
 package com.example.foodapp;
 
+import android.graphics.Bitmap;
+
 import androidx.annotation.NonNull;
 
 import java.util.ArrayList;
@@ -15,6 +17,8 @@ public class Recipe {
         private ArrayList<Ingredient> ingredients;
         private String userId;
         private String recipeImage;
+        private Bitmap image;
+
         Recipe(){}
         Recipe(String type, String main_ingredient, String method, String situation, String culture, String title, String description,
                String time, double difficulty, ArrayList<Ingredient> ingredients, ArrayList<Step> steps,String userId)
@@ -82,5 +86,13 @@ public class Recipe {
 
     public String getRecipeImage() {
         return recipeImage;
+    }
+
+    public void setImage(Bitmap image) {
+        this.image = image;
+    }
+
+    public Bitmap getImage() {
+            return image;
     }
 }
