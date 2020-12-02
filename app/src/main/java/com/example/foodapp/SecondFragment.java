@@ -1,19 +1,25 @@
 package com.example.foodapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.navigation.fragment.NavHostFragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link SecondFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class SecondFragment extends Fragment {
+public class SecondFragment extends Fragment implements View.OnClickListener{
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -61,16 +67,53 @@ public class SecondFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        rootView = inflater.inflate(R.layout.fragment_third, container, false);
+        rootView = inflater.inflate(R.layout.fragment_second, container, false);
+        LinearLayout layout = rootView.findViewById(R.id.categoriesLayout);
+        initButtons(layout);
 
         return rootView;
     }
 
-    public void initButtons () {
-
+    public void initButtons (ViewGroup layout) {
+        for (int i = 0; i < layout.getChildCount(); i++) {
+            View v = layout.getChildAt(i);
+            if (v instanceof ViewGroup){
+                initButtons((ViewGroup) v);
+                continue;
+            }
+            else if (v instanceof Button) {
+                v.setOnClickListener(this);
+            }
+        }
     }
 
-    public void searchCategory(View view) {
+    public void switchFragment(String category) {
+        Intent intent = new Intent(getContext(), SearchActivity.class);
+        intent.putExtra("category", category);
+        startActivity(intent);
 
+
+
+        //this opens the fragment but just places it on top
+            /*getActivity().getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.frame, new FifthFragment())
+                        .addToBackStack(null)
+                        .commit();*/
+    }
+
+    @Override
+    public void onClick(View view) {
+        LinearLayout parent = (LinearLayout)((ViewGroup) view.getParent());
+        TextView textView = (TextView) parent.getChildAt(1);
+        switchFragment(textView.getText().toString());
+
+
+
+        /*switch (view.getId()) {
+            case R.id.mainDish:
+                switchFragment("Main Dish");
+                break;
+        }*/
     }
 }

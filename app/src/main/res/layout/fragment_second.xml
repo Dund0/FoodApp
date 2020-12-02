@@ -12,6 +12,7 @@
         android:layout_height="match_parent">
 
         <LinearLayout
+            android:id="@+id/categoriesLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
@@ -24,6 +25,7 @@
                 android:text="@string/type" />
 
             <TableLayout
+                android:id="@+id/typeLayout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -47,7 +49,8 @@
                             android:layout_marginLeft="15dp"
                             android:layout_marginRight="15dp"
                             android:background="@drawable/round_button"
-                            android:onClick="searchCategory" />
+                            android:text="Main Dish"
+                            android:textSize="0dp"/>
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -69,7 +72,8 @@
                             android:layout_marginLeft="15dp"
                             android:layout_marginRight="15dp"
                             android:background="@drawable/round_button"
-                            android:onClick="searchCategory" />
+                            android:text=""
+                            android:textSize="0dp" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -91,7 +95,8 @@
                             android:layout_marginLeft="15dp"
                             android:layout_marginRight="15dp"
                             android:background="@drawable/round_button"
-                            android:onClick="searchCategory" />
+                            android:text=""
+                            android:textSize="0dp" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -113,7 +118,8 @@
                             android:layout_marginLeft="15dp"
                             android:layout_marginRight="15dp"
                             android:background="@drawable/round_button"
-                            android:onClick="searchCategory" />
+                            android:text=""
+                            android:textSize="0dp" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -135,7 +141,8 @@
                             android:layout_marginLeft="15dp"
                             android:layout_marginRight="15dp"
                             android:background="@drawable/round_button"
-                            android:onClick="searchCategory" />
+                            android:text=""
+                            android:textSize="0dp" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -164,7 +171,8 @@
                             android:layout_marginLeft="15dp"
                             android:layout_marginRight="15dp"
                             android:background="@drawable/round_button"
-                            android:onClick="searchCategory" />
+                            android:text=""
+                            android:textSize="0dp" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -186,7 +194,8 @@
                             android:layout_marginLeft="15dp"
                             android:layout_marginRight="15dp"
                             android:background="@drawable/round_button"
-                            android:onClick="searchCategory" />
+                            android:text=""
+                            android:textSize="0dp" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -208,7 +217,8 @@
                             android:layout_marginLeft="15dp"
                             android:layout_marginRight="15dp"
                             android:background="@drawable/round_button"
-                            android:onClick="searchCategory" />
+                            android:text=""
+                            android:textSize="0dp" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -228,6 +238,7 @@
                 android:text="@string/main_ingredient" />
 
             <TableLayout
+                android:id="@+id/mainIngredientLayout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -251,7 +262,8 @@
                             android:layout_marginLeft="15dp"
                             android:layout_marginRight="15dp"
                             android:background="@drawable/round_button"
-                            android:onClick="searchCategory" />
+                            android:text=""
+                            android:textSize="0dp" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -273,7 +285,8 @@
                             android:layout_marginLeft="15dp"
                             android:layout_marginRight="15dp"
                             android:background="@drawable/round_button"
-                            android:onClick="searchCategory" />
+                            android:text=""
+                            android:textSize="0dp" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -295,7 +308,8 @@
                             android:layout_marginLeft="15dp"
                             android:layout_marginRight="15dp"
                             android:background="@drawable/round_button"
-                            android:onClick="searchCategory" />
+                            android:text=""
+                            android:textSize="0dp" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -317,7 +331,8 @@
                             android:layout_marginLeft="15dp"
                             android:layout_marginRight="15dp"
                             android:background="@drawable/round_button"
-                            android:onClick="searchCategory" />
+                            android:text=""
+                            android:textSize="0dp" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -339,7 +354,8 @@
                             android:layout_marginLeft="15dp"
                             android:layout_marginRight="15dp"
                             android:background="@drawable/round_button"
-                            android:onClick="searchCategory" />
+                            android:text=""
+                            android:textSize="0dp" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -368,7 +384,8 @@
                             android:layout_marginLeft="15dp"
                             android:layout_marginRight="15dp"
                             android:background="@drawable/round_button"
-                            android:onClick="searchCategory" />
+                            android:text=""
+                            android:textSize="0dp" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -390,7 +407,8 @@
                             android:layout_marginLeft="15dp"
                             android:layout_marginRight="15dp"
                             android:background="@drawable/round_button"
-                            android:onClick="searchCategory" />
+                            android:text=""
+                            android:textSize="0dp" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -412,7 +430,8 @@
                             android:layout_marginLeft="15dp"
                             android:layout_marginRight="15dp"
                             android:background="@drawable/round_button"
-                            android:onClick="searchCategory" />
+                            android:text=""
+                            android:textSize="0dp" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -434,7 +453,8 @@
                             android:layout_marginLeft="15dp"
                             android:layout_marginRight="15dp"
                             android:background="@drawable/round_button"
-                            android:onClick="searchCategory" />
+                            android:text=""
+                            android:textSize="0dp" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -456,7 +476,8 @@
                             android:layout_marginLeft="15dp"
                             android:layout_marginRight="15dp"
                             android:background="@drawable/round_button"
-                            android:onClick="searchCategory" />
+                            android:text=""
+                            android:textSize="0dp" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -485,7 +506,8 @@
                             android:layout_marginLeft="15dp"
                             android:layout_marginRight="15dp"
                             android:background="@drawable/round_button"
-                            android:onClick="searchCategory" />
+                            android:text=""
+                            android:textSize="0dp" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -506,6 +528,7 @@
                 android:text="@string/method" />
 
             <TableLayout
+                android:id="@+id/methodLayout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -529,7 +552,8 @@
                             android:layout_marginLeft="15dp"
                             android:layout_marginRight="15dp"
                             android:background="@drawable/round_button"
-                            android:onClick="searchCategory" />
+                            android:text=""
+                            android:textSize="0dp" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -551,7 +575,8 @@
                             android:layout_marginLeft="15dp"
                             android:layout_marginRight="15dp"
                             android:background="@drawable/round_button"
-                            android:onClick="searchCategory" />
+                            android:text=""
+                            android:textSize="0dp" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -573,7 +598,8 @@
                             android:layout_marginLeft="15dp"
                             android:layout_marginRight="15dp"
                             android:background="@drawable/round_button"
-                            android:onClick="searchCategory" />
+                            android:text=""
+                            android:textSize="0dp" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -595,7 +621,8 @@
                             android:layout_marginLeft="15dp"
                             android:layout_marginRight="15dp"
                             android:background="@drawable/round_button"
-                            android:onClick="searchCategory" />
+                            android:text=""
+                            android:textSize="0dp" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -617,7 +644,8 @@
                             android:layout_marginLeft="15dp"
                             android:layout_marginRight="15dp"
                             android:background="@drawable/round_button"
-                            android:onClick="searchCategory" />
+                            android:text=""
+                            android:textSize="0dp" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -637,6 +665,7 @@
                 android:text="@string/situation" />
 
             <TableLayout
+                android:id="@+id/situationLayout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -660,7 +689,8 @@
                             android:layout_marginLeft="15dp"
                             android:layout_marginRight="15dp"
                             android:background="@drawable/round_button"
-                            android:onClick="searchCategory" />
+                            android:text=""
+                            android:textSize="0dp" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -682,7 +712,8 @@
                             android:layout_marginLeft="15dp"
                             android:layout_marginRight="15dp"
                             android:background="@drawable/round_button"
-                            android:onClick="searchCategory" />
+                            android:text=""
+                            android:textSize="0dp" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -705,7 +736,8 @@
                             android:layout_marginLeft="15dp"
                             android:layout_marginRight="15dp"
                             android:background="@drawable/round_button"
-                            android:onClick="searchCategory" />
+                            android:text=""
+                            android:textSize="0dp" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -727,7 +759,8 @@
                             android:layout_marginLeft="15dp"
                             android:layout_marginRight="15dp"
                             android:background="@drawable/round_button"
-                            android:onClick="searchCategory" />
+                            android:text=""
+                            android:textSize="0dp" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -749,7 +782,8 @@
                             android:layout_marginLeft="15dp"
                             android:layout_marginRight="15dp"
                             android:background="@drawable/round_button"
-                            android:onClick="searchCategory" />
+                            android:text=""
+                            android:textSize="0dp" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -777,7 +811,8 @@
                             android:layout_marginLeft="15dp"
                             android:layout_marginRight="15dp"
                             android:background="@drawable/round_button"
-                            android:onClick="searchCategory" />
+                            android:text=""
+                            android:textSize="0dp" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -800,7 +835,8 @@
                             android:layout_marginLeft="15dp"
                             android:layout_marginRight="15dp"
                             android:background="@drawable/round_button"
-                            android:onClick="searchCategory" />
+                            android:text=""
+                            android:textSize="0dp" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -823,7 +859,8 @@
                             android:layout_marginLeft="15dp"
                             android:layout_marginRight="15dp"
                             android:background="@drawable/round_button"
-                            android:onClick="searchCategory" />
+                            android:text=""
+                            android:textSize="0dp" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -845,7 +882,8 @@
                             android:layout_marginLeft="15dp"
                             android:layout_marginRight="15dp"
                             android:background="@drawable/round_button"
-                            android:onClick="searchCategory" />
+                            android:text=""
+                            android:textSize="0dp" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -867,7 +905,8 @@
                             android:layout_marginLeft="15dp"
                             android:layout_marginRight="15dp"
                             android:background="@drawable/round_button"
-                            android:onClick="searchCategory" />
+                            android:text=""
+                            android:textSize="0dp" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -888,6 +927,7 @@
                 android:text="@string/culture" />
 
             <TableLayout
+                android:id="@+id/cultureLayout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -911,7 +951,8 @@
                             android:layout_marginLeft="15dp"
                             android:layout_marginRight="15dp"
                             android:background="@drawable/round_button"
-                            android:onClick="searchCategory" />
+                            android:text=""
+                            android:textSize="0dp" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -933,7 +974,8 @@
                             android:layout_marginLeft="15dp"
                             android:layout_marginRight="15dp"
                             android:background="@drawable/round_button"
-                            android:onClick="searchCategory" />
+                            android:text=""
+                            android:textSize="0dp" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -955,7 +997,8 @@
                             android:layout_marginLeft="15dp"
                             android:layout_marginRight="15dp"
                             android:background="@drawable/round_button"
-                            android:onClick="searchCategory" />
+                            android:text=""
+                            android:textSize="0dp" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -977,7 +1020,8 @@
                             android:layout_marginLeft="15dp"
                             android:layout_marginRight="15dp"
                             android:background="@drawable/round_button"
-                            android:onClick="searchCategory" />
+                            android:text=""
+                            android:textSize="0dp" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -999,7 +1043,8 @@
                             android:layout_marginLeft="15dp"
                             android:layout_marginRight="15dp"
                             android:background="@drawable/round_button"
-                            android:onClick="searchCategory" />
+                            android:text=""
+                            android:textSize="0dp" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -1028,7 +1073,8 @@
                             android:layout_marginLeft="15dp"
                             android:layout_marginRight="15dp"
                             android:background="@drawable/round_button"
-                            android:onClick="searchCategory" />
+                            android:text=""
+                            android:textSize="0dp" />
 
                         <TextView
                             android:layout_width="wrap_content"
