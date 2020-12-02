@@ -18,6 +18,6 @@ public class Categories {
     }
     @Override
     public String toString() {
-        return this.typeOf + " " + this.value + " ";
+        return this.value;
     }
 }

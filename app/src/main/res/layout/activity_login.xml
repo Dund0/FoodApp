@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#EAEAEA"
     tools:context=".LoginActivity">
 
     <include
@@ -62,9 +63,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:ems="10"
+                android:hint="@string/Email"
                 android:importantForAutofill="no"
-                android:inputType="textEmailAddress"
-                android:hint="@string/Email"/>
+                android:inputType="textEmailAddress" />
 
         </androidx.cardview.widget.CardView>
 
@@ -89,9 +90,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:ems="10"
+                android:hint="@string/Password"
                 android:importantForAutofill="no"
-                android:inputType="textPassword"
-                android:hint="@string/Password"/>
+                android:inputType="textPassword" />
 
         </androidx.cardview.widget.CardView>
 

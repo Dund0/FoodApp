@@ -1,24 +1,27 @@
 package com.example.foodapp;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.NavigationUI;
 
-import android.content.Intent;
-import android.content.SharedPreferences;
-import android.net.Uri;
 import android.os.Bundle;
-import android.widget.ImageView;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.FrameLayout;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
 
-    private static final int RESULT_LOAD_IMAGE = 1;
-    SharedPreferences pass;
+    FrameLayout frameLayout;
+    Fragment currentFrag;
+    int fragID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,19 +34,19 @@ public class MainActivity extends AppCompatActivity {
 
         Toolbar toolbar = findViewById(R.id.app_bar);
         setSupportActionBar(toolbar);
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle savedInstanceState) {
+        super.onSaveInstanceState(savedInstanceState);
+
+        //frameLayout = findViewById(R.id.frame);
+        //frameLayout.getChildAt(0);
 
     }
 
-    /*
     @Override
-    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == RESULT_OK && requestCode == RESULT_LOAD_IMAGE && data !=null) {
-            pass = getApplicationContext().getSharedPreferences("currentImgView", 0);
-            Uri selectedImage = data.getData();
-            int i = pass.getInt("currentImgView", 0);
-            ImageView current = findViewById(i);
-            current.setImageURI(selectedImage);
-        }
-    }*/
+    public void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+    }
 }
