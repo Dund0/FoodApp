@@ -98,10 +98,13 @@ public class RegisterActivity extends AppCompatActivity {
                                         @Override
                                         public void onComplete(@NonNull Task<Void> task) {
                                             if(task.isSuccessful()){
+                                                ArrayList<String> recipes = new ArrayList<>();
+                                                recipes.add("");
                                                 User userstuff = new User(
                                                         userID,
                                                         emailId,
-                                                        pwd
+                                                        pwd,
+                                                        recipes
                                                 );
                                                 //put it into database
                                                 FirebaseDatabase.getInstance().getReference("Users")
