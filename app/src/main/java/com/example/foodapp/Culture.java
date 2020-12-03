@@ -6,7 +6,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class Culture extends Categories{
-    final List<String> Culture = (Arrays.asList("American","Chinese", "Mexican", "Italin", "Korean", "American", "Japanese", "N/A"));
+    final List<String> Culture = (Arrays.asList("Chinese", "Mexican", "Italin", "Korean", "American", "Japanese", "N/A"));
     public Culture(String typeOf, String value) {
         super(typeOf,value);
     }
