@@ -63,6 +63,7 @@ public class SecondFragment extends Fragment implements View.OnClickListener{
         }
     }
 
+    //This draws the stuff to the screen
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -74,6 +75,7 @@ public class SecondFragment extends Fragment implements View.OnClickListener{
         return rootView;
     }
 
+    //this puts listeners for all the buttons
     public void initButtons (ViewGroup layout) {
         for (int i = 0; i < layout.getChildCount(); i++) {
             View v = layout.getChildAt(i);
@@ -87,6 +89,7 @@ public class SecondFragment extends Fragment implements View.OnClickListener{
         }
     }
 
+    //when a button is clicked it switches the activity to the one you clicked
     public void switchFragment(String category) {
         Intent intent = new Intent(getContext(), SearchActivity.class);
         intent.putExtra("category", category);
@@ -102,6 +105,7 @@ public class SecondFragment extends Fragment implements View.OnClickListener{
                         .commit();*/
     }
 
+    //onClick for the category buttons
     @Override
     public void onClick(View view) {
         LinearLayout parent = (LinearLayout)((ViewGroup) view.getParent());
