@@ -8,11 +8,12 @@
     android:orientation="vertical"
     tools:context=".FirstFragment">
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_gravity="center_horizontal">
+    <LinearLayout
+        android:layout_width="332dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:background="#C3BABA"
+        android:orientation="vertical">
 
             <EditText
                 android:id="@+id/inputSearch"
@@ -28,8 +29,6 @@
                 android:paddingTop="8dp"
                 android:paddingRight="10dp"
                 android:paddingBottom="8dp" />
-
-
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recipeRecycler"

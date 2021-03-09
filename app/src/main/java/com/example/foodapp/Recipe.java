@@ -10,8 +10,8 @@ import java.util.List;
 public class Recipe {
         List<Categories> categories = new ArrayList<Categories>();
         String title;
-    private String description;
-    private String time;
+        private String description;
+        private String time;
         private double difficulty;
         private ArrayList<Step> steps;
         private ArrayList<Ingredient> ingredients;
