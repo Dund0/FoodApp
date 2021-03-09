@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -14,17 +15,32 @@
         android:background="#C3BABA"
         android:orientation="vertical">
 
+            <EditText
+                android:id="@+id/inputSearch"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:autofillHints="@string/search_bar"
+                android:background="@drawable/input_search"
+                android:drawableStart="@drawable/ic_search"
+                android:hint="@string/search_bar"
+                android:inputType="none"
+                android:paddingLeft="10dp"
+                android:paddingTop="8dp"
+                android:paddingRight="10dp"
+                android:paddingBottom="8dp" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recipeRecycler"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="10dp"
-            android:paddingLeft="16dp"
-            />
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recipeRecycler"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginTop="10dp"
+                android:layout_gravity="center_horizontal"
+                />
 
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="10dp" />
-    </LinearLayout>
-</ScrollView>
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="10dp" />
+
+        </LinearLayout>
+</LinearLayout>

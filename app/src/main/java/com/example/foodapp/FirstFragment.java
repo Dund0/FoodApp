@@ -1,5 +1,7 @@
 package com.example.foodapp;
 
+=======
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -10,10 +12,14 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
+import android.widget.EditText;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -37,6 +43,7 @@ import java.util.ArrayList;
  */
 public class FirstFragment extends Fragment {
 
+    EditText inputSearch;
     RecyclerView recipeRecycler;
     ArrayList<Recipe> recipes = new ArrayList<>();
 
@@ -44,6 +51,7 @@ public class FirstFragment extends Fragment {
     final StorageReference storageReference = FirebaseStorage.getInstance().getReference().child("RecipeImages");
 
     HomePageAdapter recipeAdapter;
+
 
     View rootView;
 
@@ -82,6 +90,7 @@ public class FirstFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
@@ -93,6 +102,20 @@ public class FirstFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         rootView = inflater.inflate(R.layout.fragment_first, container, false);
+        inputSearch = rootView.findViewById(R.id.inputSearch);
+        inputSearch.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View view, int i, KeyEvent keyEvent) {
+                //If the event is a key-down event on the "enter" button
+                if((keyEvent.getAction() == KeyEvent.ACTION_DOWN) && (i == KeyEvent.KEYCODE_ENTER)){
+                    //perform action on key press
+                    switchFragment(inputSearch.getText().toString());
+                    return true;
+                }
+                return false;
+            }
+        });
+
 
         recipeRecycler = rootView.findViewById(R.id.recipeRecycler);
 
@@ -174,5 +197,10 @@ public class FirstFragment extends Fragment {
 
             }
         });
+    }
+    public void switchFragment(String category) {
+        Intent intent = new Intent(getContext(), SearchActivity.class);
+        intent.putExtra("category", category);
+        startActivity(intent);
     }
 }
