@@ -9,6 +9,22 @@
         android:id="@+id/app_bar"
         layout="@layout/app_bar"/>
 
+
+    <EditText
+        android:id="@+id/inputSearch"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:autofillHints="@string/search_bar"
+        android:background="@drawable/input_search"
+        android:drawableStart="@drawable/ic_search"
+        android:hint="@string/search_bar"
+        android:inputType="none"
+        android:paddingLeft="10dp"
+        android:paddingTop="8dp"
+        android:paddingRight="10dp"
+        android:paddingBottom="8dp" />
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">

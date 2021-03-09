@@ -27,6 +27,7 @@
     <string name="method">Method</string>
     <string name="type">Type</string>
     <string name="main_ingredient">Main Ingredient</string>
+    <string name = "search_bar">Search Recipe, Ingredient and Usernames here</string>
 
     <string-array name="types">
         <item>Main dish</item>
