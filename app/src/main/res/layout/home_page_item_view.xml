@@ -6,29 +6,30 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
+
     <include
         android:id="@+id/app_bar"
         layout="@layout/app_bar" />
 
     <androidx.core.widget.NestedScrollView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center">
 
 
         <LinearLayout
-            android:layout_width="332dp"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="center_horizontal"
-            android:background="#C3BABA"
+            android:background="#FECE30"
             android:orientation="vertical">
 
             <LinearLayout
-                android:layout_width="300dp"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
+                android:layout_width="356dp"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:background="#D95D39">
+                android:background="#FAAB19"
+                android:orientation="vertical">
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recipeRecycler"
