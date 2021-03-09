@@ -7,7 +7,7 @@
     android:orientation="vertical"
     tools:context=".FourthFragment">
 
-    <ScrollView
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center_horizontal">
@@ -25,28 +25,12 @@
                 android:orientation="vertical"
                 android:background="#FAAB19">
 
-                <androidx.cardview.widget.CardView
-                    android:layout_width="205dp"
-                    android:layout_height="205dp"
-                    app:cardCornerRadius="250dp"
-                    app:cardBackgroundColor="@android:color/white"
-                    android:layout_gravity="center_horizontal">
-
-                    <androidx.cardview.widget.CardView
-                        android:layout_width="200dp"
-                        android:layout_height="200dp"
-                        app:cardCornerRadius="250dp"
-                        android:layout_gravity="center">
-
                         <ImageView
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
+                            android:layout_width="200dp"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_height="200dp"
                             android:src="@drawable/image"
                             android:scaleType="centerCrop"/>
-
-                    </androidx.cardview.widget.CardView>
-
-                </androidx.cardview.widget.CardView>
 
                 <TextView
                     android:id="@+id/ProfileName"
@@ -101,6 +85,6 @@
             </LinearLayout>
 
         </LinearLayout>
-    </ScrollView>
+    </androidx.core.widget.NestedScrollView>
 
 </LinearLayout>
