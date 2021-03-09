@@ -361,7 +361,38 @@ public class ThirdFragment extends Fragment implements View.OnClickListener{
 //
 //            }
 //        });
+        if(!steps.isEmpty()) {
+            for(int i = 0; i < steps.size(); i++)
+            {
+                Step currentStep = steps.get(i);
+                ImageView stepImage = currentStep.getImageView();
+                if(stepImage.getDrawable() != null)
+                {
+                    stepImage.setDrawingCacheEnabled(true);
+                    stepImage.buildDrawingCache();
+                    Bitmap bitmap = ((BitmapDrawable) stepImage.getDrawable()).getBitmap();
+                    ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                    bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+                    byte[] data = baos.toByteArray();
+                    StorageReference stepRef = storageRef.child("StepImages").child(recipe.title).child(String.valueOf(i));
+                    //uploads the image
+                    UploadTask uploadTask = stepRef.putBytes(data);
+                    uploadTask.addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception exception) {
 
+                        }
+                    }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                            // taskSnapshot.getMetadata() contains file metadata such as size, content-type, etc.
+                            // ...
+                        }
+                    });
+                }
+            }
+        }
+        Log.d(null, "successfully added steps images");
 
         Log.d(null, "updated user");
         //this is how to add an image
