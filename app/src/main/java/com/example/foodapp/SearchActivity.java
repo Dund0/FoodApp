@@ -1,5 +1,6 @@
 package com.example.foodapp;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -176,10 +177,25 @@ public class SearchActivity extends AppCompatActivity {
 //        };
     }
 
-    private void initRecipieRecycler(ArrayList<Recipe> recipes) {
+    private void initRecipieRecycler(final ArrayList<Recipe> recipes) {
         recipeAdapter = new HomePageAdapter(this, recipes);
         recipeRecycler.setAdapter(recipeAdapter);
         recipeRecycler.setLayoutManager(new LinearLayoutManager(this));
+
+        recipeAdapter.setOnItemClickListener(new HomePageAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(int position) {
+                String s = recipes.get(position).getTitle();
+                Intent fullRec = new Intent(SearchActivity.this, HomePageItemView.class);
+                fullRec.putExtra("currentID", s);
+                startActivity(fullRec);
+            }
+
+            @Override
+            public void onDeleteClick(int position) {
+
+            }
+        });
     }
     private void refreshView(){
         recipeRecycler.setVisibility(View.GONE);
