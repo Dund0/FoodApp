@@ -1,5 +1,6 @@
 package com.example.foodapp;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -12,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -53,6 +55,7 @@ public class FirstFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    private boolean done;
 
     public FirstFragment() {
         // Required empty public constructor
@@ -116,32 +119,35 @@ public class FirstFragment extends Fragment {
     private void initList() {
         StorageReference storageRef;
 
+        done = false;
         Query query = ref.child("Recipes");
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for (DataSnapshot rec: snapshot.getChildren()) {
-                    final Recipe rec1 = rec.getValue(Recipe.class);
-                    final long ONE_MEGABYTE = 1024 * 1024;
-                    final StorageReference image = storageReference.child(rec1.title + "_image");
-                    image.getBytes(ONE_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
-                        @Override
-                        public void onSuccess(byte[] bytes) {
-                            // Data for "---.jpg" is returns, use this as needed
-                            Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
-                            // imagetoUpload is the imageView we want to modify
-                            rec1.setImage(bitmap);
-
-                        }
-                    }).addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception exception) {
-                            // Handle any errors
-                        }
-                    });
-                    recipes.add(rec1);
-                    assert rec1 != null;
+                if(!done) {
+                    for (DataSnapshot rec : snapshot.getChildren()) {
+                        final Recipe rec1 = rec.getValue(Recipe.class);
+                        final long ONE_MEGABYTE = 1024 * 1024;
+                        final StorageReference image = storageReference.child(rec1.title + "_image");
+                        image.getBytes(ONE_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
+                            @Override
+                            public void onSuccess(byte[] bytes) {
+                                // Data for "---.jpg" is returns, use this as needed
+                                Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+                                // imagetoUpload is the imageView we want to modify
+                                rec1.setImage(bitmap);
+                            }
+                        }).addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception exception) {
+                                // Handle any errors
+                            }
+                        });
+                        recipes.add(rec1);
+                        assert rec1 != null;
+                    }
                 }
+                done = true;
                 initRecipieRecycler(recipes);
             }
         @Override
@@ -149,9 +155,24 @@ public class FirstFragment extends Fragment {
     });
     }
 
-    private void initRecipieRecycler(ArrayList<Recipe> recipes) {
+    private void initRecipieRecycler(final ArrayList<Recipe> recipes) {
         recipeAdapter = new HomePageAdapter(getContext(), recipes);
         recipeRecycler.setAdapter(recipeAdapter);
         recipeRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
+
+        recipeAdapter.setOnItemClickListener(new HomePageAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(int position) {
+                String s = recipes.get(position).getTitle();
+                Intent fullRec = new Intent(getContext(), HomePageItemView.class);
+                fullRec.putExtra("currentID", s);
+                startActivity(fullRec);
+            }
+
+            @Override
+            public void onDeleteClick(int position) {
+
+            }
+        });
     }
 }
