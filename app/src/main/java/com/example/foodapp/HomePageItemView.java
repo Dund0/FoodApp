@@ -1,9 +1,13 @@
 package com.example.foodapp;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.KeyEvent;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
@@ -12,6 +16,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -148,5 +153,27 @@ public class HomePageItemView extends AppCompatActivity {
         stepAdapter = new StepAdapter(this, steps);
         stepRecycler.setAdapter(stepAdapter);
         stepRecycler.setLayoutManager(new LinearLayoutManager(this));
+    }
+
+    //Change activity on history button press
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.favorite:
+                item.setIcon(ContextCompat.getDrawable(this, R.drawable.ic_baseline_favorite_dark));
+                break;
+            case R.id.like:
+                item.setIcon(ContextCompat.getDrawable(this, R.drawable.ic_baseline_thumb_up_dark));
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    //Show history button
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu, menu);
+        return super.onCreateOptionsMenu(menu);
     }
 }
