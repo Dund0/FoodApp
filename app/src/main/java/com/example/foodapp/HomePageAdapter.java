@@ -14,6 +14,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
+
 import java.util.ArrayList;
 
 public class HomePageAdapter extends RecyclerView.Adapter<HomePageAdapter.HomeViewHolder> {
@@ -49,7 +52,11 @@ public class HomePageAdapter extends RecyclerView.Adapter<HomePageAdapter.HomeVi
         holder.difficulty.setRating((float) recipes.get(position).getDifficulty());
         holder.profileName.setText(recipes.get(position).title);
         holder.itemID.setText(recipes.get(position).title);
-        holder.splashImage.setImageBitmap(recipes.get(position).getImage());
+        //holder.splashImage.setImageBitmap(recipes.get(position).getImage());
+        //holder.splashImage.setImageURI(recipes.get(position).getImageUri());
+        Glide.with(context).load(recipes.get(position).getImageUri())
+                .apply(new RequestOptions().placeholder(R.drawable.round_button))
+                .into(holder.splashImage);
         holder.time.setText(recipes.get(position).getTime());
     }
 

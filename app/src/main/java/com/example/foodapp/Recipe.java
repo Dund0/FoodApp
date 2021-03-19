@@ -1,6 +1,7 @@
 package com.example.foodapp;
 
 import android.graphics.Bitmap;
+import android.net.Uri;
 
 import androidx.annotation.NonNull;
 
@@ -18,6 +19,7 @@ public class Recipe {
         private String userId;
         private String recipeImage;
         private Bitmap image;
+        private Uri imageUri;
 
         Recipe(){}
         Recipe(String type, String main_ingredient, String method, String situation, String culture, String title, String description,
@@ -92,7 +94,11 @@ public class Recipe {
         this.image = image;
     }
 
+    public void setImageUri(Uri imageUri) { this.imageUri = imageUri; }
+
     public Bitmap getImage() {
             return image;
     }
+
+    public Uri getImageUri() { return imageUri; }
 }
