@@ -19,7 +19,7 @@
     <string name="confirmPassword">Confirm Password</string>
     <string name="reg_success">Registration Successful! Please check your email verification.</string>
     <string name="reg_fail">There was an error occurred</string>
-    <string name="signout">Sign Out</string>
+    <string name="profileSetting">Profile Setting</string>
     <string name="usernameTaken">This username is already taken</string>
     <string name="typeStep">Type your step here</string>
     <string name="culture">Culture</string>
@@ -27,7 +27,13 @@
     <string name="method">Method</string>
     <string name="type">Type</string>
     <string name="main_ingredient">Main Ingredient</string>
-    <string name = "search_bar">Search Recipe, Ingredient and Usernames here</string>
+    <string name="search_bar">Search Recipe, Ingredient and Usernames here</string>
+<!--Profile Setting Activity-->
+    <string name="notification_setting">Notification Setting</string>
+    <string name="change_email">Change Email</string>
+    <string name="change_nickname">Change Nickname</string>
+    <string name="sign_out">Sign out</string>
+    <string name="delete_account">Delete Account</string>
 
     <string-array name="types">
         <item>Main dish</item>

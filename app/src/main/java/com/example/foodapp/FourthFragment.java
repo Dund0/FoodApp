@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -86,6 +87,7 @@ public class FourthFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
     }
 
     @Override
@@ -93,6 +95,14 @@ public class FourthFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         rootView = inflater.inflate(R.layout.fragment_fourth, container, false);
+        Button profSetting = rootView.findViewById(R.id.ProfileSetting);
+        profSetting.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getContext(), ProfileSettingActivity.class);
+                startActivity(intent);
+            }
+        });
         recipeRecycler = rootView.findViewById(R.id.userPosts);
         FirebaseUser curruser = FirebaseAuth.getInstance().getCurrentUser();
         user = curruser.getUid();
@@ -165,8 +175,4 @@ public class FourthFragment extends Fragment {
         });
     }
 
-
-    public void signOut(View view) {
-
-    }
 }
