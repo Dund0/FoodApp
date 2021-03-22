@@ -3,9 +3,11 @@ package com.example.foodapp;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -14,9 +16,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageView;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -27,6 +32,8 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
@@ -42,6 +49,9 @@ public class FourthFragment extends Fragment {
     final DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
     final StorageReference storageReference = FirebaseStorage.getInstance().getReference().child("RecipeImages");
 
+    private AlertDialog dialog;
+    private AlertDialog.Builder dialogBuilder;
+    private Button newcontactpopup_submit, newcontactpopup_cancel, uploadbtn;
     String user;
 
     HomePageAdapter recipeAdapter;
@@ -101,6 +111,65 @@ public class FourthFragment extends Fragment {
             public void onClick(View view) {
                 Intent intent = new Intent(getContext(), ProfileSettingActivity.class);
                 startActivity(intent);
+            }
+        });
+        ImageView editIntro = rootView.findViewById(R.id.EditBtn);
+        editIntro.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialogBuilder = new AlertDialog.Builder(getContext());
+                final View PopupEditIntro = getLayoutInflater().inflate(R.layout.edit_intro, null);
+                TextInputLayout EditIntro = (TextInputLayout) PopupEditIntro.findViewById(R.id.EditIntro);
+
+                newcontactpopup_submit = (Button) PopupEditIntro.findViewById(R.id.submit3);
+                newcontactpopup_cancel = (Button) PopupEditIntro.findViewById(R.id.cancel3);
+
+                dialogBuilder.setView(PopupEditIntro);
+                dialog = dialogBuilder.create();
+                dialog.show();
+
+                newcontactpopup_submit.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        //define save button
+                    }
+                });
+
+                newcontactpopup_cancel.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        //close popup window
+                        dialog.dismiss();
+                    }
+                });
+            }
+        });
+        ImageView uploadimage = rootView.findViewById(R.id.ProfileImage);
+        uploadimage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialogBuilder = new AlertDialog.Builder(getContext());
+                final View PopupEditIntro = getLayoutInflater().inflate(R.layout.upload_image, null);
+                ImageView editimage = PopupEditIntro.findViewById(R.id.editImage);
+                uploadbtn = (Button) PopupEditIntro.findViewById(R.id.uploadImagebtn);
+
+                dialogBuilder.setView(PopupEditIntro);
+                dialog = dialogBuilder.create();
+                dialog.show();
+                //edit image
+                editimage.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        //go to user's local files
+                    }
+                });
+                //submit image button
+                uploadbtn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        //upload image onclick
+                    }
+                });
             }
         });
         recipeRecycler = rootView.findViewById(R.id.userPosts);

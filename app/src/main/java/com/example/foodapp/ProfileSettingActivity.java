@@ -10,14 +10,10 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-
-import com.firebase.ui.database.FirebaseIndexArray;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
+
 
 public class ProfileSettingActivity extends AppCompatActivity {
     private EditText newcontactpopup_email, newcontactpopup_username;
@@ -37,13 +33,9 @@ public class ProfileSettingActivity extends AppCompatActivity {
         ActionBar ab = getSupportActionBar();
         ab.setDisplayHomeAsUpEnabled(true);
     }
+    public void IntentNotificationSetting(View view){
 
-    public void Signout(View view){
-        FirebaseAuth.getInstance().signOut();
-        finish();
-        startActivity(new Intent(this, LoginActivity.class));
     }
-
     public void EditEmail(View view){
         dialogBuilder = new AlertDialog.Builder(this);
         final View PopupEditEmail = getLayoutInflater().inflate(R.layout.change_email, null);
@@ -72,7 +64,6 @@ public class ProfileSettingActivity extends AppCompatActivity {
         });
 
     }
-
     public void EditUsername(View view){
         dialogBuilder = new AlertDialog.Builder(this);
         final View PopupEditUsername = getLayoutInflater().inflate(R.layout.change_username, null);
@@ -99,7 +90,11 @@ public class ProfileSettingActivity extends AppCompatActivity {
             }
         });
     }
-
+    public void Signout(View view){
+        FirebaseAuth.getInstance().signOut();
+        finish();
+        startActivity(new Intent(this, LoginActivity.class));
+    }
     public void DeleteAcccount(View view){
         //delete account
     }

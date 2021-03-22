@@ -34,6 +34,7 @@
     <string name="change_nickname">Change Username</string>
     <string name="sign_out">Sign out</string>
     <string name="delete_account">Delete Account</string>
+    <string name="change_intro">Edit Intro</string>
     <string name="submit">Submit</string>
     <string name="cancel">Cancel</string>
 
