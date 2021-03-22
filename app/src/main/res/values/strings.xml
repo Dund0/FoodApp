@@ -31,9 +31,11 @@
 <!--Profile Setting Activity-->
     <string name="notification_setting">Notification Setting</string>
     <string name="change_email">Change Email</string>
-    <string name="change_nickname">Change Nickname</string>
+    <string name="change_nickname">Change Username</string>
     <string name="sign_out">Sign out</string>
     <string name="delete_account">Delete Account</string>
+    <string name="submit">Submit</string>
+    <string name="cancel">Cancel</string>
 
     <string-array name="types">
         <item>Main dish</item>
