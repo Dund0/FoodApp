@@ -1,5 +1,6 @@
 package com.example.foodapp;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -13,6 +14,14 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.widget.Toolbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.HashMap;
+import java.util.Map;
 
 
 public class ProfileSettingActivity extends AppCompatActivity {
@@ -21,6 +30,8 @@ public class ProfileSettingActivity extends AppCompatActivity {
     private AlertDialog dialog;
     private AlertDialog.Builder dialogBuilder;
     private FirebaseUser currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+    final String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+    final DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +62,24 @@ public class ProfileSettingActivity extends AppCompatActivity {
         newcontactpopup_submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //define save button
+                final String newEmail = newcontactpopup_email.getText().toString();
+                ref.child("Users").child(userId).addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        Map<String, Object> postValues = new HashMap<String,Object>();
+                        for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+//                                    Log.d(null, snapshot.toString());
+                            postValues.put(snapshot.getKey(),snapshot.getValue());
+                        }
+                        postValues.put("email",newEmail);
+                        ref.child("Users").child(userId).updateChildren(postValues);
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
             }
         });
 
@@ -78,7 +106,24 @@ public class ProfileSettingActivity extends AppCompatActivity {
         newcontactpopup_submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //define save button
+                final String newUsername = newcontactpopup_username.getText().toString();
+                ref.child("Users").child(userId).addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        Map<String, Object> postValues = new HashMap<String,Object>();
+                        for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+//                                    Log.d(null, snapshot.toString());
+                            postValues.put(snapshot.getKey(),snapshot.getValue());
+                        }
+                        postValues.put("username",newUsername);
+                        ref.child("Users").child(userId).updateChildren(postValues);
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
             }
         });
 
@@ -96,6 +141,6 @@ public class ProfileSettingActivity extends AppCompatActivity {
         startActivity(new Intent(this, LoginActivity.class));
     }
     public void DeleteAcccount(View view){
-        //delete account
+
     }
 }

@@ -104,7 +104,9 @@ public class RegisterActivity extends AppCompatActivity {
                                                         userID,
                                                         emailId,
                                                         pwd,
-                                                        recipes
+                                                        "",
+                                                        recipes,
+                                                        null
                                                 );
                                                 //put it into database
                                                 FirebaseDatabase.getInstance().getReference("Users")

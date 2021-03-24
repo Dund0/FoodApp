@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,6 +22,7 @@ import android.widget.ImageView;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -36,6 +38,8 @@ import com.google.firebase.storage.StorageReference;
 import org.w3c.dom.Text;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -48,7 +52,7 @@ public class FourthFragment extends Fragment {
 
     final DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
     final StorageReference storageReference = FirebaseStorage.getInstance().getReference().child("RecipeImages");
-
+    final String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
     private AlertDialog dialog;
     private AlertDialog.Builder dialogBuilder;
     private Button newcontactpopup_submit, newcontactpopup_cancel, uploadbtn;
@@ -119,8 +123,8 @@ public class FourthFragment extends Fragment {
             public void onClick(View view) {
                 dialogBuilder = new AlertDialog.Builder(getContext());
                 final View PopupEditIntro = getLayoutInflater().inflate(R.layout.edit_intro, null);
-                TextInputLayout EditIntro = (TextInputLayout) PopupEditIntro.findViewById(R.id.EditIntro);
-
+                final TextInputEditText EditIntro = (TextInputEditText) PopupEditIntro.findViewById(R.id.introduction);
+                Log.d(null,EditIntro.getText().toString());
                 newcontactpopup_submit = (Button) PopupEditIntro.findViewById(R.id.submit3);
                 newcontactpopup_cancel = (Button) PopupEditIntro.findViewById(R.id.cancel3);
 
@@ -132,6 +136,24 @@ public class FourthFragment extends Fragment {
                     @Override
                     public void onClick(View view) {
                         //define save button
+                        final String introduction = EditIntro.getText().toString();
+                        ref.child("Users").child(userId).addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                Map<String, Object> postValues = new HashMap<String,Object>();
+                                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+//                                    Log.d(null, snapshot.toString());
+                                    postValues.put(snapshot.getKey(),snapshot.getValue());
+                                }
+                                postValues.put("description",introduction);
+                                ref.child("Users").child(userId).updateChildren(postValues);
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError error) {
+
+                            }
+                        });
                     }
                 });
 
