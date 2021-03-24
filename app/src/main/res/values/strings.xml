@@ -37,6 +37,7 @@
     <string name="change_intro">Edit Intro</string>
     <string name="submit">Submit</string>
     <string name="cancel">Cancel</string>
+    <string name="delete_confirm">Type \"<em>Delete my account</em>\" and tap submit button to completely delete your account</string>
 
     <string-array name="types">
         <item>Main dish</item>

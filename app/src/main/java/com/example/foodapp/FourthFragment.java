@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,9 +20,12 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.FirebaseAuth;
@@ -53,6 +57,8 @@ public class FourthFragment extends Fragment {
     final DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
     final StorageReference storageReference = FirebaseStorage.getInstance().getReference().child("RecipeImages");
     final String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
+    private TextView IntroDescription;
     private AlertDialog dialog;
     private AlertDialog.Builder dialogBuilder;
     private Button newcontactpopup_submit, newcontactpopup_cancel, uploadbtn;
@@ -109,6 +115,7 @@ public class FourthFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         rootView = inflater.inflate(R.layout.fragment_fourth, container, false);
+        IntroDescription = rootView.findViewById(R.id.ProfileDescription);
         Button profSetting = rootView.findViewById(R.id.ProfileSetting);
         profSetting.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -118,12 +125,36 @@ public class FourthFragment extends Fragment {
             }
         });
         ImageView editIntro = rootView.findViewById(R.id.EditBtn);
+        //update Intro
+        ref.child("Users").child(userId).child("description").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DataSnapshot> task) {
+                if(!task.isSuccessful()){
+                    //ignore
+                }
+                else{
+                    IntroDescription.setText(String.valueOf(task.getResult().getValue()));
+                }
+            }
+        });
         editIntro.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 dialogBuilder = new AlertDialog.Builder(getContext());
                 final View PopupEditIntro = getLayoutInflater().inflate(R.layout.edit_intro, null);
                 final TextInputEditText EditIntro = (TextInputEditText) PopupEditIntro.findViewById(R.id.introduction);
+                //set TextInputEditTExt
+                ref.child("Users").child(userId).child("description").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DataSnapshot> task) {
+                        if(!task.isSuccessful()){
+                            //ignore
+                        }
+                        else{
+                            EditIntro.setText(String.valueOf(task.getResult().getValue()));
+                        }
+                    }
+                });
                 Log.d(null,EditIntro.getText().toString());
                 newcontactpopup_submit = (Button) PopupEditIntro.findViewById(R.id.submit3);
                 newcontactpopup_cancel = (Button) PopupEditIntro.findViewById(R.id.cancel3);
@@ -147,6 +178,19 @@ public class FourthFragment extends Fragment {
                                 }
                                 postValues.put("description",introduction);
                                 ref.child("Users").child(userId).updateChildren(postValues);
+
+                                //update intro
+                                ref.child("Users").child(userId).child("description").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<DataSnapshot> task) {
+                                        if(!task.isSuccessful()){
+                                            //ignore
+                                        }
+                                        else{
+                                            IntroDescription.setText(String.valueOf(task.getResult().getValue()));
+                                        }
+                                    }
+                                });
                             }
 
                             @Override
@@ -154,8 +198,12 @@ public class FourthFragment extends Fragment {
 
                             }
                         });
+
+                        dialog.dismiss();
                     }
                 });
+
+
 
                 newcontactpopup_cancel.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -166,6 +214,8 @@ public class FourthFragment extends Fragment {
                 });
             }
         });
+
+        //UPLOAD IMAGE
         ImageView uploadimage = rootView.findViewById(R.id.ProfileImage);
         uploadimage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -183,6 +233,7 @@ public class FourthFragment extends Fragment {
                     @Override
                     public void onClick(View view) {
                         //go to user's local files
+                        //Intent galleryIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                     }
                 });
                 //submit image button

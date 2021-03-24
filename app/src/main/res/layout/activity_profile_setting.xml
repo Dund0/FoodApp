@@ -53,6 +53,7 @@
         android:id="@+id/DelActBtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:onClick="DeleteAcccount"
         android:text="@string/delete_account"
         android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
 </LinearLayout>

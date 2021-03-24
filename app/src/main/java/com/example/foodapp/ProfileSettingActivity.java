@@ -6,12 +6,17 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.widget.Toolbar;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -95,7 +100,21 @@ public class ProfileSettingActivity extends AppCompatActivity {
     public void EditUsername(View view){
         dialogBuilder = new AlertDialog.Builder(this);
         final View PopupEditUsername = getLayoutInflater().inflate(R.layout.change_username, null);
+
         newcontactpopup_username =(EditText) PopupEditUsername.findViewById(R.id.changeUsername);
+        //show current username on popup
+        ref.child("Users").child(userId).child("username").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DataSnapshot> task) {
+                if(!task.isSuccessful()){
+                    //ignore
+                }
+                else{
+                    newcontactpopup_username.setText(String.valueOf(task.getResult().getValue()));
+                }
+            }
+        });
+
         newcontactpopup_submit = (Button) PopupEditUsername.findViewById(R.id.submit2);
         newcontactpopup_cancel = (Button) PopupEditUsername.findViewById(R.id.cancel2);
 
@@ -141,6 +160,41 @@ public class ProfileSettingActivity extends AppCompatActivity {
         startActivity(new Intent(this, LoginActivity.class));
     }
     public void DeleteAcccount(View view){
+        dialogBuilder = new AlertDialog.Builder(this);
+        final View PopupdeleteAccount = getLayoutInflater().inflate(R.layout.delete_account, null);
+
+        final EditText getDelete = (EditText) PopupdeleteAccount.findViewById(R.id.deleteText);
+
+        newcontactpopup_submit = (Button) PopupdeleteAccount.findViewById(R.id.submit4);
+        newcontactpopup_cancel = (Button) PopupdeleteAccount.findViewById(R.id.cancel4);
+
+        dialogBuilder.setView(PopupdeleteAccount);
+        dialog = dialogBuilder.create();
+        dialog.show();
+
+        newcontactpopup_submit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String gettingdelete = getDelete.getText().toString();
+                if(gettingdelete.equals("Delete my account")){
+                    Toast.makeText(ProfileSettingActivity.this, "success",Toast.LENGTH_LONG).show();
+                    dialog.dismiss();
+//                    finish();
+//                    startActivity(new Intent(ProfileSettingActivity.this, LoginActivity.class));
+                }
+                else{
+                    Toast.makeText(ProfileSettingActivity.this, "fail",Toast.LENGTH_LONG).show();
+
+                }
+            }
+        });
+        newcontactpopup_cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //close popup window
+                dialog.dismiss();
+            }
+        });
 
     }
 }
