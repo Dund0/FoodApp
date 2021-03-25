@@ -2,6 +2,8 @@ package com.example.foodapp;
 
 import android.graphics.Bitmap;
 
+import com.google.firebase.database.Exclude;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,6 +26,15 @@ public class User {
     {
         recipes.add(recipe);
     }
+    public String toString(){
+        return "User{" +
+                "username='" + username + '\'' +
+                "email='" + email + '\'' +
+                "password='" + password + '\'' +
+                "recipes='" + recipes + '\'' +
+                "description='" + description + '\'' +
+                '}';
+    }
     public String getUsername() {
         return username;
     }
@@ -38,13 +49,14 @@ public class User {
 
     public String getDescription() {return description;}
 
+    public ArrayList<String> getRecipes() {return recipes;}
+
+    @Exclude
+    public Bitmap getProfile() {return profile;}
+
     public void setDescription(String description) {this.description = description;}
 
     public void setUsername(String username) {this.username = username;}
 
     public void setEmail(String email){this.email = email;}
-
-    public ArrayList<String> getRecipes() {
-        return recipes;
-    }
 }

@@ -53,7 +53,6 @@ import java.util.Map;
 public class FourthFragment extends Fragment {
     RecyclerView recipeRecycler;
     ArrayList<Recipe> recipes = new ArrayList<>();
-
     final DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
     final StorageReference storageReference = FirebaseStorage.getInstance().getReference().child("RecipeImages");
     final String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();

@@ -98,7 +98,7 @@ public class RegisterActivity extends AppCompatActivity {
                                         @Override
                                         public void onComplete(@NonNull Task<Void> task) {
                                             if(task.isSuccessful()){
-                                                ArrayList<String> recipes = new ArrayList<>();
+                                                ArrayList<String> recipes = new ArrayList<String>();
                                                 recipes.add("");
                                                 User userstuff = new User(
                                                         userID,
