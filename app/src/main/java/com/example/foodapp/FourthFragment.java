@@ -4,9 +4,12 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.PorterDuff;
+import android.graphics.drawable.BitmapDrawable;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -45,22 +48,28 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import static android.app.Activity.RESULT_OK;
+
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link FourthFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
 public class FourthFragment extends Fragment {
+    private static final int RESULT_LOAD_IMAGE = 1;
     RecyclerView recipeRecycler;
     ArrayList<Recipe> recipes = new ArrayList<>();
     final DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
     final StorageReference storageReference = FirebaseStorage.getInstance().getReference().child("RecipeImages");
     final String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
-    private TextView IntroDescription;
+    private ImageView currentProfilePic, editImage;
+    private TextView IntroDescription, profilename;
     private AlertDialog dialog;
     private AlertDialog.Builder dialogBuilder;
     private Button newcontactpopup_submit, newcontactpopup_cancel, uploadbtn;
+    private Uri selectedImage;
+
     String user;
 
     HomePageAdapter recipeAdapter;
@@ -113,7 +122,9 @@ public class FourthFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
+
         rootView = inflater.inflate(R.layout.fragment_fourth, container, false);
+        currentProfilePic = rootView.findViewById(R.id.ProfileImage);
         IntroDescription = rootView.findViewById(R.id.ProfileDescription);
         Button profSetting = rootView.findViewById(R.id.ProfileSetting);
         profSetting.setOnClickListener(new View.OnClickListener() {
@@ -124,6 +135,7 @@ public class FourthFragment extends Fragment {
             }
         });
         ImageView editIntro = rootView.findViewById(R.id.EditBtn);
+
         //update Intro
         ref.child("Users").child(userId).child("description").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
@@ -133,6 +145,19 @@ public class FourthFragment extends Fragment {
                 }
                 else{
                     IntroDescription.setText(String.valueOf(task.getResult().getValue()));
+                }
+            }
+        });
+        //show current username
+        profilename = rootView.findViewById(R.id.ProfileName);
+        ref.child("Users").child(userId).child("username").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DataSnapshot> task) {
+                if(!task.isSuccessful()){
+                    //ignore
+                }
+                else{
+                    profilename.setText(String.valueOf(task.getResult().getValue()));
                 }
             }
         });
@@ -221,18 +246,19 @@ public class FourthFragment extends Fragment {
             public void onClick(View view) {
                 dialogBuilder = new AlertDialog.Builder(getContext());
                 final View PopupEditIntro = getLayoutInflater().inflate(R.layout.upload_image, null);
-                ImageView editimage = PopupEditIntro.findViewById(R.id.editImage);
+                editImage = PopupEditIntro.findViewById(R.id.editImage);
                 uploadbtn = (Button) PopupEditIntro.findViewById(R.id.uploadImagebtn);
 
                 dialogBuilder.setView(PopupEditIntro);
                 dialog = dialogBuilder.create();
                 dialog.show();
                 //edit image
-                editimage.setOnClickListener(new View.OnClickListener() {
+                editImage.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         //go to user's local files
-                        //Intent galleryIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                        Intent galleryIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                        startActivityForResult(galleryIntent, RESULT_LOAD_IMAGE);
                     }
                 });
                 //submit image button
@@ -240,6 +266,10 @@ public class FourthFragment extends Fragment {
                     @Override
                     public void onClick(View view) {
                         //upload image onclick
+                        currentProfilePic.setImageURI(selectedImage);
+                        //save it into database
+                        
+                        dialog.dismiss();
                     }
                 });
             }
@@ -316,4 +346,13 @@ public class FourthFragment extends Fragment {
         });
     }
 
+    //method to upload image
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == RESULT_OK && requestCode == RESULT_LOAD_IMAGE && data !=null) {
+            selectedImage = data.getData();
+            editImage.setImageURI(selectedImage);
+        }
+    }
 }

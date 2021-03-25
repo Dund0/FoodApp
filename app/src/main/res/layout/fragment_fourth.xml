@@ -31,14 +31,13 @@
                     android:layout_width="200dp"
                     android:layout_height="200dp"
                     android:layout_gravity="center_horizontal"
-                    android:src="@drawable/image" />
+                    app:srcCompat="@drawable/ic_person" />
 
                 <TextView
                     android:id="@+id/ProfileName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:text="Daniel Sanandaj"
                     android:textAlignment="center"
                     android:textColor="@android:color/black" />
 

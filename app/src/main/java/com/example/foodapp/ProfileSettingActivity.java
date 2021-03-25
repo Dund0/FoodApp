@@ -151,6 +151,7 @@ public class ProfileSettingActivity extends AppCompatActivity {
 
                     }
                 });
+                dialog.dismiss();
             }
         });
 
