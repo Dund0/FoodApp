@@ -269,7 +269,7 @@ public class FourthFragment extends Fragment {
                         //upload image onclick
                         currentProfilePic.setImageURI(selectedImage);
                         //save it into database
-                        
+
                         dialog.dismiss();
                     }
                 });
