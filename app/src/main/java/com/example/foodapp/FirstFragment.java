@@ -21,6 +21,10 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 import android.widget.EditText;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
+import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -48,9 +52,13 @@ public class FirstFragment extends Fragment {
     ArrayList<Recipe> recipes = new ArrayList<>();
 
     final DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
+    final DatabaseReference ref2 = FirebaseDatabase.getInstance().getReference().child("Recipes");
     final StorageReference storageReference = FirebaseStorage.getInstance().getReference().child("RecipeImages");
 
     HomePageAdapter recipeAdapter;
+
+    FirebaseRecyclerOptions<Recipe> options;
+    FirebaseRecyclerAdapter<Recipe, MyViewHolder> adapter;
 
 
     View rootView;
@@ -118,25 +126,41 @@ public class FirstFragment extends Fragment {
 
 
         recipeRecycler = rootView.findViewById(R.id.recipeRecycler);
-
-        //recipes.add(new Recipe("", "", "", "", "", "", "", "", 0, null, null));
-
-        //testFunction();
-        initList();
-
-        //initRecipieRecycler(recipes);
+        recipeRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
+        recipeRecycler.setHasFixedSize(true);
+        //loadData();
+        //initList();
 
         return rootView;
     }
 
-    private void testFunction() {
-        FirebaseDatabase.getInstance().getReference("Recipes")
-                .child("Temp")
-                .setValue(1).addOnCompleteListener(new OnCompleteListener<Void>() {
+    private void loadData() {
+        options = new FirebaseRecyclerOptions.Builder<Recipe>().setQuery(ref2, Recipe.class).build();
+        adapter = new FirebaseRecyclerAdapter<Recipe, MyViewHolder>(options) {
             @Override
-            public void onComplete(@NonNull Task<Void> task) {
+            protected void onBindViewHolder(@NonNull MyViewHolder holder, int position, @NonNull Recipe model) {
+                holder.splashDescription.setText(model.getDescription());
+                holder.splashTags.setText("Tags: " + model.getCategories().toString());
+                holder.difficulty.setRating((float) model.getDifficulty());
+                holder.profileName.setText(model.title);
+                holder.itemID.setText(model.title);
+                //holder.splashImage.setImageBitmap(model.getImage());
+                //holder.splashImage.setImageURI(model.getImageUri());
+                Glide.with(getContext()).load(model.getImageUri())
+                        .apply(new RequestOptions().placeholder(R.drawable.round_button))
+                        .into(holder.splashImage);
+                holder.time.setText(model.getTime());
             }
-        });
+
+            @NonNull
+            @Override
+            public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.home_page_item, parent, false);
+                return new MyViewHolder(view);
+            }
+        };
+        adapter.startListening();
+        recipeRecycler.setAdapter(adapter);
     }
 
     private void initList() {
