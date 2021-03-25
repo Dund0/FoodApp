@@ -59,7 +59,6 @@ public class FourthFragment extends Fragment {
     private static final int RESULT_LOAD_IMAGE = 1;
     RecyclerView recipeRecycler;
     ArrayList<Recipe> recipes = new ArrayList<>();
-
     final DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
     final StorageReference storageReference = FirebaseStorage.getInstance().getReference().child("RecipeImages");
     final String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
