@@ -10,14 +10,6 @@
         layout="@layout/app_bar"
         />
 
-    <ImageView
-        android:id="@+id/ProfilePic"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_gravity="start"
-        android:onClick="ProfileSettingIntent"
-        android:src="@drawable/image" />
-
     <Button
         android:id="@+id/NotifSettingBtn"
         android:layout_width="match_parent"
