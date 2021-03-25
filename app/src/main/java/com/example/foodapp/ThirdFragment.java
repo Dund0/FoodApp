@@ -300,15 +300,15 @@ public class ThirdFragment extends Fragment implements View.OnClickListener{
                         Log.d(null, dataSnapshot.toString());
                         Map<String, Object> postValues = new HashMap<String,Object>();
                         for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                            Log.d(null, snapshot.toString());
+//                            Log.d(null, snapshot.toString());
                             postValues.put(snapshot.getKey(),snapshot.getValue());
                         }
 
-                        Log.d(null, postValues.toString());
+//                        Log.d(null, postValues.toString());
                         ArrayList<String> recipes = (ArrayList<String>) postValues.get("recipes");
-                        Log.d(null,recipes.toString());
+//                        Log.d(null,recipes.toString());
                         recipes.add(recipe.title);
-                        Log.d(null,recipes.toString());
+//                        Log.d(null,recipes.toString());
                         ref.child("Users").child(userId).updateChildren(postValues);
                     }
                     @Override

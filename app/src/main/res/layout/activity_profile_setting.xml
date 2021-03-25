@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <include
+        android:id="@+id/app_bar"
+        layout="@layout/app_bar"
+        />
+
+    <Button
+        android:id="@+id/NotifSettingBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/notification_setting"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+
+    <Button
+        android:id="@+id/ChangeEmailBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="EditEmail"
+        android:text="@string/change_email"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+
+    <Button
+        android:id="@+id/ChangeNicknameBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="EditUsername"
+        android:text="@string/change_nickname"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+
+    <Button
+        android:id="@+id/SignoutBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="Signout"
+        android:text="@string/sign_out"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+
+    <Button
+        android:id="@+id/DelActBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="DeleteAcccount"
+        android:text="@string/delete_account"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+</LinearLayout>
