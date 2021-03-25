@@ -41,9 +41,11 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
 import org.w3c.dom.Text;
 
+import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -268,7 +270,30 @@ public class FourthFragment extends Fragment {
                         //upload image onclick
                         currentProfilePic.setImageURI(selectedImage);
                         //save it into database
+                        StorageReference storageRef = FirebaseStorage.getInstance().getReference();
+                        if(currentProfilePic.getDrawable() != null) {
+                            currentProfilePic.setDrawingCacheEnabled(true);
+                            currentProfilePic.buildDrawingCache();
+                            Bitmap bitmap = ((BitmapDrawable) currentProfilePic.getDrawable()).getBitmap();
+                            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+                            byte[] data = baos.toByteArray();
+                            StorageReference recipeRef = storageRef.child("UserImages").child(userId + "_image");
+                            //uploads the image
+                            UploadTask uploadTask = recipeRef.putBytes(data);
+                            uploadTask.addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception exception) {
 
+                                }
+                            }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                                @Override
+                                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                                    // taskSnapshot.getMetadata() contains file metadata such as size, content-type, etc.
+                                    // ...
+                                }
+                            });
+                        }
                         dialog.dismiss();
                     }
                 });
