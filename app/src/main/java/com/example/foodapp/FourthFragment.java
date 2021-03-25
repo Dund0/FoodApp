@@ -25,6 +25,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -63,6 +64,7 @@ public class FourthFragment extends Fragment {
     ArrayList<Recipe> recipes = new ArrayList<>();
     final DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
     final StorageReference storageReference = FirebaseStorage.getInstance().getReference().child("RecipeImages");
+    final StorageReference storageReferenceProfile = FirebaseStorage.getInstance().getReference().child("UserImages");
     final String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
     private ImageView currentProfilePic, editImage;
@@ -129,6 +131,8 @@ public class FourthFragment extends Fragment {
         currentProfilePic = rootView.findViewById(R.id.ProfileImage);
         IntroDescription = rootView.findViewById(R.id.ProfileDescription);
         Button profSetting = rootView.findViewById(R.id.ProfileSetting);
+        FirebaseUser curruser = FirebaseAuth.getInstance().getCurrentUser();
+        user = curruser.getUid();
         profSetting.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -137,6 +141,20 @@ public class FourthFragment extends Fragment {
             }
         });
         ImageView editIntro = rootView.findViewById(R.id.EditBtn);
+
+        final StorageReference image = storageReferenceProfile.child(user + "_image");
+
+        image.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+            @Override
+            public void onSuccess(Uri uri) {
+                Glide.with(getContext()).load(uri).placeholder(R.drawable.ic_person).dontAnimate().into(currentProfilePic);
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+
+            }
+        });
 
         //update Intro
         ref.child("Users").child(userId).child("description").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
@@ -300,8 +318,6 @@ public class FourthFragment extends Fragment {
             }
         });
         recipeRecycler = rootView.findViewById(R.id.userPosts);
-        FirebaseUser curruser = FirebaseAuth.getInstance().getCurrentUser();
-        user = curruser.getUid();
         initList();
         // Inflate the layout for this fragment
         return rootView;
