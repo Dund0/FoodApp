@@ -54,8 +54,12 @@ public class HomePageAdapter extends RecyclerView.Adapter<HomePageAdapter.HomeVi
         holder.itemID.setText(recipes.get(position).title);
         //holder.splashImage.setImageBitmap(recipes.get(position).getImage());
         //holder.splashImage.setImageURI(recipes.get(position).getImageUri());
+        //Glide.with(context).load(recipes.get(position).getImageUri())
+        //        .apply(new RequestOptions().placeholder(R.drawable.round_button))
+        //        .into(holder.splashImage);
         Glide.with(context).load(recipes.get(position).getImageUri())
-                .apply(new RequestOptions().placeholder(R.drawable.round_button))
+                .placeholder(R.drawable.ic_person)
+                .dontAnimate()
                 .into(holder.splashImage);
         holder.time.setText(recipes.get(position).getTime());
     }
