@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.telephony.PhoneNumberFormattingTextWatcher;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
@@ -120,60 +121,77 @@ public class SearchActivity extends AppCompatActivity {
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                // keep track of counts
+                Map<Recipe, Integer> counts = new HashMap<Recipe,Integer>();
                 for (DataSnapshot rec: dataSnapshot.getChildren()) {
                     final Recipe rec1 = rec.getValue(Recipe.class);
+                    counts.put(rec1,0);
                     // for each search item
+                    int count = 0;
                     boolean matched = false;
                     for (String item : tokens) {
                         //check against username
                         if (item.equals(rec1.getUserId())) {
                             //match done
-                            matched = true;
-                            break;
+                            count++;
                         }
                         //match by recipename
                         if (item.equals(rec1.getTitle())) {
                             //done
-                            matched = true;
-                            break;
+                            count++;
                         }
                         //match by category
                         for (Categories category : rec1.getCategories()) {
                             if (item.equals(category.value)) {
                                 //done
-                                matched = true;
-                                break;
+                                count++;
                             }
                         }
                         //match by ingredient
                         for (Ingredient ingredient : rec1.getIngredients()) {
                             if (item.equals(ingredient.getIngredient())) {
                                 //done
-                                matched = true;
-                                break;
+                                count++;
                             }
                         }
+                        // save the counts for future use
+                        counts.put(rec1, counts.get(rec1) + count);
                     }
-                   if(matched) {
-                       final long ONE_MEGABYTE = 1024 * 1024;
-                       final StorageReference image = storageReference.child(rec1.title + "_image");
-                            image.getBytes(ONE_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
-                                @Override
-                                public void onSuccess(byte[] bytes) {
-                                    // Data for "---.jpg" is returns, use this as needed
-                                    Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
-                                    // imagetoUpload is the imageView we want to modify
-                                    rec1.setImage(bitmap);
+                    // add recipes that match something
+                    if (count > 0) {
+                        final long ONE_MEGABYTE = 1024 * 1024;
+                        final StorageReference image = storageReference.child(rec1.title + "_image");
+                        image.getBytes(ONE_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
+                            @Override
+                            public void onSuccess(byte[] bytes) {
+                                // Data for "---.jpg" is returns, use this as needed
+                                Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+                                // imagetoUpload is the imageView we want to modify
+                                rec1.setImage(bitmap);
 
-                                }
-                            }).addOnFailureListener(new OnFailureListener() {
-                                @Override
-                                public void onFailure(@NonNull Exception exception) {
-                                    // Handle any errors
-                                }
-                            });
-                            recipes.add(rec1);
-                   }
+                            }
+                        }).addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception exception) {
+                                // Handle any errors
+                            }
+                        });
+                        //assume front has the largest count
+                        recipes.add(0, rec1);
+                        // make sure it's the largest
+                        if (recipes.size() > 1){
+                            int i = 0;
+                            // if it's not, swap to maintain descending order
+                            while (i < recipes.size() - 1 && (counts.get(rec1) < counts.get(recipes.get(i + 1)))) {
+                                //Example: index 0 has 1 match, but index 1 has 3.
+                                //Swap them
+                                recipes.set(i, recipes.get(i + 1));
+                                recipes.set(i + 1, rec1);
+                                i++;
+                            }
+                    }
+
+                }
 //                    for (Categories c : rec1.getCategories()) {
 //                        if(c.value.toLowerCase().equals(category.toLowerCase())) {
 //                            final long ONE_MEGABYTE = 1024 * 1024;
@@ -208,7 +226,7 @@ public class SearchActivity extends AppCompatActivity {
 
     }
 
-   private void loadData(){
+//   private void loadData(){
 //        final Recipe rec1;
 //        options = new FirebaseRecyclerOptions.Builder<Recipe>().setQuery(ref, Recipe.class).build();
 //        adapter = new FirebaseRecyclerAdapter<Recipe, HomePageAdapter.HomeViewHolder>(options) {
@@ -228,7 +246,7 @@ public class SearchActivity extends AppCompatActivity {
 //                return new HomePageAdapter.HomeViewHolder(v);
 //            }
 //        };
-    }
+//    }
 
     private void initRecipieRecycler(final ArrayList<Recipe> recipes) {
         recipeAdapter = new HomePageAdapter(this, recipes);
