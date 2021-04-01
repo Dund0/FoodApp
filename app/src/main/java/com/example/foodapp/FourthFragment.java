@@ -381,6 +381,11 @@ public class FourthFragment extends Fragment {
             }
 
             @Override
+            public void onProfileClick(int position) {
+
+            }
+
+            @Override
             public void onDeleteClick(int position) {
 
             }

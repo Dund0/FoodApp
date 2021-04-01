@@ -284,6 +284,7 @@ public class ThirdFragment extends Fragment implements View.OnClickListener{
 
         final FirebaseStorage storage = FirebaseStorage.getInstance();
         final String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        final String userName = FirebaseAuth.getInstance().getCurrentUser().getDisplayName();
 
         StorageReference storageRef = storage.getReference();
 
@@ -291,7 +292,7 @@ public class ThirdFragment extends Fragment implements View.OnClickListener{
         Log.d(null,"Trying to add Recipe");
         final Recipe recipe = new Recipe(types.getSelectedItem().toString(),materials.getSelectedItem().toString(),method.getSelectedItem().toString(),
                 situation.getSelectedItem().toString(),culture.getSelectedItem().toString(), title.getText().toString(),
-                description.getText().toString(), time.getText().toString(), difficulty.getRating(),ingredients,steps, userId);
+                description.getText().toString(), time.getText().toString(), difficulty.getRating(),ingredients,steps, userId, userName);
         Log.d(null,"Trying to update User's list of recipes");
         ref.child("Users").child(userId)
                 .addListenerForSingleValueEvent(new ValueEventListener() {

@@ -113,8 +113,8 @@ public class HomePageItemView extends AppCompatActivity {
                                 @Override
                                 public void onFailure(@NonNull Exception exception) {
                                     // Handle any errors
-                                    Toast.makeText(HomePageItemView.this, "Failed",
-                                            Toast.LENGTH_LONG).show();
+                                    //Toast.makeText(HomePageItemView.this, "Failed",
+                                            //Toast.LENGTH_LONG).show();
                                 }
                             });
                         }

@@ -185,10 +185,16 @@ public class SearchActivity extends AppCompatActivity {
         recipeAdapter.setOnItemClickListener(new HomePageAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(int position) {
+
                 String s = recipes.get(position).getTitle();
                 Intent fullRec = new Intent(SearchActivity.this, HomePageItemView.class);
                 fullRec.putExtra("currentID", s);
                 startActivity(fullRec);
+            }
+
+            @Override
+            public void onProfileClick(int position) {
+
             }
 
             @Override

@@ -205,6 +205,11 @@ public class FirstFragment extends Fragment {
             }
 
             @Override
+            public void onProfileClick(int position) {
+                Toast.makeText(getContext(), "Failed", Toast.LENGTH_LONG).show();
+            }
+
+            @Override
             public void onDeleteClick(int position) {
 
             }
