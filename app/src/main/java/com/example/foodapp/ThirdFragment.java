@@ -210,7 +210,7 @@ public class ThirdFragment extends Fragment implements View.OnClickListener{
 
         }
         if(update == true) {
-            ingredients.add(new Ingredient());
+            ingredients.add(new Ingredient("", ""));
             stepAdapter.notifyItemInserted(ingredientRecycler.getChildCount());
         }
     }
