@@ -3,6 +3,7 @@ package com.example.foodapp;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.Menu;
@@ -102,6 +103,20 @@ public class HomePageItemView extends AppCompatActivity {
                         for (int i = 0; i < steps.size(); i++){
                             final StorageReference stepImage = storageReferenceSteps.child(id + "/" + i + ".jpg");
                             final int finalI = i;
+
+                            stepImage.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                @Override
+                                public void onSuccess(Uri uri) {
+                                    steps.get(finalI).setImageUri(uri);
+                                }
+                            }).addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+
+                                }
+                            });
+
+                            /*
                             stepImage.getBytes(ONE_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
                                 @Override
                                 public void onSuccess(byte[] bytes) {
@@ -117,6 +132,7 @@ public class HomePageItemView extends AppCompatActivity {
                                             //Toast.LENGTH_LONG).show();
                                 }
                             });
+                            */
                         }
 
                         ingredients = rec.getIngredients();

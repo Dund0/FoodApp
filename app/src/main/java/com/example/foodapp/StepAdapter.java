@@ -19,6 +19,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+
 import java.util.ArrayList;
 
 import static android.app.Activity.RESULT_OK;
@@ -55,7 +57,11 @@ public class StepAdapter extends RecyclerView.Adapter<StepAdapter.StepViewHolder
     @Override
     public void onBindViewHolder(@NonNull StepViewHolder holder, int position) {
         holder.description.setText(steps.get(position).getDescription());
-        holder.image.setImageBitmap(steps.get(position).getImageBitmap());
+        //holder.image.setImageBitmap(steps.get(position).getImageBitmap());
+        Glide.with(context).load(steps.get(position).getImageUri())
+                .placeholder(R.drawable.ic_person)
+                .dontAnimate()
+                .into(holder.image);
 
     }
 
