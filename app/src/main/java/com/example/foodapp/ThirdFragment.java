@@ -398,7 +398,9 @@ public class ThirdFragment extends Fragment implements View.OnClickListener{
         Log.d(null, "updated user");
         //this is how to add an image
 //        final long ONE_MEGABYTE = 1024 * 1024;
-//        final StorageReference image = storageRef.child(recipe.title+"_image");
+//        final
+//
+//        image = storageRef.child(recipe.title+"_image");
 //        image.getBytes(ONE_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
 //            @Override
 //            public void onSuccess(byte[] bytes) {

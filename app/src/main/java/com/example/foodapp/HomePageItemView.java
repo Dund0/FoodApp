@@ -100,7 +100,7 @@ public class HomePageItemView extends AppCompatActivity {
                         steps = rec.getSteps();
 
                         for (int i = 0; i < steps.size(); i++){
-                            final StorageReference stepImage = storageReferenceSteps.child(id + "/" + i + ".jpg");
+                            final StorageReference stepImage = storageReferenceSteps.child(id + "/" + i);
                             final int finalI = i;
                             stepImage.getBytes(ONE_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
                                 @Override
