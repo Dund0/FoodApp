@@ -57,11 +57,11 @@ public class StepAdapter extends RecyclerView.Adapter<StepAdapter.StepViewHolder
     @Override
     public void onBindViewHolder(@NonNull StepViewHolder holder, int position) {
         holder.description.setText(steps.get(position).getDescription());
-        //holder.image.setImageBitmap(steps.get(position).getImageBitmap());
-        Glide.with(context).load(steps.get(position).getImageUri())
-                .placeholder(R.drawable.ic_person)
-                .dontAnimate()
-                .into(holder.image);
+        holder.image.setImageBitmap(steps.get(position).getImageBitmap());
+//        Glide.with(context).load(steps.get(position).getImageUri())
+//                .placeholder(R.drawable.ic_person)
+//                .dontAnimate()
+//                .into(holder.image);
 
     }
 
