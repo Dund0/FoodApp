@@ -324,7 +324,6 @@ public class FourthFragment extends Fragment {
 
 
     }
-/*
 
     private void initList() {
         StorageReference storageRef;
@@ -366,7 +365,7 @@ public class FourthFragment extends Fragment {
             }
         });
     }
-*/
+/*
 
     private void initList() {
         StorageReference storageRef;
@@ -380,7 +379,8 @@ public class FourthFragment extends Fragment {
                     final Recipe rec1 = rec.getValue(Recipe.class);
                     final long ONE_MEGABYTE = 1024 * 1024;
                     final StorageReference image = storageReference.child(rec1.title + "_image");
-                    /*
+                    */
+/*
                     image.getBytes(ONE_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
                         @Override
                         public void onSuccess(byte[] bytes) {
@@ -395,7 +395,8 @@ public class FourthFragment extends Fragment {
                             // Handle any errors
                         }
                     });
-                    */
+                    *//*
+
 
                     image.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                         @Override
@@ -420,6 +421,7 @@ public class FourthFragment extends Fragment {
             }
         });
     }
+*/
 
 
     private void initRecipieRecycler(final ArrayList<Recipe> recipes) {
