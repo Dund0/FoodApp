@@ -10,7 +10,7 @@ public class Step {
     private String description;
     private ImageView imageView;
     private Bitmap imageBitmap;
-    //private Uri image;
+    private Uri imageUri;
 
     public Step(){};
 
@@ -44,6 +44,10 @@ public class Step {
     public void setImageBitmap(Bitmap imageBitmap) {
         this.imageBitmap = imageBitmap;
     }
+
+    public void setImageUri(Uri imageUri) { this.imageUri = imageUri; }
+
+    public Uri getImageUri() { return imageUri; }
 
     @Override
     public String toString() {

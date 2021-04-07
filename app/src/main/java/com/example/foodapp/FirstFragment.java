@@ -52,7 +52,6 @@ public class FirstFragment extends Fragment {
 
     HomePageAdapter recipeAdapter;
 
-
     View rootView;
 
     // TODO: Rename parameter arguments, choose names that match
@@ -107,7 +106,7 @@ public class FirstFragment extends Fragment {
             @Override
             public boolean onKey(View view, int i, KeyEvent keyEvent) {
                 //If the event is a key-down event on the "enter" button
-                if((keyEvent.getAction() == KeyEvent.ACTION_DOWN) && (i == KeyEvent.KEYCODE_ENTER)){
+                if ((keyEvent.getAction() == KeyEvent.ACTION_DOWN) && (i == KeyEvent.KEYCODE_ENTER)) {
                     //perform action on key press
                     switchFragment(inputSearch.getText().toString());
                     return true;
@@ -185,9 +184,11 @@ public class FirstFragment extends Fragment {
                 done = true;
                 initRecipieRecycler(recipes);
             }
-        @Override
-        public void onCancelled(@NonNull DatabaseError error) { }
-    });
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+            }
+        });
     }
 
     private void initRecipieRecycler(final ArrayList<Recipe> recipes) {
@@ -205,11 +206,23 @@ public class FirstFragment extends Fragment {
             }
 
             @Override
+            public void onProfileClick(int position) {
+                String name = recipes.get(position).getUsername();
+                String userid = recipes.get(position).getUserId();
+                Intent profilePage = new Intent(getContext(), ProfilePage.class);
+                profilePage.putExtra("currentName", name);
+                profilePage.putExtra("currentID", userid);
+                startActivity(profilePage);
+
+            }
+
+            @Override
             public void onDeleteClick(int position) {
 
             }
         });
     }
+
     public void switchFragment(String category) {
         Intent intent = new Intent(getContext(), SearchActivity.class);
         intent.putExtra("category", category);

@@ -3,12 +3,14 @@ package com.example.foodapp;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -22,6 +24,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -98,10 +101,25 @@ public class HomePageItemView extends AppCompatActivity {
                         rec.setImage(bitmap);
                         recipes.add(rec);
                         steps = rec.getSteps();
+                        ingredients = rec.getIngredients();
 
                         for (int i = 0; i < steps.size(); i++){
-                            final StorageReference stepImage = storageReferenceSteps.child(id + "/" + i + ".jpg");
+                            final StorageReference stepImage = storageReferenceSteps.child(id + "/" + i);
                             final int finalI = i;
+
+                            /*
+                            stepImage.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                @Override
+                                public void onSuccess(Uri uri) {
+                                    steps.get(finalI).setImageUri(uri);
+                                }
+                            }).addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+
+                                }
+                            });
+                             */
                             stepImage.getBytes(ONE_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
                                 @Override
                                 public void onSuccess(byte[] bytes) {
@@ -113,14 +131,13 @@ public class HomePageItemView extends AppCompatActivity {
                                 @Override
                                 public void onFailure(@NonNull Exception exception) {
                                     // Handle any errors
-                                    Toast.makeText(HomePageItemView.this, "Failed",
-                                            Toast.LENGTH_LONG).show();
+                                    //Toast.makeText(HomePageItemView.this, "Failed",
+                                            //Toast.LENGTH_LONG).show();
                                 }
                             });
                         }
-
-                        ingredients = rec.getIngredients();
                         initRecylcers();
+                        initStepRecycler();
                     }
                 }).addOnFailureListener(new OnFailureListener() {
                     @Override

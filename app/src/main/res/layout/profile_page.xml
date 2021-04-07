@@ -8,6 +8,10 @@
     android:orientation="vertical"
     tools:context=".FourthFragment">
 
+    <include
+        android:id="@+id/app_bar"
+        layout="@layout/app_bar"/>
+
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -40,15 +44,8 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:textAlignment="center"
-                    android:textColor="@android:color/black" />
-
-                <Button
-                    android:id="@+id/ProfileSetting"
-                    android:layout_width="wrap_content"
-                    android:layout_height="35dp"
-                    android:layout_gravity="center"
-                    android:text="@string/profileSetting"
-                    android:visibility="visible" />
+                    android:textColor="@android:color/black"
+                    android:textSize="18sp" />
 
                 <TextView
                     android:id="@+id/DiscussionTitle"
@@ -68,12 +65,6 @@
                     android:hint="Introduce yourself"
                     android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                     android:textColor="@android:color/black" />
-
-                <ImageView
-                    android:id="@+id/EditBtn"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@android:drawable/ic_menu_edit" />
 
                 <TextView
                     android:id="@+id/Posts"
