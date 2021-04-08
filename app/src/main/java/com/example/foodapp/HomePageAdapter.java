@@ -2,6 +2,7 @@ package com.example.foodapp;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +17,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
 
@@ -24,9 +29,11 @@ public class HomePageAdapter extends RecyclerView.Adapter<HomePageAdapter.HomeVi
     private Context context;
     private ArrayList<Recipe> recipes;
     private OnItemClickListener mlistener;
+    final StorageReference storageReferenceProfile = FirebaseStorage.getInstance().getReference().child("UserImages");
 
     public interface OnItemClickListener {
         void onItemClick(int position);
+        void onProfileClick(int position);
         void onDeleteClick(int position);
     }
 
@@ -46,12 +53,13 @@ public class HomePageAdapter extends RecyclerView.Adapter<HomePageAdapter.HomeVi
     }
 
     @Override
-    public void onBindViewHolder(@NonNull HomeViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull final HomeViewHolder holder, int position) {
         holder.splashDescription.setText(recipes.get(position).getDescription());
         holder.splashTags.setText("Tags: " + recipes.get(position).getCategories().toString());
         holder.difficulty.setRating((float) recipes.get(position).getDifficulty());
         holder.profileName.setText(recipes.get(position).title);
         holder.itemID.setText(recipes.get(position).title);
+        holder.actualProfileName.setText(recipes.get(position).getUsername());
         //holder.splashImage.setImageBitmap(recipes.get(position).getImage());
         //holder.splashImage.setImageURI(recipes.get(position).getImageUri());
         //Glide.with(context).load(recipes.get(position).getImageUri())
@@ -61,6 +69,21 @@ public class HomePageAdapter extends RecyclerView.Adapter<HomePageAdapter.HomeVi
                 .placeholder(R.drawable.ic_person)
                 .dontAnimate()
                 .into(holder.splashImage);
+
+        final StorageReference image = storageReferenceProfile.child(recipes.get(position).getUserId() + "_image");
+        image.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+            @Override
+            public void onSuccess(Uri uri) {
+                Glide.with(context).load(uri).placeholder(R.drawable.ic_person).dontAnimate().into(holder.profile);
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+
+            }
+        });
+
+
         holder.time.setText(recipes.get(position).getTime());
     }
 
@@ -73,7 +96,7 @@ public class HomePageAdapter extends RecyclerView.Adapter<HomePageAdapter.HomeVi
 
         LinearLayout parent;
         ImageView profile, splashImage;
-        TextView profileName, splashDescription, splashTags, itemID, time;
+        TextView profileName, splashDescription, splashTags, itemID, time, actualProfileName;
         RatingBar difficulty;
 
         public HomeViewHolder(@NonNull View itemView, final OnItemClickListener listener ) {
@@ -83,10 +106,23 @@ public class HomePageAdapter extends RecyclerView.Adapter<HomePageAdapter.HomeVi
             profile = itemView.findViewById(R.id.profileImage);
             splashImage = itemView.findViewById(R.id.splashImage);
             profileName = itemView.findViewById(R.id.profileName);
+            actualProfileName = itemView.findViewById(R.id.profileName2);
             splashDescription = itemView.findViewById(R.id.splashDescription);
             splashTags = itemView.findViewById(R.id.splashTags);
             difficulty = itemView.findViewById(R.id.splashDifficulty);
             time = itemView.findViewById(R.id.time);
+
+            profile.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if(listener != null){
+                        int position =  getAdapterPosition();
+                        if(position != RecyclerView.NO_POSITION) {
+                            listener.onProfileClick(position);
+                        }
+                    }
+                }
+            });
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

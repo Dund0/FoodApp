@@ -38,6 +38,10 @@
         <activity android:name=".ProfileSettingActivity"
             android:parentActivityName=".HomePageItemView"
             ></activity>
+
+        <activity android:name=".ProfilePage"
+            android:parentActivityName=".MainActivity">
+        </activity>
     </application>
 
 </manifest>
