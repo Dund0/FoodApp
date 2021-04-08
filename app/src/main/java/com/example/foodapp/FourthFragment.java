@@ -365,64 +365,6 @@ public class FourthFragment extends Fragment {
             }
         });
     }
-/*
-
-    private void initList() {
-        StorageReference storageRef;
-
-        done = false;
-        Query query = ref.child("Recipes");
-        query.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for (DataSnapshot rec : snapshot.getChildren()) {
-                    final Recipe rec1 = rec.getValue(Recipe.class);
-                    final long ONE_MEGABYTE = 1024 * 1024;
-                    final StorageReference image = storageReference.child(rec1.title + "_image");
-                    */
-/*
-                    image.getBytes(ONE_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
-                        @Override
-                        public void onSuccess(byte[] bytes) {
-                            // Data for "---.jpg" is returns, use this as needed
-                            Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
-                            // imagetoUpload is the imageView we want to modify
-                            rec1.setImage(bitmap);
-                        }
-                    }).addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception exception) {
-                            // Handle any errors
-                        }
-                    });
-                    *//*
-
-
-                    image.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                        @Override
-                        public void onSuccess(Uri uri) {
-                            rec1.setImageUri(uri);
-                        }
-                    }).addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
-
-                        }
-                    });
-                    recipes.add(rec1);
-                    assert rec1 != null;
-                }
-                done = true;
-                initRecipieRecycler(recipes);
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-            }
-        });
-    }
-*/
-
 
     private void initRecipieRecycler(final ArrayList<Recipe> recipes) {
         recipeAdapter = new HomePageAdapter(getContext(), recipes);

@@ -107,19 +107,6 @@ public class HomePageItemView extends AppCompatActivity {
                             final StorageReference stepImage = storageReferenceSteps.child(id + "/" + i);
                             final int finalI = i;
 
-                            /*
-                            stepImage.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                                @Override
-                                public void onSuccess(Uri uri) {
-                                    steps.get(finalI).setImageUri(uri);
-                                }
-                            }).addOnFailureListener(new OnFailureListener() {
-                                @Override
-                                public void onFailure(@NonNull Exception e) {
-
-                                }
-                            });
-                             */
                             stepImage.getBytes(ONE_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
                                 @Override
                                 public void onSuccess(byte[] bytes) {
@@ -130,9 +117,7 @@ public class HomePageItemView extends AppCompatActivity {
                             }).addOnFailureListener(new OnFailureListener() {
                                 @Override
                                 public void onFailure(@NonNull Exception exception) {
-                                    // Handle any errors
-                                    //Toast.makeText(HomePageItemView.this, "Failed",
-                                            //Toast.LENGTH_LONG).show();
+
                                 }
                             });
                         }

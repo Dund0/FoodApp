@@ -30,6 +30,7 @@ public class HomePageAdapter extends RecyclerView.Adapter<HomePageAdapter.HomeVi
     private ArrayList<Recipe> recipes;
     private OnItemClickListener mlistener;
     final StorageReference storageReferenceProfile = FirebaseStorage.getInstance().getReference().child("UserImages");
+    final StorageReference storageReferenceMainImage = FirebaseStorage.getInstance().getReference().child("RecipeImages");
 
     public interface OnItemClickListener {
         void onItemClick(int position);
@@ -65,10 +66,23 @@ public class HomePageAdapter extends RecyclerView.Adapter<HomePageAdapter.HomeVi
         //Glide.with(context).load(recipes.get(position).getImageUri())
         //        .apply(new RequestOptions().placeholder(R.drawable.round_button))
         //        .into(holder.splashImage);
-        Glide.with(context).load(recipes.get(position).getImageUri())
+        /*Glide.with(context).load(recipes.get(position).getImageUri())
                 .placeholder(R.drawable.ic_person)
                 .dontAnimate()
-                .into(holder.splashImage);
+                .into(holder.splashImage);*/
+
+        final  StorageReference mainImage = storageReferenceMainImage.child(recipes.get(position).getTitle() + "_image");
+        mainImage.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+            @Override
+            public void onSuccess(Uri uri) {
+                Glide.with(context).load(uri).placeholder(R.drawable.ic_person).dontAnimate().into(holder.splashImage);
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+
+            }
+        });
 
         final StorageReference image = storageReferenceProfile.child(recipes.get(position).getUserId() + "_image");
         image.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
