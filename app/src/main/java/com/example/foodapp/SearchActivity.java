@@ -131,25 +131,25 @@ public class SearchActivity extends AppCompatActivity {
                     boolean matched = false;
                     for (String item : tokens) {
                         //check against username
-                        if (item.equals(rec1.getUserId())) {
+                        if (item.equalsIgnoreCase(rec1.getUserId())) {
                             //match done
                             count++;
                         }
                         //match by recipename
-                        if (item.equals(rec1.getTitle())) {
+                        if (item.equalsIgnoreCase(rec1.getTitle())) {
                             //done
                             count++;
                         }
                         //match by category
                         for (Categories category : rec1.getCategories()) {
-                            if (item.equals(category.value)) {
+                            if (item.equalsIgnoreCase(category.value)) {
                                 //done
                                 count++;
                             }
                         }
                         //match by ingredient
                         for (Ingredient ingredient : rec1.getIngredients()) {
-                            if (item.equals(ingredient.getIngredient())) {
+                            if (item.equalsIgnoreCase(ingredient.getIngredient())) {
                                 //done
                                 count++;
                             }
