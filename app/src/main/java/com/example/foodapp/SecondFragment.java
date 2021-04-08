@@ -94,15 +94,6 @@ public class SecondFragment extends Fragment implements View.OnClickListener{
         Intent intent = new Intent(getContext(), SearchActivity.class);
         intent.putExtra("category", category);
         startActivity(intent);
-
-
-
-        //this opens the fragment but just places it on top
-            /*getActivity().getSupportFragmentManager()
-                        .beginTransaction()
-                        .replace(R.id.frame, new FifthFragment())
-                        .addToBackStack(null)
-                        .commit();*/
     }
 
     //onClick for the category buttons
@@ -112,12 +103,5 @@ public class SecondFragment extends Fragment implements View.OnClickListener{
         TextView textView = (TextView) parent.getChildAt(1);
         switchFragment(textView.getText().toString());
 
-
-
-        /*switch (view.getId()) {
-            case R.id.mainDish:
-                switchFragment("Main Dish");
-                break;
-        }*/
     }
 }

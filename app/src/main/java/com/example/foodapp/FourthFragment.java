@@ -325,8 +325,6 @@ public class FourthFragment extends Fragment {
     }
 
     private void initList() {
-        StorageReference storageRef;
-
         Query query = ref.child("Recipes");
         final String userID = user;
         query.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -335,28 +333,10 @@ public class FourthFragment extends Fragment {
                 for (DataSnapshot rec : snapshot.getChildren()) {
                     final Recipe rec1 = rec.getValue(Recipe.class);
                     if (rec1.getUserId().compareTo(userID) == 0) {
-                        final long ONE_MEGABYTE = 1024 * 1024;
-                        final StorageReference image = storageReference.child(rec1.title + "_image");
-                        image.getBytes(ONE_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
-                            @Override
-                            public void onSuccess(byte[] bytes) {
-                                // Data for "---.jpg" is returns, use this as needed
-                                Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
-                                // imagetoUpload is the imageView we want to modify
-                                rec1.setImage(bitmap);
-                            }
-                        }).addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception exception) {
-                                // Handle any errors
-                            }
-                        });
-
                         recipes.add(rec1);
                         assert rec1 != null;
                     }
                 }
-
                 initRecipieRecycler(recipes);
             }
 

@@ -44,9 +44,6 @@ public class MainActivity extends AppCompatActivity {
     public void onSaveInstanceState(Bundle savedInstanceState) {
         super.onSaveInstanceState(savedInstanceState);
 
-        //frameLayout = findViewById(R.id.frame);
-        //frameLayout.getChildAt(0);
-
     }
 
     @Override

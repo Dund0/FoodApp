@@ -61,15 +61,6 @@ public class HomePageAdapter extends RecyclerView.Adapter<HomePageAdapter.HomeVi
         holder.profileName.setText(recipes.get(position).title);
         holder.itemID.setText(recipes.get(position).title);
         holder.actualProfileName.setText(recipes.get(position).getUsername());
-        //holder.splashImage.setImageBitmap(recipes.get(position).getImage());
-        //holder.splashImage.setImageURI(recipes.get(position).getImageUri());
-        //Glide.with(context).load(recipes.get(position).getImageUri())
-        //        .apply(new RequestOptions().placeholder(R.drawable.round_button))
-        //        .into(holder.splashImage);
-        /*Glide.with(context).load(recipes.get(position).getImageUri())
-                .placeholder(R.drawable.ic_person)
-                .dontAnimate()
-                .into(holder.splashImage);*/
 
         final  StorageReference mainImage = storageReferenceMainImage.child(recipes.get(position).getTitle() + "_image");
         mainImage.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {

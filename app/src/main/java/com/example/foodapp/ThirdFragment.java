@@ -346,24 +346,6 @@ public class ThirdFragment extends Fragment implements View.OnClickListener{
             });
         }
         Log.d(null,"Added Recipe_Image");
-//        ref.child("Recipes").addListenerForSingleValueEvent(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                   Log.d(null,snapshot.toString());
-//                for (DataSnapshot rec: snapshot.getChildren()) {
-//                    Log.d(null, rec.toString());
-//                    Recipe rec1 = rec.getValue(Recipe.class);
-//                    assert rec1 != null;
-//                    Log.d(null,rec1.toString());
-//                }
-//
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError error) {
-//
-//            }
-//        });
         if(!steps.isEmpty()) {
             for(int i = 0; i < steps.size(); i++)
             {
@@ -398,27 +380,6 @@ public class ThirdFragment extends Fragment implements View.OnClickListener{
         Log.d(null, "successfully added steps images");
 
         Log.d(null, "updated user");
-        //this is how to add an image
-//        final long ONE_MEGABYTE = 1024 * 1024;
-//        final
-//
-//        image = storageRef.child(recipe.title+"_image");
-//        image.getBytes(ONE_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
-//            @Override
-//            public void onSuccess(byte[] bytes) {
-//                // Data for "---.jpg" is returns, use this as needed
-//                Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
-//                // imagetoUpload is the imageView we want to modify
-//                imageToUpload.setImageBitmap(bitmap);
-//
-//            }
-//        }).addOnFailureListener(new OnFailureListener() {
-//            @Override
-//            public void onFailure(@NonNull Exception exception) {
-//                // Handle any errors
-//            }
-//        });
-        //in this case, you see the image on the third fragment where you would upload a recipe images
         return super.onOptionsItemSelected(item);
     }
 }
