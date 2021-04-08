@@ -210,7 +210,7 @@ public class ThirdFragment extends Fragment implements View.OnClickListener{
 
         }
         if(update == true) {
-            ingredients.add(new Ingredient());
+            ingredients.add(new Ingredient("", ""));
             stepAdapter.notifyItemInserted(ingredientRecycler.getChildCount());
         }
     }
@@ -284,6 +284,7 @@ public class ThirdFragment extends Fragment implements View.OnClickListener{
 
         final FirebaseStorage storage = FirebaseStorage.getInstance();
         final String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        final String userName = FirebaseAuth.getInstance().getCurrentUser().getDisplayName();
 
         StorageReference storageRef = storage.getReference();
 
@@ -292,7 +293,8 @@ public class ThirdFragment extends Fragment implements View.OnClickListener{
 
         final Recipe recipe = new Recipe(types.getSelectedItem().toString(),materials.getSelectedItem().toString(),method.getSelectedItem().toString(),
                 situation.getSelectedItem().toString(),culture.getSelectedItem().toString(), title.getText().toString(),
-                description.getText().toString(), time.getText().toString(), difficulty.getRating(),ingredients,steps, FirebaseAuth.getInstance().getCurrentUser().getDisplayName());
+                description.getText().toString(), time.getText().toString(), difficulty.getRating(),ingredients,steps, userId, userName);
+      
         Log.d(null,"Trying to update User's list of recipes");
         ref.child("Users").child(userId)
                 .addListenerForSingleValueEvent(new ValueEventListener() {

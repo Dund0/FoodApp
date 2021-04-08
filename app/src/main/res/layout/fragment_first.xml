@@ -19,37 +19,38 @@
             android:layout_width="356dp"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_gravity="center"
-            android:background="#FAAB19">
+            android:layout_gravity="center">
 
-            <Space
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="10dp" />
-
-            <EditText
-                android:id="@+id/inputSearch"
-                android:layout_width="320dp"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="10dp"
-                android:autofillHints="@string/search_bar"
-                android:background="@drawable/input_search"
-                android:drawableStart="@drawable/ic_search"
-                android:hint="@string/search_bar"
-                android:inputType="none"
-                android:paddingLeft="10dp"
-                android:paddingTop="8dp"
-                android:paddingRight="10dp"
-                android:paddingBottom="8dp"
-                android:textColor="@android:color/black"
-                android:textColorHint="@android:color/black" />
+                android:orientation="vertical"
+                android:background="#FAAB19">
+
+                <EditText
+                    android:id="@+id/inputSearch"
+                    android:layout_width="320dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="10dp"
+                    android:autofillHints="@string/search_bar"
+                    android:background="@drawable/input_search"
+                    android:drawableStart="@drawable/ic_search"
+                    android:hint="@string/search_bar"
+                    android:inputType="none"
+                    android:paddingLeft="10dp"
+                    android:paddingTop="8dp"
+                    android:paddingRight="10dp"
+                    android:textColor="@android:color/black"
+                    android:textColorHint="@android:color/black" />
+
+            </LinearLayout>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recipeRecycler"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="10dp" />
+                android:layout_gravity="center_horizontal" />
         </LinearLayout>
 
     </LinearLayout>
