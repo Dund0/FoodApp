@@ -4,21 +4,16 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
+import android.telephony.PhoneNumberFormattingTextWatcher;
+import android.util.Log;
 import android.view.KeyEvent;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.EditText;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.navigation.ui.NavigationUI;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -26,7 +21,6 @@ import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -37,6 +31,9 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 public class SearchActivity extends AppCompatActivity {
 
@@ -51,7 +48,7 @@ public class SearchActivity extends AppCompatActivity {
 
     HomePageAdapter recipeAdapter;
 
-    String category;
+    String StoreInput;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,7 +84,7 @@ public class SearchActivity extends AppCompatActivity {
 
                 if((keyEvent.getAction() == KeyEvent.ACTION_DOWN) && (i == KeyEvent.KEYCODE_ENTER)){
                     //perform action on key press
-                    category = inputSearch.getText().toString();
+                    StoreInput = inputSearch.getText().toString();
                     recipes = new ArrayList<Recipe>();
                     initList();
                     refreshView();
@@ -110,41 +107,115 @@ public class SearchActivity extends AppCompatActivity {
 
         recipeRecycler = findViewById(R.id.recipeRecycler);
 
-        category = getIntent().getStringExtra("category");
+        StoreInput = getIntent().getStringExtra("category");
 
         initList();
     }
 
     private void initList() {
         Query query = ref.child("Recipes");
+        final ArrayList<String> tokens = new ArrayList<String>(Arrays.asList(StoreInput.split(",")));
+        for (String t : tokens) {
+            tokens.set(tokens.indexOf(t), t.trim());
+        }
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for (DataSnapshot rec: snapshot.getChildren()) {
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                // keep track of counts
+                Map<Recipe, Integer> counts = new HashMap<Recipe,Integer>();
+                for (DataSnapshot rec: dataSnapshot.getChildren()) {
                     final Recipe rec1 = rec.getValue(Recipe.class);
-                    for (Categories c : rec1.getCategories()) {
-                        if(c.value.toLowerCase().equals(category.toLowerCase())) {
-                            final long ONE_MEGABYTE = 1024 * 1024;
-                            final StorageReference image = storageReference.child(rec1.title + "_image");
-                            image.getBytes(ONE_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
-                                @Override
-                                public void onSuccess(byte[] bytes) {
-                                    // Data for "---.jpg" is returns, use this as needed
-                                    Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
-                                    // imagetoUpload is the imageView we want to modify
-                                    rec1.setImage(bitmap);
-
-                                }
-                            }).addOnFailureListener(new OnFailureListener() {
-                                @Override
-                                public void onFailure(@NonNull Exception exception) {
-                                    // Handle any errors
-                                }
-                            });
-                            recipes.add(rec1);
-                            break;
+                    counts.put(rec1,0);
+                    // for each search item
+                    int count = 0;
+                    boolean matched = false;
+                    for (String item : tokens) {
+                        //check against username
+                        if (item.equals(rec1.getUserId())) {
+                            //match done
+                            count++;
                         }
+                        //match by recipename
+                        if (item.equals(rec1.getTitle())) {
+                            //done
+                            count++;
+                        }
+                        //match by category
+                        for (Categories category : rec1.getCategories()) {
+                            if (item.equals(category.value)) {
+                                //done
+                                count++;
+                            }
+                        }
+                        //match by ingredient
+                        for (Ingredient ingredient : rec1.getIngredients()) {
+                            if (item.equals(ingredient.getIngredient())) {
+                                //done
+                                count++;
+                            }
+                        }
+                        // save the counts for future use
+                        counts.put(rec1, counts.get(rec1) + count);
                     }
+                    // add recipes that match something
+                    if (count > 0) {
+                        final long ONE_MEGABYTE = 1024 * 1024;
+                        final StorageReference image = storageReference.child(rec1.title + "_image");
+                        image.getBytes(ONE_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
+                            @Override
+                            public void onSuccess(byte[] bytes) {
+                                // Data for "---.jpg" is returns, use this as needed
+                                Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+                                // imagetoUpload is the imageView we want to modify
+                                rec1.setImage(bitmap);
+
+                            }
+                        }).addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception exception) {
+                                // Handle any errors
+                            }
+                        });
+                        //assume front has the largest count
+                        recipes.add(0, rec1);
+                        // make sure it's the largest
+                        if (recipes.size() > 1){
+                            int i = 0;
+                            // if it's not, swap to maintain descending order
+                            while (i < recipes.size() - 1 && (counts.get(rec1) < counts.get(recipes.get(i + 1)))) {
+                                //Example: index 0 has 1 match, but index 1 has 3.
+                                //Swap them
+                                recipes.set(i, recipes.get(i + 1));
+                                recipes.set(i + 1, rec1);
+                                i++;
+                            }
+                    }
+
+                }
+//                    for (Categories c : rec1.getCategories()) {
+//                        if(c.value.toLowerCase().equals(category.toLowerCase())) {
+//                            final long ONE_MEGABYTE = 1024 * 1024;
+//                            final StorageReference image = storageReference.child(rec1.title + "_image");
+//                            image.getBytes(ONE_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
+//                                @Override
+//                                public void onSuccess(byte[] bytes) {
+//                                    // Data for "---.jpg" is returns, use this as needed
+//                                    Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+//                                    // imagetoUpload is the imageView we want to modify
+//                                    rec1.setImage(bitmap);
+//
+//                                }
+//                            }).addOnFailureListener(new OnFailureListener() {
+//                                @Override
+//                                public void onFailure(@NonNull Exception exception) {
+//                                    // Handle any errors
+//                                }
+//                            });
+//                            recipes.add(rec1);
+//                            break;
+//                        }
+//                    }
+
                     assert rec1 != null;
                 }
                 initRecipieRecycler(recipes);
@@ -155,7 +226,7 @@ public class SearchActivity extends AppCompatActivity {
 
     }
 
-   private void loadData(){
+//   private void loadData(){
 //        final Recipe rec1;
 //        options = new FirebaseRecyclerOptions.Builder<Recipe>().setQuery(ref, Recipe.class).build();
 //        adapter = new FirebaseRecyclerAdapter<Recipe, HomePageAdapter.HomeViewHolder>(options) {
@@ -175,7 +246,7 @@ public class SearchActivity extends AppCompatActivity {
 //                return new HomePageAdapter.HomeViewHolder(v);
 //            }
 //        };
-    }
+//    }
 
     private void initRecipieRecycler(final ArrayList<Recipe> recipes) {
         recipeAdapter = new HomePageAdapter(this, recipes);

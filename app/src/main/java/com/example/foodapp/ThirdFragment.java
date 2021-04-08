@@ -290,9 +290,11 @@ public class ThirdFragment extends Fragment implements View.OnClickListener{
 
 
         Log.d(null,"Trying to add Recipe");
+
         final Recipe recipe = new Recipe(types.getSelectedItem().toString(),materials.getSelectedItem().toString(),method.getSelectedItem().toString(),
                 situation.getSelectedItem().toString(),culture.getSelectedItem().toString(), title.getText().toString(),
                 description.getText().toString(), time.getText().toString(), difficulty.getRating(),ingredients,steps, userId, userName);
+      
         Log.d(null,"Trying to update User's list of recipes");
         ref.child("Users").child(userId)
                 .addListenerForSingleValueEvent(new ValueEventListener() {
@@ -398,7 +400,9 @@ public class ThirdFragment extends Fragment implements View.OnClickListener{
         Log.d(null, "updated user");
         //this is how to add an image
 //        final long ONE_MEGABYTE = 1024 * 1024;
-//        final StorageReference image = storageRef.child(recipe.title+"_image");
+//        final
+//
+//        image = storageRef.child(recipe.title+"_image");
 //        image.getBytes(ONE_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
 //            @Override
 //            public void onSuccess(byte[] bytes) {

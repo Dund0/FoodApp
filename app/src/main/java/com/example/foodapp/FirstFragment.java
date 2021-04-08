@@ -140,7 +140,6 @@ public class FirstFragment extends Fragment {
 
     private void initList() {
         StorageReference storageRef;
-
         done = false;
         Query query = ref.child("Recipes");
         query.addListenerForSingleValueEvent(new ValueEventListener() {

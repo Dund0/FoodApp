@@ -16,6 +16,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
 
 public class LoginActivity extends AppCompatActivity {
     private FirebaseAuth mFirebaseAuth;
@@ -81,6 +82,19 @@ public class LoginActivity extends AppCompatActivity {
                             }
                         }
                     });
+            // needed to restructure the database
+//            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+//            String userID = user.getUid();
+//            if(userID.equals("8BYxQdqpAwgk6ei8QG64ON8Ftjz2"))
+//            {
+//                user.updateProfile(new UserProfileChangeRequest.Builder().setDisplayName("depresspot").build());
+//            }
+//            else if(userID.equals("FGqERwPwGMPhoyXCAkbMrEV0Efu1")){
+//                user.updateProfile(new UserProfileChangeRequest.Builder().setDisplayName("Daniel Sanandaj").build());
+//            }
+//            else{
+//                user.updateProfile(new UserProfileChangeRequest.Builder().setDisplayName("username1111").build());
+//            }
         }
     }
 

@@ -131,8 +131,7 @@ public class FourthFragment extends Fragment {
         currentProfilePic = rootView.findViewById(R.id.ProfileImage);
         IntroDescription = rootView.findViewById(R.id.ProfileDescription);
         Button profSetting = rootView.findViewById(R.id.ProfileSetting);
-        FirebaseUser curruser = FirebaseAuth.getInstance().getCurrentUser();
-        user = curruser.getUid();
+        user = FirebaseAuth.getInstance().getCurrentUser().getUid();
         profSetting.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -329,12 +328,13 @@ public class FourthFragment extends Fragment {
         StorageReference storageRef;
 
         Query query = ref.child("Recipes");
+        final String userID = user;
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot rec : snapshot.getChildren()) {
                     final Recipe rec1 = rec.getValue(Recipe.class);
-                    if (rec1.getUserId().compareTo(user) == 0) {
+                    if (rec1.getUserId().compareTo(userID) == 0) {
                         final long ONE_MEGABYTE = 1024 * 1024;
                         final StorageReference image = storageReference.child(rec1.title + "_image");
                         image.getBytes(ONE_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
