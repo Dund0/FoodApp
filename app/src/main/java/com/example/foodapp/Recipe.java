@@ -23,7 +23,7 @@ public class Recipe {
         private Uri imageUri;
 
         Recipe(){}
-        Recipe(String type, String main_ingredient, String method, String situation, String culture, String title, String description,
+        Recipe(String type, String main_ingredient, String method, String situation, String culture, String timeOfDay, String title, String description,
                String time, double difficulty, ArrayList<Ingredient> ingredients, ArrayList<Step> steps, String userId, String username)
         {
             categories.add(new Type("type", type));
@@ -31,6 +31,7 @@ public class Recipe {
             categories.add(new Method("method", method));
             categories.add(new Situation("situation", situation));
             categories.add(new Culture("culture", culture));
+            categories.add(new Culture("timeofday", timeOfDay));
             this.title = title;
             this.description = description;
             this.time = time;

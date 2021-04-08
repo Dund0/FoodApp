@@ -39,6 +39,15 @@
     <string name="cancel">Cancel</string>
     <string name="delete_confirm">Type \"<em>Delete my account</em>\" and tap submit button to completely delete your account</string>
 
+    <string-array name="TimeOfDay">
+        <item>Breakfast</item>
+        <item>Lunch</item>
+        <item>Dinner</item>
+        <item>Late-Night</item>
+        <item>Brunch</item>
+        <item>N/A</item>
+    </string-array>
+
     <string-array name="types">
         <item>Main dish</item>
         <item>Side dish</item>

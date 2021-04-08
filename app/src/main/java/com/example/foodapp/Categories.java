@@ -3,7 +3,7 @@ package com.example.foodapp;
 import androidx.annotation.NonNull;
 
 public class Categories {
-    final String[] categories = {"type", "main_ingredient","method","situation","culture"};
+    final String[] categories = {"type", "main_ingredient","method","situation","culture", "timeofday"};
     public String typeOf;
     public String value;
     Categories(){}

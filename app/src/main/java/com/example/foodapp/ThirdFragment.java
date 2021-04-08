@@ -62,7 +62,7 @@ public class ThirdFragment extends Fragment implements View.OnClickListener{
     RatingBar difficulty;
 
     ImageView imageToUpload, stepUpload, current;
-    Spinner types, materials, method, situation, culture;
+    Spinner types, materials, method, situation, culture, timeOfDay;
     Button ingredientAdd, stepAdd;
 
     RecyclerView ingredientRecycler;
@@ -146,6 +146,7 @@ public class ThirdFragment extends Fragment implements View.OnClickListener{
         method = (Spinner) rootView.findViewById(R.id.method);
         situation = (Spinner) rootView.findViewById(R.id.situation);
         culture = (Spinner) rootView.findViewById(R.id.culture);
+        timeOfDay = (Spinner) rootView.findViewById(R.id.TimeOfDay);
 
         ingredientAdd = (Button) rootView.findViewById(R.id.addIngredient);
         stepAdd = (Button) rootView.findViewById(R.id.addStep);
@@ -292,7 +293,7 @@ public class ThirdFragment extends Fragment implements View.OnClickListener{
         Log.d(null,"Trying to add Recipe");
 
         final Recipe recipe = new Recipe(types.getSelectedItem().toString(),materials.getSelectedItem().toString(),method.getSelectedItem().toString(),
-                situation.getSelectedItem().toString(),culture.getSelectedItem().toString(), title.getText().toString(),
+                situation.getSelectedItem().toString(),culture.getSelectedItem().toString(), timeOfDay.getSelectedItem().toString(), title.getText().toString(),
                 description.getText().toString(), time.getText().toString(), difficulty.getRating(),ingredients,steps, userId, userName);
       
         Log.d(null,"Trying to update User's list of recipes");
