@@ -164,6 +164,29 @@ public class HomePageItemView extends AppCompatActivity {
         ingredientAdapter = new IngredientAdapter(this, ingredients);
         ingredientRecycler.setAdapter(ingredientAdapter);
         ingredientRecycler.setLayoutManager(new LinearLayoutManager(this));
+
+        recipeAdapter.setOnItemClickListener(new HomePageAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(int position) {
+
+            }
+
+            @Override
+            public void onProfileClick(int position) {
+                String name = recipes.get(position).getUsername();
+                String userid = recipes.get(position).getUserId();
+                Intent profilePage = new Intent(getApplicationContext(), ProfilePage.class);
+                profilePage.putExtra("currentName", name);
+                profilePage.putExtra("currentID", userid);
+                startActivity(profilePage);
+
+            }
+
+            @Override
+            public void onDeleteClick(int position) {
+
+            }
+        });
     }
 
     private void initStepRecycler() {
