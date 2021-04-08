@@ -131,7 +131,7 @@ public class SearchActivity extends AppCompatActivity {
                     boolean matched = false;
                     for (String item : tokens) {
                         //check against username
-                        if (item.equalsIgnoreCase(rec1.getUserId())) {
+                        if (item.equals(rec1.getUserId())) {
                             //match done
                             count++;
                         }
