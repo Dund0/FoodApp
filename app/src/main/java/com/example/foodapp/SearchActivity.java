@@ -116,7 +116,7 @@ public class SearchActivity extends AppCompatActivity {
         Query query = ref.child("Recipes");
         final ArrayList<String> tokens = new ArrayList<String>(Arrays.asList(StoreInput.split(",")));
         for (String t : tokens) {
-            tokens.set(tokens.indexOf(t), t.trim());
+            tokens.set(tokens.indexOf(t), t.trim().toLowerCase());
         }
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -136,20 +136,20 @@ public class SearchActivity extends AppCompatActivity {
                             count++;
                         }
                         //match by recipename
-                        if (item.equals(rec1.getTitle())) {
+                        if (item.equals(rec1.getTitle().toLowerCase())) {
                             //done
                             count++;
                         }
                         //match by category
                         for (Categories category : rec1.getCategories()) {
-                            if (item.equals(category.value)) {
+                            if (item.equals(category.value.toLowerCase())) {
                                 //done
                                 count++;
                             }
                         }
                         //match by ingredient
                         for (Ingredient ingredient : rec1.getIngredients()) {
-                            if (item.equals(ingredient.getIngredient())) {
+                            if (item.equals(ingredient.getIngredient().toLowerCase())) {
                                 //done
                                 count++;
                             }
