@@ -60,6 +60,7 @@ public class ProfilePage extends AppCompatActivity {
 
         currentProfilePic = findViewById(R.id.ProfileImage);
         IntroDescription = findViewById(R.id.ProfileDescription);
+        recipeRecycler = findViewById(R.id.userPosts);
 
         Bundle extras = getIntent().getExtras();
 
@@ -101,11 +102,12 @@ public class ProfilePage extends AppCompatActivity {
                 }
             }
         });
+
+        initList();
     }
 
-    private void initList() {
-        StorageReference storageRef;
 
+    private void initList() {
         Query query = ref.child("Recipes");
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -118,10 +120,17 @@ public class ProfilePage extends AppCompatActivity {
                         image.getBytes(ONE_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
                             @Override
                             public void onSuccess(byte[] bytes) {
-                                // Data for "---.jpg" is returns, use this as needed
-                                Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
-                                // imagetoUpload is the imageView we want to modify
-                                rec1.setImage(bitmap);
+                                image.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                    @Override
+                                    public void onSuccess(Uri uri) {
+                                        rec1.setImageUri(uri);
+                                    }
+                                }).addOnFailureListener(new OnFailureListener() {
+                                    @Override
+                                    public void onFailure(@NonNull Exception e) {
+
+                                    }
+                                });
                             }
                         }).addOnFailureListener(new OnFailureListener() {
                             @Override
