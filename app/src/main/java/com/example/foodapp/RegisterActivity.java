@@ -136,7 +136,7 @@ public class RegisterActivity extends AppCompatActivity {
                                 }
                             }
                         });
-                    FirebaseAuth.getInstance().getCurrentUser().updateProfile(new UserProfileChangeRequest.Builder().setDisplayName(userID).build());
+                    //FirebaseAuth.getInstance().getCurrentUser().updateProfile(new UserProfileChangeRequest.Builder().setDisplayName(userID).build());
                     }
                 }
                 @Override
