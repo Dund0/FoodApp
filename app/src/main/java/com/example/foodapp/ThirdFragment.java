@@ -4,7 +4,9 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
+import android.graphics.Canvas;
 import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -160,8 +162,8 @@ public class ThirdFragment extends Fragment implements View.OnClickListener{
 
         ingredients.add(new Ingredient("",""));
         initIngredientRecycler(ingredients);
+        steps.add(new Step("", drawableToBitmap(getContext().getDrawable(R.drawable.ic_add_dark)), new ImageView(getContext())));
 
-        steps.add(new Step("", null, new ImageView(getContext())));
         initStepRecycler(steps);
 
         // Inflate the layout for this fragment
@@ -197,7 +199,7 @@ public class ThirdFragment extends Fragment implements View.OnClickListener{
         }
 
         if(update == true ) {
-            steps.add(new Step("", null, new ImageView(getContext())));
+            steps.add(new Step("", drawableToBitmap(getContext().getDrawable(R.drawable.ic_add_dark)), new ImageView(getContext())));
             stepAdapter.notifyItemInserted(stepRecycler.getChildCount());
         }
 
@@ -382,5 +384,27 @@ public class ThirdFragment extends Fragment implements View.OnClickListener{
 
         Log.d(null, "updated user");
         return super.onOptionsItemSelected(item);
+    }
+
+    public static Bitmap drawableToBitmap (Drawable drawable) {
+        Bitmap bitmap = null;
+
+        if (drawable instanceof BitmapDrawable) {
+            BitmapDrawable bitmapDrawable = (BitmapDrawable) drawable;
+            if(bitmapDrawable.getBitmap() != null) {
+                return bitmapDrawable.getBitmap();
+            }
+        }
+
+        if(drawable.getIntrinsicWidth() <= 0 || drawable.getIntrinsicHeight() <= 0) {
+            bitmap = Bitmap.createBitmap(1, 1, Bitmap.Config.ARGB_8888); // Single color bitmap will be created of 1x1 pixel
+        } else {
+            bitmap = Bitmap.createBitmap(drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight(), Bitmap.Config.ARGB_8888);
+        }
+
+        Canvas canvas = new Canvas(bitmap);
+        drawable.setBounds(0, 0, canvas.getWidth(), canvas.getHeight());
+        drawable.draw(canvas);
+        return bitmap;
     }
 }
