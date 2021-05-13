@@ -35,6 +35,7 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -146,6 +147,7 @@ public class FirstFragment extends Fragment {
                     assert rec1 != null;
                 }
                 done = true;
+                Collections.shuffle(recipes);
                 initRecipieRecycler(recipes);
             }
 
